@@ -1,0 +1,92 @@
+Kort svar: att lägga in ett Pac-Man-spel är inte dåligt för Google i sig. Det blir problem bara om det sabbar UX/prestanda på sidor som ska ranka och konvertera (t.ex. startsida, “Boka visning”). Håller du Core Web Vitals gröna och undviker störande element, är det i princip neutralt för SEO – och kan vara kul för varumärket. 
+Google for Developers
++1
+
+Gör så här för att det ska bli “kul grej” – inte SEO-minus
+
+1) Lägg spelet på en egen URL (t.ex. /lek/pacman) och länka dit från footer/”Om oss”. Undvik att bädda in spelet på konverteringssidor. Google utvärderar i första hand på sidnivå, men det finns även vissa bedömningar på sajt-nivå – så håll “brus” borta från kritiska sidor. 
+Google for Developers
+
+2) Håll Core Web Vitals gröna – särskilt INP.
+INP ersatte FID som Core Web Vital i mars 2024. Sikta på INP ≤ 200 ms, LCP ≤ 2,5 s, CLS ≤ 0,1 (75:e percentilen). Spel innebär mycket interaktion ⇒ titta extra på INP. 
+web.dev
++1
+
+3) Lasta spelet “lazyt” och isolerat.
+Tungt JS/Canvas får inte försämra LCP/INP på den sida där du säljer kontor.
+– Ladda spelet endast på sin egen sida med dynamisk import (Next.js).
+– Låt allt icke-kritiskt JS/medier laddas efter interaktivitet/vid användarens klick.
+– Använd “facade”-mönster om du bäddar tredjepart (video m.m.). 
+web.dev
++2
+web.dev
++2
+
+4) Undvik “intrusive” upplevelser.
+Inga helskärms-överlägg, inget auto-play-ljud som döljer innehåll, inga hinder för att nå primärt innehåll/CTA – särskilt på mobil. 
+Google for Developers
+
+5) Håll fokus på hjälpsamt innehåll.
+Googles kärnsystem belönar hjälpsamt/relevant innehåll; “kul sidor” skadar inte, men hjälper inte ranking om de är off-topic. Ha kvar dem – men låt inte sådant dominera sajten. (Mars 2024-uppdateringen bakade “helpful content” in i kärnan.) 
+Google for Developers
+
+6) Mät före/efter – med fältdata.
+Kör PageSpeed Insights och följ både lab och fältdata (CrUX) för spelets URL och för konverteringssidorna. Om spelet drar ner fältdata på viktiga sidor har det implementerats fel. 
+Google for Developers
+
+Snabb Next.js-skiss (säker laddning)
+
+Lägg spelet i en egen route och ladda det klient-sida först när man faktiskt besöker sidan:
+
+// app/lek/pacman/page.tsx (Next.js App Router)
+"use client";
+
+import dynamic from "next/dynamic";
+
+// Ladda spelet bara på klienten, efter hydration
+const Pacman = dynamic(() => import("./PacmanGame"), { ssr: false, loading: () => <p>Laddar…</p> });
+
+export const metadata = {
+  title: "Pac-Man (lek) – DG97",
+  description: "En liten lek – påverkar inte våra kontor-sidor.",
+};
+
+// Om du vill hålla sidan utanför index:
+export const robots = { index: false, follow: true }; // valfritt
+
+export default function Page() {
+  return (
+    <main>
+      <h1 className="sr-only">Pac-Man (lek)</h1>
+      <Pacman />
+      <p>
+        <a href="/kontakt">Tillbaka till bokning av visning</a>
+      </p>
+    </main>
+  );
+}
+
+
+Det här gör att spelet inte påverkar SSR/HTML på andra sidor och att Google kan rendera/krypa resten av sajten snabbt. (Tunga tredjepartsskript bör alltid laddas effektivt/lazy för att skydda CWV.) 
+web.dev
++1
+
+När är ett spel en dålig idé?
+
+Om du lägger det på startsidan eller nära primära CTA:er och försämrar LCP/INP/CLS → risk för sämre användarupplevelse och därmed sämre förutsättningar att konkurrera i SERP när relevanta sidor tävlar. 
+Google for Developers
+
+Om det fungerar som ett störande överlägg (interstitial-likt) på mobil. 
+Google for Developers
+
+Bottom line för dig
+
+Ja, ha det som “kul grej” – på egen URL, med lazy/dynamic import, utan att röra konverteringssidorna.
+
+SEO-mässigt: neutralt så länge CWV/UX hålls gröna; fokus ska fortsatt ligga på hjälpsamt, relevant innehåll som driver leads. 
+Google for Developers
++2
+Google for Developers
++2
+
+Vill du att jag provkör din Pac-Man-build och pekar ut exakt vad som kan optimeras (bundle-storlek, långkörande tasks, input-handlers), säger du bara till så kollar jag direkt.

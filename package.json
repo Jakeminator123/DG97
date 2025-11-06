@@ -1,0 +1,38 @@
+{
+  "name": "dg97-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postbuild": "next-sitemap"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.105.6",
+    "@react-three/fiber": "^8.15.19",
+    "framer-motion": "^11.18.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^10.0.0",
+    "next": "^14.2.33",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.48.0",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.0",
+    "next-sitemap": "^4.2.3",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.1"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

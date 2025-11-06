@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "DG97 Kontorshotell",
+  "name_for_model": "dg97_office_hotel",
+  "description_for_human": "Information om DG97 kontorshotell i Stockholm - flexibla kontorslösningar, konferensrum och workspace.",
+  "description_for_model": "Access information about DG97 office hotel in Stockholm, Sweden. Get details about office spaces, conference rooms, CO-LOCATE workspace, amenities, pricing, location, and contact information. The office hotel is located at Drottninggatan 97 in Vasastan, Stockholm.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://dg97.se/api/openapi.json"
+  },
+  "logo_url": "https://dg97.se/images/logo.png",
+  "contact_email": "hej@dg97.se",
+  "legal_info_url": "https://dg97.se/legal"
+}

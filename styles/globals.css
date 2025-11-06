@@ -1,0 +1,548 @@
+/* CSS linter warnings for @tailwind and @apply can be ignored - these are Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   🎨 DG97 DESIGN SYSTEM
+   ============================================
+   Ett enhetligt designsystem för konsekvent
+   användarupplevelse genom hela sajten.
+   ============================================ */
+
+@layer base {
+  /* ========== Root Styles ========== */
+  :root {
+    /* Primary Brand Colors */
+    --color-primary: #4b5b9c;
+    --color-primary-hover: #3d4a7d;
+    --color-primary-light: #e0ebff;
+
+    /* Accent Colors */
+    --color-accent: #ff6b6b;
+    --color-accent-hover: #dc2626;
+
+    /* Spacing System (8px base) */
+    --space-xs: 0.5rem; /* 8px */
+    --space-sm: 1rem; /* 16px */
+    --space-md: 1.5rem; /* 24px */
+    --space-lg: 2rem; /* 32px */
+    --space-xl: 3rem; /* 48px */
+    --space-2xl: 4rem; /* 64px */
+    --space-3xl: 6rem; /* 96px */
+
+    /* Border Radius */
+    --radius-sm: 0.5rem; /* 8px */
+    --radius-md: 0.75rem; /* 12px */
+    --radius-lg: 1rem; /* 16px */
+    --radius-xl: 1.5rem; /* 24px */
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 300ms ease-out;
+    --transition-slow: 500ms ease-out;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-neutral-900 antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+    /* Subtle base background to ensure animated background shows through */
+    background: linear-gradient(135deg, #fafbff 0%, #f0f4ff 50%, #fafbff 100%);
+  }
+
+  /* Hero headings use Poppins for more visual impact */
+  h1,
+  .heading-hero {
+    font-family: "Poppins", "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* ========== BUTTONS - Enhetlig Design ========== */
+
+  /* Primary CTA Button - Huvudsaklig call-to-action */
+  .btn-primary {
+    @apply inline-flex items-center justify-center;
+    @apply px-6 py-3 md:px-8 md:py-4;
+    @apply bg-gradient-to-r from-primary-600 to-primary-700;
+    @apply text-white font-semibold text-sm md:text-base;
+    @apply rounded-xl shadow-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:from-primary-700 hover:to-primary-800;
+    @apply hover:shadow-xl hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-lg;
+    @apply focus:outline-none focus:ring-4 focus:ring-primary-500/30;
+  }
+
+  /* Secondary Button - Alternativ handling */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center;
+    @apply px-6 py-3 md:px-8 md:py-4;
+    @apply bg-white text-primary-600;
+    @apply font-semibold text-sm md:text-base;
+    @apply rounded-xl border-2 border-primary-200;
+    @apply shadow-md;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary-50 hover:border-primary-300;
+    @apply hover:shadow-lg hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-md;
+    @apply focus:outline-none focus:ring-4 focus:ring-primary-500/30;
+  }
+
+  /* Accent Button - Särskild uppmärksamhet */
+  .btn-accent {
+    @apply inline-flex items-center justify-center;
+    @apply px-6 py-3 md:px-8 md:py-4;
+    @apply bg-gradient-to-r from-secondary-500 to-accent-500;
+    @apply text-white font-semibold text-sm md:text-base;
+    @apply rounded-xl shadow-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:from-secondary-600 hover:to-accent-600;
+    @apply hover:shadow-xl hover:-translate-y-0.5;
+    @apply active:translate-y-0 active:shadow-lg;
+    @apply focus:outline-none focus:ring-4 focus:ring-secondary-500/30;
+  }
+
+  /* Ghost Button - Subtil design */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center;
+    @apply px-6 py-3 md:px-8 md:py-4;
+    @apply text-primary-600 font-semibold text-sm md:text-base;
+    @apply rounded-xl;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary-50 hover:text-primary-700;
+    @apply active:bg-primary-100;
+    @apply focus:outline-none focus:ring-4 focus:ring-primary-500/30;
+  }
+
+  /* Button Sizes */
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 md:px-10 md:py-5 text-base md:text-lg;
+  }
+
+  /* ========== ACCESSIBILITY ========== */
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* ========== CARDS - Enhetlig Kortdesign ========== */
+
+  .card {
+    @apply bg-white rounded-2xl;
+    @apply shadow-md hover:shadow-xl;
+    @apply transition-all duration-300 ease-out;
+    @apply overflow-hidden;
+    @apply backdrop-blur-sm border border-gray-100/50;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(248, 250, 255, 0.95) 100%
+    );
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer;
+    @apply hover:-translate-y-2;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-8px) rotateX(2deg);
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-white via-primary-50 to-primary-100;
+    @apply rounded-xl shadow-md hover:shadow-xl;
+    @apply transition-all duration-300 ease-out;
+    @apply overflow-hidden;
+    @apply backdrop-blur-sm border border-gray-100;
+    background-image: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.9),
+      rgba(239, 246, 255, 0.2),
+      rgba(219, 234, 254, 0.1)
+    );
+  }
+
+  /* ========== SECTIONS - Konsekvent Layout ========== */
+
+  .section-container {
+    @apply max-w-7xl mx-auto;
+    @apply px-4 sm:px-6 lg:px-8;
+    @apply py-10 sm:py-12 md:py-16 lg:py-20 xl:py-24;
+    @apply relative;
+    @apply overflow-hidden;
+  }
+
+  .section-tight {
+    @apply max-w-7xl mx-auto;
+    @apply px-4 sm:px-6 lg:px-8;
+    @apply py-8 md:py-12;
+  }
+
+  .section-gradient-primary {
+    @apply bg-gradient-to-br from-primary-100 via-white to-primary-100/70;
+    background-image: linear-gradient(
+      140deg,
+      rgba(226, 232, 255, 0.95) 0%,
+      rgba(243, 246, 255, 0.96) 45%,
+      rgba(210, 226, 255, 0.9) 100%
+    );
+    background-size: 220% 220%;
+    animation: sectionBreathe 24s ease-in-out infinite;
+  }
+
+  .section-gradient-accent {
+    @apply bg-gradient-to-br from-secondary-50 via-white to-accent-50/30;
+    background-size: 200% 200%;
+    animation: sectionBreathe 25s ease-in-out infinite;
+  }
+
+  .section-dark {
+    @apply bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800;
+    @apply text-white;
+    @apply relative;
+    background-image: linear-gradient(
+      to bottom right,
+      rgba(75, 91, 156, 0.95),
+      rgba(61, 74, 125, 0.94),
+      rgba(52, 63, 107, 0.93)
+    );
+    /* Smooth gradient overlay for better transitions */
+    box-shadow: 0 0 40px rgba(75, 91, 156, 0.15);
+    overflow: hidden;
+  }
+
+  /* ========== TYPOGRAPHY - Enhetlig Texthierarki ========== */
+
+  .heading-hero {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+    @apply font-bold tracking-tight;
+    @apply text-neutral-900;
+    @apply leading-tight;
+  }
+
+  .heading-1 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    @apply font-bold tracking-tight;
+    @apply text-neutral-900;
+    @apply leading-tight;
+    font-family: "Poppins", "Inter", system-ui, sans-serif;
+  }
+
+  .heading-2 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+    @apply font-bold;
+    @apply text-neutral-900;
+    @apply leading-tight;
+  }
+
+  .heading-3 {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+    @apply font-semibold;
+    @apply text-neutral-900;
+    @apply leading-snug;
+  }
+
+  .heading-4 {
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl;
+    @apply font-semibold;
+    @apply text-neutral-900;
+    @apply leading-snug;
+  }
+
+  .text-lead {
+    @apply text-base sm:text-lg md:text-xl;
+    @apply text-neutral-600;
+    @apply leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-base;
+    @apply text-neutral-600;
+    @apply leading-relaxed;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-500;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* ========== FORMS - Enhetliga Formulär ========== */
+
+  .input-field {
+    @apply w-full px-4 py-3;
+    @apply border border-neutral-200 rounded-lg;
+    @apply bg-white text-neutral-900;
+    @apply placeholder-neutral-400;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-4 focus:ring-primary-500/20;
+    @apply focus:border-primary-500;
+  }
+
+  .input-error {
+    @apply border-red-300 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  /* ========== BADGES - Status och Etiketter ========== */
+
+  .badge {
+    @apply inline-flex items-center;
+    @apply px-3 py-1;
+    @apply text-sm font-medium;
+    @apply rounded-full;
+  }
+
+  .badge-primary {
+    @apply badge;
+    @apply bg-primary-100 text-primary-700;
+  }
+
+  .badge-success {
+    @apply badge;
+    @apply bg-success-100 text-success-700;
+  }
+
+  .badge-accent {
+    @apply badge;
+    @apply bg-gradient-to-r from-secondary-100 to-accent-100;
+    @apply text-accent-700;
+  }
+
+  /* ========== OVERLAYS & EFFECTS ========== */
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md;
+    @apply border border-white/20;
+    @apply rounded-xl;
+  }
+
+  .glass-dark {
+    @apply bg-neutral-900/10 backdrop-blur-md;
+    @apply border border-neutral-900/20;
+    @apply rounded-xl;
+  }
+
+  /* Background Patterns */
+  .bg-pattern-dots {
+    background-image: radial-gradient(
+      circle,
+      rgba(75, 91, 156, 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  .bg-pattern-grid {
+    background-image: linear-gradient(
+        rgba(75, 91, 156, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(75, 91, 156, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+@layer utilities {
+  /* Animation Classes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  /* Enhanced hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Gradient text animation */
+  .gradient-text {
+    background: linear-gradient(45deg, #4b5b9c, #ff6b6b, #4b5b9c);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 15s ease-in-out infinite;
+  }
+
+  @keyframes gradientShift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+
+/* ============================================
+   🗓️ AGENDO BOOKING WIDGET STYLES
+   ============================================ */
+
+/* Agendo wrapper container */
+.agendo-wrapper {
+  @apply transition-all duration-300;
+}
+
+.agendo-button-container {
+  @apply flex justify-center items-center;
+  min-height: 60px;
+}
+
+/* Style Agendo's injected button - targeting any button/link elements */
+.agendo-button-container button,
+.agendo-button-container a,
+.agendo-button-container .agendo-button {
+  @apply bg-gradient-to-r from-primary-600 to-primary-700 !important;
+  @apply text-white font-semibold !important;
+  @apply py-4 px-8 !important;
+  @apply rounded-full !important;
+  @apply shadow-lg hover:shadow-xl !important;
+  @apply transform hover:scale-105 !important;
+  @apply transition-all duration-300 !important;
+  @apply hover:from-primary-700 hover:to-primary-800 !important;
+  @apply text-lg !important;
+  @apply cursor-pointer !important;
+  @apply inline-block !important;
+  text-decoration: none !important;
+}
+
+/* Hero variant - larger and animated */
+.agendo-hero-button button,
+.agendo-hero-button a,
+.agendo-hero-button .agendo-button {
+  @apply py-5 px-10 !important;
+  @apply text-xl !important;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Inline variant - smaller for inline usage */
+.agendo-inline-button button,
+.agendo-inline-button a,
+.agendo-inline-button .agendo-button {
+  @apply py-3 px-6 !important;
+  @apply text-base !important;
+}
+
+/* CTA variant - white background for dark sections */
+.agendo-cta-button button,
+.agendo-cta-button a,
+.agendo-cta-button .agendo-button {
+  @apply bg-white !important;
+  @apply text-primary-600 !important;
+  @apply hover:bg-gray-100 !important;
+  @apply border-2 border-white !important;
+  background: white !important;
+}
+
+/* Loading state animation */
+@keyframes agendoLoading {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.agendo-wrapper:not(.loaded) .agendo-button-container::before {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 50px;
+  background: linear-gradient(90deg, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%);
+  border-radius: 9999px;
+  animation: agendoLoading 1.5s ease-in-out infinite;
+}

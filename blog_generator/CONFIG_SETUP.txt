@@ -1,0 +1,44 @@
+BLOG GENERATOR - REMOTE PUBLISHING SETUP
+==========================================
+
+Create a .env file in this folder with:
+
+OPENAI_API_KEY=sk-your-openai-key-here
+DG97_API_URL=https://your-site.onrender.com
+
+For local testing, use:
+DG97_API_URL=http://localhost:3000
+
+==========================================
+
+RENDER ENVIRONMENT VARIABLES:
+
+Add these in Render dashboard > Environment:
+
+GITHUB_TOKEN=ghp_your_personal_access_token
+GITHUB_REPO=username/dg97-site
+GITHUB_BRANCH=main
+NODE_ENV=production
+
+==========================================
+
+HOW TO GET GITHUB TOKEN:
+
+1. GitHub.com → Settings → Developer settings
+2. Personal access tokens → Tokens (classic)
+3. Generate new token
+4. Select scope: ✓ repo (full control)
+5. Copy token and add to Render
+
+==========================================
+
+WORKFLOW:
+
+1. Run blog_generator (local Python script)
+2. Generate post with AI
+3. Choose "y" to publish
+4. Script POSTs to your Render site API
+5. API pushes to GitHub
+6. Render auto-deploys
+7. New post live in 2-3 minutes!
+

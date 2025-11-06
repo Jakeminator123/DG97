@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dg97.se
+
+# Sitemaps
+Sitemap: https://dg97.se/sitemap.xml

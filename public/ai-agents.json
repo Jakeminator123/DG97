@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "business": {
+    "name": "DG97 Kontorshotell",
+    "type": "Office Space Rental",
+    "description": "Modern office hotel in Stockholm offering flexible office solutions",
+    "location": {
+      "address": "Drottninggatan 97, 113 60 Stockholm, Sweden",
+      "area": "Vasastan",
+      "nearestMetro": "Odenplan",
+      "coordinates": {
+        "lat": 59.3413,
+        "lng": 18.0596
+      }
+    }
+  },
+  "services": [
+    {
+      "name": "Private Office Rooms",
+      "description": "Fully furnished private offices for 1-6 people",
+      "pricing": "Contact for quote",
+      "features": ["24/7 access", "Furnished", "High-speed internet", "Lockable"]
+    },
+    {
+      "name": "Conference Rooms",
+      "description": "Modern meeting rooms with projectors and whiteboards",
+      "pricing": "Included for members, hourly rate for external",
+      "capacity": "Up to 12 people"
+    },
+    {
+      "name": "CO-LOCATE Workspace",
+      "description": "Flexible workspace solution with access to all facilities",
+      "pricing": "Monthly membership",
+      "features": ["Flexible seating", "Community access", "All amenities included"]
+    }
+  ],
+  "amenities": [
+    "Free coffee, tea, and water",
+    "High-speed fiber internet (1000 Mbit/s)",
+    "Reception service",
+    "Mail handling",
+    "Phone booths",
+    "Printer and scanner",
+    "Shower facilities",
+    "Inner courtyard",
+    "Daily breakfast",
+    "Regular after-work events",
+    "Secure 24/7 access"
+  ],
+  "contact": {
+    "phone": "+46 70 886 22 79",
+    "email": "hej@dg97.se",
+    "website": "https://dg97.se",
+    "openingHours": {
+      "reception": "Monday-Friday 08:00-18:00",
+      "memberAccess": "24/7"
+    }
+  },
+  "faq": [
+    {
+      "question": "What is included in the rent?",
+      "answer": "Everything is included: furniture, internet, phone system, conference rooms, kitchen with coffee/tea, reception, cleaning, electricity, heating, and mail handling."
+    },
+    {
+      "question": "Are the contracts flexible?",
+      "answer": "Yes, we offer flexible rental agreements that can be adapted to your needs, from weekly to long-term contracts."
+    },
+    {
+      "question": "Where is DG97 located?",
+      "answer": "We are located at Drottninggatan 97 in Vasastan, Stockholm, close to Odenplan and Rådmansgatan metro stations."
+    },
+    {
+      "question": "Can I book conference rooms?",
+      "answer": "Yes, all members have access to conference rooms that can be booked as needed. External guests can also book by the hour."
+    }
+  ],
+  "keywords": [
+    "kontorshotell stockholm",
+    "office hotel stockholm",
+    "flexible office space",
+    "coworking stockholm",
+    "kontorsrum vasastan",
+    "conference room rental stockholm",
+    "virtual office stockholm",
+    "business address stockholm"
+  ]
+}
