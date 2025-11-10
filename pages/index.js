@@ -15,7 +15,12 @@ import {
 } from "../components/animations/AnimatedIcons";
 import Layout from "../components/Layout";
 import SectionBackground from "../components/SectionBackground";
-import VideoHero from "../components/VideoHero";
+
+// Lazy load VideoHero (heavy component with video)
+const VideoHero = dynamic(() => import("../components/VideoHero"), {
+  ssr: true,
+  loading: () => <div className="min-h-[80vh] bg-gray-100" />,
+});
 
 // Lazy load heavy components
 const FeatureList = dynamic(() => import("../components/FeatureList"), {

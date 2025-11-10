@@ -58,6 +58,7 @@ export default function ContactForm() {
           type="text"
           id="name"
           name="name"
+          autoComplete="name"
           {...register('name', { required: 'Namn är obligatoriskt' })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
             errors.name ? 'border-red-500' : 'border-gray-300'
@@ -78,6 +79,7 @@ export default function ContactForm() {
           type="email"
           id="email"
           name="email"
+          autoComplete="email"
           {...register('email', {
             required: 'E-post är obligatoriskt',
             pattern: {
@@ -104,6 +106,7 @@ export default function ContactForm() {
           type="tel"
           id="phone"
           name="phone"
+          autoComplete="tel"
           {...register('phone')}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="070-123 45 67"
@@ -119,6 +122,7 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={5}
+          autoComplete="off"
           {...register('message', { required: 'Meddelande är obligatoriskt' })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
             errors.message ? 'border-red-500' : 'border-gray-300'

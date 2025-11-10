@@ -178,6 +178,7 @@ export default function Chatbot() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Skriv ditt meddelande..."
+                  autoComplete="off"
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-primary-500"
                 />
                 <button

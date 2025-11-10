@@ -443,6 +443,7 @@ export function LockIcon({ size = 60, className = "" }) {
         stroke="#293356"
         strokeWidth="4"
         strokeLinecap="round"
+        initial={{ d: "M 40 45 V 35 Q 40 25 50 25 Q 60 25 60 35 V 45" }}
         variants={{
           hover: {
             d: "M 40 45 V 30 Q 40 20 50 20 Q 60 20 60 30 V 45",
@@ -629,6 +630,7 @@ export function HandshakeIcon({ size = 60, className = "" }) {
         fill="#5573b9"
         stroke="#293356"
         strokeWidth="2"
+        initial={{ d: "M 20 50 Q 30 40 40 45 L 50 50" }}
         variants={{
           hover: {
             d: "M 20 50 Q 30 35 40 40 L 50 45",
@@ -643,6 +645,7 @@ export function HandshakeIcon({ size = 60, className = "" }) {
         fill="#4B5B9C"
         stroke="#293356"
         strokeWidth="2"
+        initial={{ d: "M 80 50 Q 70 40 60 45 L 50 50" }}
         variants={{
           hover: {
             d: "M 80 50 Q 70 35 60 40 L 50 45",
@@ -902,6 +905,7 @@ export function DocumentIcon({ size = 60, className = "" }) {
         fill="#e5e7eb"
         stroke="#4B5B9C"
         strokeWidth="2"
+        initial={{ d: "M 55 10 L 55 30 L 75 30" }}
         variants={{
           hover: {
             d: "M 55 10 L 55 35 L 75 30",

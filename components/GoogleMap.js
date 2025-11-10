@@ -178,6 +178,65 @@ export default function GoogleMap() {
           infoWindow.open(map, marker);
         });
 
+        // Set title on Google Maps iframe for accessibility
+        const setIframeTitle = () => {
+          if (!mapRef.current) return false;
+
+          // Try direct query first
+          let iframe = mapRef.current.querySelector('iframe');
+
+          // If not found, try querying document
+          if (!iframe) {
+            const allIframes = document.querySelectorAll('iframe');
+            // Find the one that's inside our map container
+            allIframes.forEach(f => {
+              if (mapRef.current && mapRef.current.contains(f)) {
+                iframe = f;
+              }
+            });
+          }
+
+          if (iframe && !iframe.getAttribute('title')) {
+            iframe.setAttribute('title', 'Google Maps - DG97 Kontorshotell plats');
+            iframe.setAttribute('aria-label', 'Interaktiv karta som visar DG97 Kontorshotell plats');
+            return true;
+          }
+          return false;
+        };
+
+        // Try to set title immediately and after delays
+        const attempts = [100, 500, 1000, 2000, 3000];
+        const timeouts = attempts.map(delay => setTimeout(setIframeTitle, delay));
+
+        // Observe for iframe creation if not found immediately
+        if (!setIframeTitle() && mapRef.current) {
+          const observer = new MutationObserver(() => {
+            if (setIframeTitle()) {
+              observer.disconnect();
+              // Clear remaining timeouts
+              timeouts.forEach(timeout => clearTimeout(timeout));
+            }
+          });
+          observer.observe(mapRef.current, { childList: true, subtree: true });
+
+          // Also observe document body in case iframe is added outside container
+          const bodyObserver = new MutationObserver(() => {
+            if (setIframeTitle()) {
+              observer.disconnect();
+              bodyObserver.disconnect();
+              timeouts.forEach(timeout => clearTimeout(timeout));
+            }
+          });
+          bodyObserver.observe(document.body, { childList: true, subtree: true });
+
+          // Disconnect after 10 seconds
+          setTimeout(() => {
+            observer.disconnect();
+            bodyObserver.disconnect();
+            timeouts.forEach(timeout => clearTimeout(timeout));
+          }, 10000);
+        }
+
         setIsLoaded(true);
       })
       .catch((err) => {

@@ -172,6 +172,11 @@ export function AnimatedLogoText({ className = "" }) {
 // Morphing logo that transforms between shapes
 export function MorphingLogo({ className = "" }) {
   const [shape, setShape] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const shapes = [
     // Square
@@ -200,7 +205,8 @@ export function MorphingLogo({ className = "" }) {
       <motion.path
         d={safeShape}
         fill="#4B5B9C"
-        animate={{ d: safeShape }}
+        initial={{ d: safeShape }}
+        animate={isMounted && shape > 0 ? { d: safeShape } : { d: safeShape }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       />
       <text

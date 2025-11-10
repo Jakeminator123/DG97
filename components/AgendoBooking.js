@@ -34,28 +34,71 @@ export default function AgendoBooking({
   // Ensure injected iframe has accessible title/label
   useEffect(() => {
     const setIframeA11y = () => {
-      const iframe = document.querySelector(
-        "#agendo-iframe, .agendo-button-container iframe, iframe[src*='agendo']"
-      );
-      if (iframe) {
-        if (!iframe.getAttribute("title")) {
-          iframe.setAttribute("title", "Agendo booking widget");
+      // Try multiple selectors to catch all possible iframe locations
+      const selectors = [
+        "#agendo-iframe",
+        ".agendo-button-container iframe",
+        "iframe[src*='agendo']",
+        "iframe[src*='booking.agendo.io']",
+        ".agendo-widget iframe",
+        "iframe[id*='agendo']",
+      ];
+
+      let found = false;
+      selectors.forEach(selector => {
+        try {
+          const iframes = document.querySelectorAll(selector);
+          iframes.forEach(iframe => {
+            if (!iframe.getAttribute("title")) {
+              iframe.setAttribute("title", "Agendo booking widget - Boka visning online");
+            }
+            if (!iframe.getAttribute("aria-label")) {
+              iframe.setAttribute("aria-label", "Agendo booking widget - Boka visning online");
+            }
+            found = true;
+          });
+        } catch (e) {
+          // Ignore selector errors
         }
-        if (!iframe.getAttribute("aria-label")) {
-          iframe.setAttribute("aria-label", "Agendo booking widget");
-        }
-      }
+      });
+      return found;
     };
 
-    // Initial attempt
+    // Initial attempts with delays
     setIframeA11y();
+    const timeout1 = setTimeout(setIframeA11y, 500);
+    const timeout2 = setTimeout(setIframeA11y, 1500);
+    const timeout3 = setTimeout(setIframeA11y, 3000);
 
-    // Observe container for dynamically injected iframe
+    // Observe entire document for dynamically injected iframes
+    const observer = new MutationObserver(() => {
+      setIframeA11y();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also observe container specifically
     const container = document.querySelector(".agendo-button-container");
-    if (!container) return;
-    const observer = new MutationObserver(() => setIframeA11y());
-    observer.observe(container, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    if (container) {
+      const containerObserver = new MutationObserver(() => {
+        setIframeA11y();
+      });
+      containerObserver.observe(container, { childList: true, subtree: true });
+
+      return () => {
+        clearTimeout(timeout1);
+        clearTimeout(timeout2);
+        clearTimeout(timeout3);
+        observer.disconnect();
+        containerObserver.disconnect();
+      };
+    }
+
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+      clearTimeout(timeout3);
+      observer.disconnect();
+    };
   }, []);
 
   const getVariantClasses = () => {

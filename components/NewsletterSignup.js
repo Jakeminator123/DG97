@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function NewsletterSignup({ 
+export default function NewsletterSignup({
   title = "Håll dig uppdaterad",
   description = "Prenumerera på vårt nyhetsbrev och få nyheter, tips och information om kommande evenemang.",
   variant = "dark" // "dark" or "light"
@@ -12,7 +12,7 @@ export default function NewsletterSignup({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
-    
+
     // Simulate API call
     setTimeout(() => {
       setStatus('success');
@@ -36,16 +36,22 @@ export default function NewsletterSignup({
 
       <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
         <div className="flex flex-col sm:flex-row gap-4">
+          <label htmlFor="newsletter-email" className="sr-only">
+            E-postadress för nyhetsbrev
+          </label>
           <input
             type="email"
+            id="newsletter-email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Din e-postadress"
             required
+            autoComplete="email"
             disabled={status === 'loading'}
             className={`flex-1 px-6 py-4 rounded-lg focus:outline-none focus:ring-2 transition-all ${
-              isDark 
-                ? 'bg-white text-gray-900 placeholder-gray-500 focus:ring-white' 
+              isDark
+                ? 'bg-white text-gray-900 placeholder-gray-500 focus:ring-white'
                 : 'bg-white border-2 border-gray-200 text-gray-900 placeholder-gray-500 focus:ring-primary-500 focus:border-transparent'
             } disabled:opacity-50`}
           />

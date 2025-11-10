@@ -33,7 +33,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
   },
-  // Enable gzip compression
+  // Enable compression (gzip/brotli)
   compress: true,
   // Security headers (disabled in dev to prevent white screen)
   async headers() {

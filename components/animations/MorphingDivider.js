@@ -1,6 +1,22 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export function MorphingDivider({ className = '', color = '#4B5B9C' }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Always provide valid initial path
+  const initialPath = "M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z";
+  const animationPaths = [
+    "M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z",
+    "M0,50 Q300,80 600,50 T1200,50 L1200,100 L0,100 Z",
+    "M0,50 Q300,50 600,80 T1200,50 L1200,100 L0,100 Z",
+    "M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z",
+  ];
+
   return (
     <div className={`w-full overflow-hidden ${className}`}>
       <svg
@@ -11,16 +27,10 @@ export function MorphingDivider({ className = '', color = '#4B5B9C' }) {
         className="w-full h-full"
       >
         <motion.path
-          d="M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z"
+          d={initialPath}
           fill={color}
-          animate={{
-            d: [
-              "M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z",
-              "M0,50 Q300,80 600,50 T1200,50 L1200,100 L0,100 Z",
-              "M0,50 Q300,50 600,80 T1200,50 L1200,100 L0,100 Z",
-              "M0,50 Q300,20 600,50 T1200,50 L1200,100 L0,100 Z",
-            ],
-          }}
+          initial={{ d: initialPath }}
+          animate={isMounted ? { d: animationPaths } : { d: initialPath }}
           transition={{
             duration: 10,
             repeat: Infinity,
@@ -34,6 +44,20 @@ export function MorphingDivider({ className = '', color = '#4B5B9C' }) {
 
 // Wave divider with gradient
 export function WaveDivider({ className = '', flipped = false }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Always provide valid initial path
+  const initialPath = "M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z";
+  const animationPaths = [
+    "M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z",
+    "M0,60 C200,20 400,100 600,60 C800,20 1000,100 1200,60 L1200,120 L0,120 Z",
+    "M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z",
+  ];
+
   return (
     <div className={`w-full ${flipped ? 'rotate-180' : ''} ${className}`}>
       <svg
@@ -68,17 +92,12 @@ export function WaveDivider({ className = '', flipped = false }) {
             />
           </linearGradient>
         </defs>
-        
+
         <motion.path
-          d="M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z"
+          d={initialPath}
           fill="url(#waveGradient)"
-          animate={{
-            d: [
-              "M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z",
-              "M0,60 C200,20 400,100 600,60 C800,20 1000,100 1200,60 L1200,120 L0,120 Z",
-              "M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z",
-            ],
-          }}
+          initial={{ d: initialPath }}
+          animate={isMounted ? { d: animationPaths } : { d: initialPath }}
           transition={{
             duration: 8,
             repeat: Infinity,
@@ -126,6 +145,29 @@ export function GeometricDivider({ className = '' }) {
 
 // Blob divider
 export function BlobDivider({ className = '' }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Always provide valid initial paths
+  const initialPath1 = "M0,100 Q150,50 300,100 T600,100 Q750,150 900,100 T1200,100 L1200,200 L0,200 Z";
+  const animationPaths1 = [
+    "M0,100 Q150,50 300,100 T600,100 Q750,150 900,100 T1200,100 L1200,200 L0,200 Z",
+    "M0,100 Q150,150 300,100 T600,100 Q750,50 900,100 T1200,100 L1200,200 L0,200 Z",
+    "M0,100 Q150,100 300,150 T600,100 Q750,100 900,50 T1200,100 L1200,200 L0,200 Z",
+    "M0,100 Q150,50 300,100 T600,100 Q750,150 900,100 T1200,100 L1200,200 L0,200 Z",
+  ];
+
+  const initialPath2 = "M0,120 Q200,80 400,120 T800,120 Q1000,160 1200,120 L1200,200 L0,200 Z";
+  const animationPaths2 = [
+    "M0,120 Q200,80 400,120 T800,120 Q1000,160 1200,120 L1200,200 L0,200 Z",
+    "M0,120 Q200,160 400,120 T800,120 Q1000,80 1200,120 L1200,200 L0,200 Z",
+    "M0,120 Q200,120 400,80 T800,120 Q1000,120 1200,160 L1200,200 L0,200 Z",
+    "M0,120 Q200,80 400,120 T800,120 Q1000,160 1200,120 L1200,200 L0,200 Z",
+  ];
+
   return (
     <div className={`w-full ${className}`}>
       <svg
@@ -135,17 +177,11 @@ export function BlobDivider({ className = '' }) {
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M0,100 Q150,50 300,100 T600,100 Q750,150 900,100 T1200,100 L1200,200 L0,200 Z"
+          d={initialPath1}
           fill="#4B5B9C"
           opacity={0.1}
-          animate={{
-            d: [
-              "M0,100 Q150,50 300,100 T600,100 Q750,150 900,100 T1200,100 L1200,200 L0,200 Z",
-              "M0,100 Q150,150 300,100 T600,100 Q750,50 900,100 T1200,100 L1200,200 L0,200 Z",
-              "M0,100 Q150,100 300,150 T600,100 Q750,100 900,50 T1200,100 L1200,200 L0,200 Z",
-              "M0,100 Q150,50 300,100 T600,100 Q750,150 900,100 T1200,100 L1200,200 L0,200 Z",
-            ],
-          }}
+          initial={{ d: initialPath1 }}
+          animate={isMounted ? { d: animationPaths1 } : { d: initialPath1 }}
           transition={{
             duration: 15,
             repeat: Infinity,
@@ -153,17 +189,11 @@ export function BlobDivider({ className = '' }) {
           }}
         />
         <motion.path
-          d="M0,120 Q200,80 400,120 T800,120 Q1000,160 1200,120 L1200,200 L0,200 Z"
+          d={initialPath2}
           fill="#5573b9"
           opacity={0.2}
-          animate={{
-            d: [
-              "M0,120 Q200,80 400,120 T800,120 Q1000,160 1200,120 L1200,200 L0,200 Z",
-              "M0,120 Q200,160 400,120 T800,120 Q1000,80 1200,120 L1200,200 L0,200 Z",
-              "M0,120 Q200,120 400,80 T800,120 Q1000,120 1200,160 L1200,200 L0,200 Z",
-              "M0,120 Q200,80 400,120 T800,120 Q1000,160 1200,120 L1200,200 L0,200 Z",
-            ],
-          }}
+          initial={{ d: initialPath2 }}
+          animate={isMounted ? { d: animationPaths2 } : { d: initialPath2 }}
           transition={{
             duration: 12,
             repeat: Infinity,

@@ -125,7 +125,8 @@ export default function VideoHero() {
               fill
               sizes="100vw"
               className="object-cover"
-              loading="eager"
+              priority={false}
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-black/40" />
           </div>
@@ -145,7 +146,7 @@ export default function VideoHero() {
         className="absolute inset-0 w-full h-full object-cover"
         onLoadedData={() => setVideoLoaded(true)}
         onError={() => setVideoLoaded(true)} // Fallback if video fails
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         role="presentation"
       >

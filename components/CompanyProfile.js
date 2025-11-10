@@ -135,6 +135,7 @@ export default function CompanyProfile({
                   })
                 }
                 placeholder="Företagsnamn"
+                autoComplete="organization"
                 className="text-2xl font-bold input-field mb-2"
               />
             ) : (
@@ -194,6 +195,7 @@ export default function CompanyProfile({
                   setProfileData({ ...profileData, roomNumber: e.target.value })
                 }
                 placeholder="T.ex. 101"
+                autoComplete="off"
                 className="input-field"
               />
             </div>
@@ -209,6 +211,7 @@ export default function CompanyProfile({
                 onChange={(e) =>
                   setProfileData({ ...profileData, industry: e.target.value })
                 }
+                autoComplete="organization-title"
                 className="input-field"
               >
                 <option value="">Välj bransch</option>
@@ -235,6 +238,7 @@ export default function CompanyProfile({
               }
               placeholder="Berätta om ert företag..."
               rows={4}
+              autoComplete="off"
               className="input-field"
             />
           </div>
@@ -254,6 +258,7 @@ export default function CompanyProfile({
                 }
                 placeholder="Vad erbjuder ni?"
                 rows={3}
+                autoComplete="off"
                 className="input-field"
               />
             </div>
@@ -274,6 +279,7 @@ export default function CompanyProfile({
                 }
                 placeholder="Vilka är era kunder?"
                 rows={3}
+                autoComplete="off"
                 className="input-field"
               />
             </div>
@@ -294,6 +300,7 @@ export default function CompanyProfile({
                   setProfileData({ ...profileData, website: e.target.value })
                 }
                 placeholder="https://exempel.se"
+                autoComplete="url"
                 className="input-field"
               />
             </div>
@@ -311,6 +318,7 @@ export default function CompanyProfile({
                   setProfileData({ ...profileData, linkedin: e.target.value })
                 }
                 placeholder="https://linkedin.com/company/..."
+                autoComplete="url"
                 className="input-field"
               />
             </div>
@@ -328,6 +336,7 @@ export default function CompanyProfile({
                   setProfileData({ ...profileData, email: e.target.value })
                 }
                 placeholder="info@exempel.se"
+                autoComplete="email"
                 className="input-field"
               />
             </div>
@@ -345,6 +354,7 @@ export default function CompanyProfile({
                   setProfileData({ ...profileData, phone: e.target.value })
                 }
                 placeholder="070-123 45 67"
+                autoComplete="tel"
                 className="input-field"
               />
             </div>
