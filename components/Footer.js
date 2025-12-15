@@ -1,5 +1,12 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import NewsletterSignup from "./NewsletterSignup";
+
+// Lazy load Pac-Man game (easter egg)
+const PacManGame = dynamic(() => import("./PacManGame"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -207,10 +214,13 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-primary-800 mt-12 pt-8 text-center">
-          <p className="text-neutral-400">
-            &copy; {currentYear} DG97 Kontorshotell. Alla rättigheter
-            förbehållna.
-          </p>
+          <div className="flex items-center justify-center gap-4 mb-2">
+            <p className="text-neutral-400">
+              &copy; {currentYear} DG97 Kontorshotell. Alla rättigheter
+              förbehållna.
+            </p>
+            <PacManGame />
+          </div>
         </div>
       </div>
     </footer>

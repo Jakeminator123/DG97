@@ -1,14 +1,26 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 
-export function ScrollReveal({ 
-  children, 
-  className = '',
+// Shared animation constants for consistency and performance
+export const ANIMATION_DURATION = {
+  fast: 0.4,
+  normal: 0.6,
+  slow: 0.8,
+};
+
+export const ANIMATION_EASING = {
+  easeOut: [0.16, 1, 0.3, 1], // Custom cubic-bezier for smooth feel
+  easeInOut: [0.4, 0, 0.2, 1],
+};
+
+export function ScrollReveal({
+  children,
+  className = "",
   delay = 0,
   duration = 0.8,
   y = 50,
-  once = true 
+  once = true,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-100px" });
@@ -23,8 +35,10 @@ export function ScrollReveal({
       ref={ref}
       initial={{ opacity: 0, y }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration, delay, ease: "easeOut" }}
+      transition={{ duration, delay, ease: ANIMATION_EASING.easeOut }}
       className={className}
+      // Hint should be enabled while the animation is running/in-view
+      style={{ willChange: isInView ? "transform, opacity" : "auto" }}
     >
       {children}
     </motion.div>
@@ -32,13 +46,13 @@ export function ScrollReveal({
 }
 
 // Fade in from different directions
-export function FadeIn({ 
-  children, 
-  direction = 'up', 
-  className = '',
+export function FadeIn({
+  children,
+  direction = "up",
+  className = "",
   delay = 0,
   duration = 0.8,
-  once = true
+  once = true,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
@@ -57,8 +71,10 @@ export function FadeIn({
       ref={ref}
       initial={{ opacity: 0, x, y }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x, y }}
-      transition={{ duration, delay, ease: "easeOut" }}
+      transition={{ duration, delay, ease: ANIMATION_EASING.easeOut }}
       className={className}
+      // Hint should be enabled while the animation is running/in-view
+      style={{ willChange: isInView ? "transform, opacity" : "auto" }}
     >
       {children}
     </motion.div>
@@ -66,12 +82,12 @@ export function FadeIn({
 }
 
 // Scale reveal
-export function ScaleReveal({ 
-  children, 
-  className = '',
+export function ScaleReveal({
+  children,
+  className = "",
   delay = 0,
   duration = 0.8,
-  once = true 
+  once = true,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
@@ -79,10 +95,14 @@ export function ScaleReveal({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-      transition={{ duration, delay, ease: "easeOut" }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={
+        isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }
+      }
+      transition={{ duration, delay, ease: ANIMATION_EASING.easeOut }}
       className={className}
+      // Hint should be enabled while the animation is running/in-view
+      style={{ willChange: isInView ? "transform, opacity" : "auto" }}
     >
       {children}
     </motion.div>
@@ -90,11 +110,11 @@ export function ScaleReveal({
 }
 
 // Stagger children reveal
-export function StaggerReveal({ 
-  children, 
-  className = '',
+export function StaggerReveal({
+  children,
+  className = "",
   staggerDelay = 0.1,
-  once = true 
+  once = true,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
@@ -119,43 +139,53 @@ export function StaggerReveal({
 }
 
 // For use with StaggerReveal
-export function StaggerChild({ children, className = '' }) {
+export function StaggerChild({ children, className = "" }) {
   return (
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
       }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{
+        duration: ANIMATION_DURATION.normal,
+        ease: ANIMATION_EASING.easeOut,
+      }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
   );
 }
 
-// Blur reveal
-export function BlurReveal({ 
-  children, 
-  className = '',
+// Blur reveal - OPTIMIZED: Uses transform/opacity instead of filter for better performance
+export function BlurReveal({
+  children,
+  className = "",
   delay = 0,
   duration = 0.8,
-  once = true 
+  once = true,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
+  const shouldReduceMotion = useReducedMotion();
 
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  // Use scale + opacity instead of blur filter for GPU acceleration
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, filter: 'blur(20px)' }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={
-        isInView 
-          ? { opacity: 1, filter: 'blur(0px)' }
-          : { opacity: 0, filter: 'blur(20px)' }
+        isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }
       }
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
+      // Hint should be enabled while the animation is running/in-view
+      style={{ willChange: isInView ? "transform, opacity" : "auto" }}
     >
       {children}
     </motion.div>
@@ -163,10 +193,10 @@ export function BlurReveal({
 }
 
 // Text reveal line by line
-export function TextReveal({ text, className = '', delay = 0 }) {
+export function TextReveal({ text, className = "", delay = 0 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const lines = text.split('\n');
+  const lines = text.split("\n");
 
   return (
     <div ref={ref} className={className}>

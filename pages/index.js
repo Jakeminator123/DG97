@@ -15,6 +15,7 @@ import {
 } from "../components/animations/AnimatedIcons";
 import Layout from "../components/Layout";
 import SectionBackground from "../components/SectionBackground";
+import KineticStory from "../components/KineticStory";
 
 // Lazy load VideoHero (heavy component with video)
 const VideoHero = dynamic(() => import("../components/VideoHero"), {
@@ -189,6 +190,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Interactive Story Section */}
+      <KineticStory />
+
       {/* Offerings Section */}
       <section className="section-container section-gradient">
         <SectionBackground variant="light" intensity="subtle" />
@@ -293,9 +297,9 @@ export default function Home() {
       <section className="section-container section-gradient-primary relative overflow-hidden">
         <SectionBackground variant="blue" intensity="strong" />
 
-        {/* Soft glowing orbs for depth */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary-200/20 to-primary-200/10 rounded-full blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-primary-100/20 to-primary-100/10 rounded-full blur-3xl opacity-40 translate-x-1/2 translate-y-1/2 -z-10"></div>
+        {/* Soft glowing orbs for depth - OPTIMIZED: Reduced blur for better performance */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary-200/20 to-primary-200/10 rounded-full blur-2xl opacity-30 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-primary-100/20 to-primary-100/10 rounded-full blur-2xl opacity-30 translate-x-1/2 translate-y-1/2 -z-10"></div>
 
         {/* Removed animated shimmer overlay to prevent flickering */}
 

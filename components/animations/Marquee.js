@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export function Marquee({ 
   items = [], 
@@ -6,7 +7,27 @@ export function Marquee({
   className = '',
   reverse = false 
 }) {
+  const shouldReduceMotion = useReducedMotion();
   const duplicatedItems = [...items, ...items, ...items]; // Triple for smooth loop
+
+  // Use CSS animation for better performance when possible
+  if (shouldReduceMotion) {
+    return (
+      <div className={`overflow-hidden ${className}`}>
+        <div className="flex whitespace-nowrap">
+          {duplicatedItems.slice(0, items.length).map((item, index) => (
+            <span
+              key={index}
+              className="inline-flex items-center mx-8 text-4xl md:text-6xl font-bold text-primary-600"
+            >
+              {item}
+              <span className="mx-8 text-accent-500">•</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`overflow-hidden ${className}`}>
@@ -22,6 +43,7 @@ export function Marquee({
             ease: "linear",
           },
         }}
+        style={{ willChange: 'transform' }}
       >
         {duplicatedItems.map((item, index) => (
           <span
@@ -37,9 +59,33 @@ export function Marquee({
   );
 }
 
-// Variant with gradient text
+// Variant with gradient text - OPTIMIZED: Reduced animation complexity
 export function GradientMarquee({ items = [], speed = 30, className = '' }) {
+  const shouldReduceMotion = useReducedMotion();
   const duplicatedItems = [...items, ...items, ...items];
+
+  if (shouldReduceMotion) {
+    return (
+      <div className={`overflow-hidden py-8 ${className}`}>
+        <div className="flex whitespace-nowrap">
+          {duplicatedItems.slice(0, items.length).map((item, index) => (
+            <span
+              key={index}
+              className="inline-flex items-center mx-8 text-4xl md:text-6xl font-bold"
+              style={{
+                background: 'linear-gradient(45deg, #4B5B9C, #5573b9, #ff6b6b)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`overflow-hidden py-8 ${className}`}>
@@ -55,31 +101,21 @@ export function GradientMarquee({ items = [], speed = 30, className = '' }) {
             ease: "linear",
           },
         }}
+        style={{ willChange: 'transform' }}
       >
         {duplicatedItems.map((item, index) => (
-          <motion.span
+          <span
             key={index}
             className="inline-flex items-center mx-8 text-4xl md:text-6xl font-bold"
             style={{
               background: 'linear-gradient(45deg, #4B5B9C, #5573b9, #ff6b6b)',
-              backgroundSize: '200% 200%',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-            }}
-            transition={{
-              backgroundPosition: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-            }}
           >
             {item}
-          </motion.span>
+          </span>
         ))}
       </motion.div>
     </div>

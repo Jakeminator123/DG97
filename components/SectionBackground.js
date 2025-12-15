@@ -1,15 +1,21 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useMemo, useRef } from "react";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 /**
  * Animated background pattern component for sections
+ * OPTIMIZED: Uses GPU-friendly transforms, pauses when offscreen, respects reduced motion
  * Creates subtle floating elements similar to gallery
  */
-import { useMemo } from "react";
 
 export default function SectionBackground({
   variant = "light",
   intensity = "subtle",
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, margin: "200px" });
+  const shouldReduceMotion = useReducedMotion();
+
   const getColors = () => {
     switch (variant) {
       case "dark":
@@ -48,9 +54,12 @@ export default function SectionBackground({
     return positions.slice(0, elementCount);
   }, [elementCount]);
 
+  // Don't animate if reduced motion or not in view
+  const shouldAnimate = !shouldReduceMotion && isInView;
+
   return (
-    <div className="absolute inset-0 pointer-events-none -z-10" style={{ willChange: 'auto' }}>
-      {/* Floating geometric shapes */}
+    <div ref={ref} className="absolute inset-0 pointer-events-none -z-10">
+      {/* Floating geometric shapes - OPTIMIZED: Reduced blur, GPU-accelerated transforms */}
       {elements.map((pos, i) => (
         <motion.div
           key={`shape-${i}`}
@@ -62,63 +71,62 @@ export default function SectionBackground({
             top: `${pos.t}%`,
             background: i % 2 === 0 ? colors.primary : colors.secondary,
             borderRadius: i % 3 === 0 ? "50%" : "20%",
-            filter: "blur(40px)",
-            willChange: "transform",
+            // Reduced blur for better performance (was 40px)
+            filter: shouldAnimate ? "blur(20px)" : "blur(20px)",
+            willChange: shouldAnimate ? "transform" : "auto",
           }}
           initial={{ opacity: 0.25 }}
-          animate={{
+          animate={shouldAnimate ? {
             x: [0, 8, -5, 0],
             y: [0, -10, 5, 0],
-            scale: [1, 1.03, 1],
-            opacity: [0.25, 0.3, 0.25],
-          }}
-          transition={{
+            scale: [1, 1.02, 1], // Reduced scale change
+            opacity: [0.25, 0.28, 0.25], // Reduced opacity change
+          } : { opacity: 0.25 }}
+          transition={shouldAnimate ? {
             duration: 50 + i * 10,
             repeat: Infinity,
             ease: "easeInOut",
             delay: i * 5,
-          }}
+          } : {}}
         />
       ))}
 
-      {/* Subtle gradient waves */}
+      {/* Subtle gradient waves - OPTIMIZED: Only animates when in view */}
       <motion.div
         className="absolute w-full h-full"
         style={{
           background: `linear-gradient(135deg, transparent, ${colors.primary}, transparent)`,
-          willChange: "opacity",
+          willChange: shouldAnimate ? "opacity" : "auto",
         }}
         initial={{ opacity: 0.05 }}
-        animate={{
-          opacity: [0.05, 0.12, 0.05],
-        }}
-        transition={{
+        animate={shouldAnimate ? {
+          opacity: [0.05, 0.1, 0.05], // Reduced opacity range
+        } : { opacity: 0.05 }}
+        transition={shouldAnimate ? {
           duration: 50,
           repeat: Infinity,
           ease: "easeInOut",
-        }}
+        } : {}}
       />
 
-      {/* Rotating light beams */}
-      {intensity === "strong" && (
-        <>
-          <motion.div
-            className="absolute -top-1/2 -left-1/2 w-full h-full"
-            style={{
-              background: `conic-gradient(from 0deg, transparent, ${colors.secondary}, transparent)`,
-              opacity: 0.3,
-              willChange: "transform",
-            }}
-            animate={{
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 60,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        </>
+      {/* Rotating light beams - OPTIMIZED: Only when in view and not reduced motion */}
+      {intensity === "strong" && shouldAnimate && (
+        <motion.div
+          className="absolute -top-1/2 -left-1/2 w-full h-full"
+          style={{
+            background: `conic-gradient(from 0deg, transparent, ${colors.secondary}, transparent)`,
+            opacity: 0.2, // Reduced opacity
+            willChange: "transform",
+          }}
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 60,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
       )}
     </div>
   );

@@ -36,7 +36,7 @@ export default function PageHero({
   actions,
   children,
   variant = "br",
-  minHeight = false,
+  minHeight = true,
   showShapes = true,
   shapes = DEFAULT_SHAPES,
   shapesOpacityClassName = "opacity-10",
@@ -65,13 +65,13 @@ export default function PageHero({
     >
       {showShapes && (
         <div
-          className={["absolute inset-0", shapesOpacityClassName].join(" ")}
+          className="absolute inset-0 z-0"
           aria-hidden="true"
         >
           {shapes.map((pos, i) => (
             <motion.div
               key={i}
-              className="absolute w-32 h-32 bg-white opacity-5 rounded-lg pointer-events-none"
+              className="absolute w-32 h-32 bg-white opacity-10 rounded-lg pointer-events-none"
               style={{ left: pos.left, top: pos.top }}
               animate={
                 shouldReduceMotion

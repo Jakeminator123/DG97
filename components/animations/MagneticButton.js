@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 export function MagneticButton({ 
   children, 
@@ -11,15 +12,18 @@ export function MagneticButton({
 }) {
   const ref = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
-  const xSpring = useTransform(x, (value) => value / 3);
-  const ySpring = useTransform(y, (value) => value / 3);
+  // Reduced magnetic effect for better performance
+  const magneticStrength = shouldReduceMotion ? 0 : 0.1;
+  const xSpring = useTransform(x, (value) => value / 4);
+  const ySpring = useTransform(y, (value) => value / 4);
 
-  const handleMouseMove = (e) => {
-    if (!ref.current) return;
+  const handleMouseMove = useCallback((e) => {
+    if (!ref.current || shouldReduceMotion) return;
     
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -28,15 +32,15 @@ export function MagneticButton({
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
-    x.set(distanceX * 0.15);
-    y.set(distanceY * 0.15);
-  };
+    x.set(distanceX * magneticStrength);
+    y.set(distanceY * magneticStrength);
+  }, [magneticStrength, shouldReduceMotion, x, y]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
     setIsHovered(false);
-  };
+  }, [x]);
 
   const baseClasses = "relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-semibold text-sm md:text-base rounded-xl transition-all duration-300 overflow-hidden cursor-pointer";
   const variantClasses = {
@@ -61,27 +65,34 @@ export function MagneticButton({
     >
       <motion.div
         className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: shouldReduceMotion ? 1 : 0.98 }}
+        style={{ willChange: 'transform' }}
         {...buttonProps}
       >
-        {/* Background animation */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0"
-          initial={{ x: '-100%', opacity: 0 }}
-          animate={isHovered ? { x: '100%', opacity: 1 } : { x: '-100%', opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        />
+        {/* Background animation - OPTIMIZED: Uses transform instead of x for GPU acceleration */}
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0"
+            initial={{ transform: 'translateX(-100%)', opacity: 0 }}
+            animate={isHovered ? { transform: 'translateX(100%)', opacity: 1 } : { transform: 'translateX(-100%)', opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+          />
+        )}
 
-        {/* Ripple effect on click */}
-        <motion.div
-          className="absolute inset-0 rounded-xl"
-          initial={{ scale: 0, opacity: 0 }}
-          whileTap={{ scale: 2, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
-          }}
-        />
+        {/* Ripple effect on click - OPTIMIZED: Only when not reduced motion */}
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute inset-0 rounded-xl pointer-events-none"
+            initial={{ scale: 0, opacity: 0 }}
+            whileTap={{ scale: 2, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            style={{
+              background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+              willChange: 'transform, opacity',
+            }}
+          />
+        )}
 
         {/* Button content */}
         <span className="relative z-10">{children}</span>
