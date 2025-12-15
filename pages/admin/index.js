@@ -16,6 +16,9 @@ export default function AdminDashboard() {
   const [posts, setPosts] = useState([]);
   const [schedules, setSchedules] = useState([]);
   const [generating, setGenerating] = useState(false);
+  const [newsletterData, setNewsletterData] = useState(null);
+  const [contentData, setContentData] = useState(null);
+  const [images, setImages] = useState([]);
 
   // Check authentication on mount
   useEffect(() => {
@@ -126,6 +129,39 @@ export default function AdminDashboard() {
         if (schedRes.ok) {
           const schedData = await schedRes.json();
           setSchedules(schedData.schedules || []);
+        }
+      }
+
+      // Load newsletter data if on newsletter tab
+      if (activeTab === 'newsletter') {
+        const newsletterRes = await fetch('/api/admin/newsletter', {
+          credentials: 'include'
+        });
+        if (newsletterRes.ok) {
+          const newsletterData = await newsletterRes.json();
+          setNewsletterData(newsletterData);
+        }
+      }
+
+      // Load content if on content tab
+      if (activeTab === 'content') {
+        const contentRes = await fetch('/api/admin/content', {
+          credentials: 'include'
+        });
+        if (contentRes.ok) {
+          const contentData = await contentRes.json();
+          setContentData(contentData);
+        }
+      }
+
+      // Load images if on images tab
+      if (activeTab === 'images') {
+        const imagesRes = await fetch('/api/admin/images', {
+          credentials: 'include'
+        });
+        if (imagesRes.ok) {
+          const imagesData = await imagesRes.json();
+          setImages(imagesData.images || []);
         }
       }
     } catch (error) {
@@ -288,7 +324,10 @@ export default function AdminDashboard() {
                 { id: 'dashboard', label: 'Dashboard', icon: '📊' },
                 { id: 'generate', label: 'Generera Inlägg', icon: '✨' },
                 { id: 'posts', label: 'Hantera Inlägg', icon: '📝' },
-                { id: 'scheduler', label: 'Autoposting', icon: '⏰' }
+                { id: 'scheduler', label: 'Autoposting', icon: '⏰' },
+                { id: 'newsletter', label: 'Newsletter', icon: '📧' },
+                { id: 'content', label: 'Innehåll', icon: '📄' },
+                { id: 'images', label: 'Bilder', icon: '🖼️' }
               ].map(tab => (
                 <button
                   key={tab.id}
@@ -319,6 +358,15 @@ export default function AdminDashboard() {
             )}
             {activeTab === 'scheduler' && (
               <SchedulerTab key="scheduler" schedules={schedules} onRefresh={loadDashboardData} />
+            )}
+            {activeTab === 'newsletter' && (
+              <NewsletterTab key="newsletter" data={newsletterData} onRefresh={loadDashboardData} />
+            )}
+            {activeTab === 'content' && (
+              <ContentTab key="content" data={contentData} onRefresh={loadDashboardData} />
+            )}
+            {activeTab === 'images' && (
+              <ImagesTab key="images" images={images} onRefresh={loadDashboardData} />
             )}
           </AnimatePresence>
         </div>
@@ -562,7 +610,54 @@ function GenerateTab({ onGenerate, generating }) {
 // Posts Tab Component
 function PostsTab({ posts, onRefresh }) {
   const [deleting, setDeleting] = useState(null);
+  const [editing, setEditing] = useState(null);
+  const [editData, setEditData] = useState(null);
   const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  const handleEdit = async (slug) => {
+    try {
+      const response = await fetch(`/api/admin/blog?slug=${slug}`, {
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const post = await response.json();
+        setEditing(slug);
+        setEditData(post);
+      }
+    } catch (error) {
+      setError('Kunde inte ladda inlägg');
+    }
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      const response = await fetch('/api/admin/blog', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          slug: editing,
+          ...editData
+        })
+      });
+
+      if (response.ok) {
+        setEditing(null);
+        setEditData(null);
+        await onRefresh();
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setError(data.error || 'Kunde inte spara');
+      }
+    } catch (error) {
+      setError('Ett fel uppstod vid sparande');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleDelete = async (slug) => {
     if (!confirm('Är du säker på att du vill ta bort detta inlägg?')) {
@@ -590,6 +685,68 @@ function PostsTab({ posts, onRefresh }) {
       setDeleting(null);
     }
   };
+
+  if (editing && editData) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        className="card-gradient p-8"
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="heading-3">Redigera Inlägg</h2>
+          <button onClick={() => { setEditing(null); setEditData(null); }} className="btn-ghost">
+            Avbryt
+          </button>
+        </div>
+
+        <form onSubmit={handleSave} className="space-y-4">
+          <div>
+            <label className="block text-sm font-semibold mb-2">Titel</label>
+            <input
+              type="text"
+              value={editData.title || ''}
+              onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+              className="input-field"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold mb-2">Excerpt</label>
+            <textarea
+              value={editData.excerpt || ''}
+              onChange={(e) => setEditData({ ...editData, excerpt: e.target.value })}
+              className="input-field"
+              rows={2}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold mb-2">Kategori</label>
+            <input
+              type="text"
+              value={editData.category || ''}
+              onChange={(e) => setEditData({ ...editData, category: e.target.value })}
+              className="input-field"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold mb-2">Innehåll (Markdown)</label>
+            <textarea
+              value={editData.content || ''}
+              onChange={(e) => setEditData({ ...editData, content: e.target.value })}
+              className="input-field font-mono text-sm"
+              rows={20}
+              required
+            />
+          </div>
+          <button type="submit" disabled={saving} className="btn-primary w-full">
+            {saving ? 'Sparar...' : 'Spara Ändringar'}
+          </button>
+        </form>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -630,6 +787,12 @@ function PostsTab({ posts, onRefresh }) {
                 >
                   Visa
                 </a>
+                <button
+                  onClick={() => handleEdit(post.slug)}
+                  className="btn-secondary text-sm"
+                >
+                  Redigera
+                </button>
                 <button
                   onClick={() => handleDelete(post.slug)}
                   disabled={deleting === post.slug}
@@ -865,6 +1028,383 @@ function SchedulerTab({ schedules, onRefresh }) {
                     Ta bort
                   </button>
                 </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+// Newsletter Tab Component
+function NewsletterTab({ data, onRefresh }) {
+  const [subscribers, setSubscribers] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [showSendForm, setShowSendForm] = useState(false);
+  const [sendForm, setSendForm] = useState({ subject: '', content: '', testEmail: '' });
+  const [sending, setSending] = useState(false);
+  const [deleting, setDeleting] = useState(null);
+
+  useEffect(() => {
+    if (data) {
+      setSubscribers(data.subscribers || []);
+      setHistory(data.history || []);
+    }
+  }, [data]);
+
+  const handleDelete = async (email) => {
+    if (!confirm(`Ta bort ${email} från prenumerantlistan?`)) return;
+    
+    setDeleting(email);
+    try {
+      const res = await fetch(`/api/admin/newsletter?email=${encodeURIComponent(email)}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+      if (res.ok) {
+        await onRefresh();
+      }
+    } catch (error) {
+      alert('Kunde inte ta bort prenumerant');
+    } finally {
+      setDeleting(null);
+    }
+  };
+
+  const handleSend = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      const res = await fetch('/api/admin/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(sendForm)
+      });
+      const result = await res.json();
+      if (result.success) {
+        alert(`Newsletter skickad till ${result.sent} prenumeranter!`);
+        setShowSendForm(false);
+        setSendForm({ subject: '', content: '', testEmail: '' });
+        await onRefresh();
+      } else {
+        alert('Kunde inte skicka newsletter: ' + (result.error || 'Okänt fel'));
+      }
+    } catch (error) {
+      alert('Fel vid skickande');
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const exportSubscribers = () => {
+    const csv = 'Email,Subscribed At\n' + subscribers.map(s => `${s.email},${s.subscribedAt}`).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `newsletter_subscribers_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      className="space-y-6"
+    >
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="heading-3">Newsletter Management</h2>
+          <p className="text-gray-600 mt-1">
+            {data?.total || 0} prenumeranter ({data?.active || 0} aktiva)
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <button onClick={exportSubscribers} className="btn-secondary">
+            📥 Exportera CSV
+          </button>
+          <button onClick={() => setShowSendForm(!showSendForm)} className="btn-primary">
+            {showSendForm ? 'Avbryt' : '📧 Skicka Newsletter'}
+          </button>
+        </div>
+      </div>
+
+      {showSendForm && (
+        <div className="card-gradient p-6">
+          <form onSubmit={handleSend} className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold mb-2">Ämne</label>
+              <input
+                type="text"
+                value={sendForm.subject}
+                onChange={(e) => setSendForm({ ...sendForm, subject: e.target.value })}
+                className="input-field"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold mb-2">Innehåll (HTML/Markdown)</label>
+              <textarea
+                value={sendForm.content}
+                onChange={(e) => setSendForm({ ...sendForm, content: e.target.value })}
+                className="input-field"
+                rows={10}
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold mb-2">Test-e-post (valfritt)</label>
+              <input
+                type="email"
+                value={sendForm.testEmail}
+                onChange={(e) => setSendForm({ ...sendForm, testEmail: e.target.value })}
+                className="input-field"
+                placeholder="Skicka test till denna e-post istället"
+              />
+            </div>
+            <button type="submit" disabled={sending} className="btn-primary w-full">
+              {sending ? 'Skickar...' : sendForm.testEmail ? 'Skicka Test' : 'Skicka till Alla'}
+            </button>
+          </form>
+        </div>
+      )}
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="card-gradient p-6">
+          <h3 className="heading-4 mb-4">Prenumeranter</h3>
+          <div className="space-y-2 max-h-96 overflow-y-auto">
+            {subscribers.length === 0 ? (
+              <p className="text-gray-600">Inga prenumeranter än</p>
+            ) : (
+              subscribers.map((sub, idx) => (
+                <div key={idx} className="flex justify-between items-center p-2 hover:bg-gray-50 rounded">
+                  <div>
+                    <p className="font-medium">{sub.email}</p>
+                    <p className="text-xs text-gray-500">
+                      {new Date(sub.subscribedAt).toLocaleDateString('sv-SE')}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => handleDelete(sub.email)}
+                    disabled={deleting === sub.email}
+                    className="btn-ghost text-sm text-red-600"
+                  >
+                    {deleting === sub.email ? 'Tar bort...' : 'Ta bort'}
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        <div className="card-gradient p-6">
+          <h3 className="heading-4 mb-4">Skickhistorik</h3>
+          <div className="space-y-3 max-h-96 overflow-y-auto">
+            {history.length === 0 ? (
+              <p className="text-gray-600">Ingen historik än</p>
+            ) : (
+              history.map((item, idx) => (
+                <div key={idx} className="border-b pb-3">
+                  <p className="font-semibold">{item.subject}</p>
+                  <p className="text-sm text-gray-600">{item.content}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {new Date(item.timestamp).toLocaleString('sv-SE')} • {item.sent} skickade
+                  </p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Content Tab Component
+function ContentTab({ data, onRefresh }) {
+  const [content, setContent] = useState({});
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      setContent(data);
+    }
+  }, [data]);
+
+  const handleSave = async (key, value) => {
+    setSaving(true);
+    try {
+      const res = await fetch('/api/admin/content', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ key, value })
+      });
+      if (res.ok) {
+        await onRefresh();
+        alert('Sparat!');
+      }
+    } catch (error) {
+      alert('Kunde inte spara');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const contentFields = [
+    { key: 'heroTitle', label: 'Hero Titel', type: 'text' },
+    { key: 'heroSubtitle', label: 'Hero Undertext', type: 'text' },
+    { key: 'aboutText', label: 'Om Oss Text', type: 'textarea' },
+    { key: 'contactEmail', label: 'Kontakt E-post', type: 'email' },
+    { key: 'contactPhone', label: 'Kontakt Telefon', type: 'tel' },
+    { key: 'address', label: 'Adress', type: 'text' }
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      className="space-y-6"
+    >
+      <h2 className="heading-3">Hantera Innehåll</h2>
+      <div className="grid md:grid-cols-2 gap-6">
+        {contentFields.map(field => (
+          <div key={field.key} className="card-gradient p-6">
+            <label className="block text-sm font-semibold mb-2">{field.label}</label>
+            {field.type === 'textarea' ? (
+              <textarea
+                value={content[field.key] || ''}
+                onChange={(e) => setContent({ ...content, [field.key]: e.target.value })}
+                className="input-field"
+                rows={4}
+              />
+            ) : (
+              <input
+                type={field.type}
+                value={content[field.key] || ''}
+                onChange={(e) => setContent({ ...content, [field.key]: e.target.value })}
+                className="input-field"
+              />
+            )}
+            <button
+              onClick={() => handleSave(field.key, content[field.key])}
+              disabled={saving}
+              className="btn-primary mt-3 w-full"
+            >
+              {saving ? 'Sparar...' : 'Spara'}
+            </button>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// Images Tab Component
+function ImagesTab({ images, onRefresh }) {
+  const [uploading, setUploading] = useState(false);
+  const [deleting, setDeleting] = useState(null);
+
+  const handleUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/admin/images', {
+        method: 'POST',
+        credentials: 'include',
+        body: formData
+      });
+      const result = await res.json();
+      if (result.success) {
+        await onRefresh();
+      } else {
+        alert('Kunde inte ladda upp bild');
+      }
+    } catch (error) {
+      alert('Fel vid uppladdning');
+    } finally {
+      setUploading(false);
+      e.target.value = '';
+    }
+  };
+
+  const handleDelete = async (filename) => {
+    if (!confirm(`Ta bort ${filename}?`)) return;
+    
+    setDeleting(filename);
+    try {
+      const res = await fetch(`/api/admin/images?filename=${encodeURIComponent(filename)}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+      if (res.ok) {
+        await onRefresh();
+      }
+    } catch (error) {
+      alert('Kunde inte ta bort bild');
+    } finally {
+      setDeleting(null);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      className="space-y-6"
+    >
+      <div className="flex justify-between items-center">
+        <h2 className="heading-3">Bildhantering</h2>
+        <label className="btn-primary cursor-pointer">
+          {uploading ? 'Laddar upp...' : '📤 Ladda upp bild'}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleUpload}
+            disabled={uploading}
+            className="hidden"
+          />
+        </label>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-4">
+        {images.length === 0 ? (
+          <div className="col-span-3 card-gradient p-12 text-center">
+            <p className="text-gray-600">Inga bilder uppladdade än</p>
+          </div>
+        ) : (
+          images.map((img, idx) => (
+            <div key={idx} className="card-gradient p-4">
+              <img src={img.url} alt={img.filename} className="w-full h-48 object-cover rounded mb-3" />
+              <p className="text-sm font-medium truncate mb-1">{img.filename}</p>
+              <p className="text-xs text-gray-500 mb-3">
+                {(img.size / 1024).toFixed(1)} KB
+              </p>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  readOnly
+                  value={img.url}
+                  className="input-field text-xs flex-1"
+                  onClick={(e) => e.target.select()}
+                />
+                <button
+                  onClick={() => handleDelete(img.filename)}
+                  disabled={deleting === img.filename}
+                  className="btn-ghost text-sm text-red-600"
+                >
+                  {deleting === img.filename ? '...' : '🗑️'}
+                </button>
               </div>
             </div>
           ))

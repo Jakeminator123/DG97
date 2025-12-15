@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect, useCallback } from 'react';
-import { ScrollReveal, FadeIn, MagneticButton } from './animations';
-import SectionBackground from './SectionBackground';
+import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { ScrollReveal, FadeIn, MagneticButton } from "./animations";
+import SectionBackground from "./SectionBackground";
 
 const basePrices = {
   1: 4990,
@@ -15,7 +15,7 @@ const basePrices = {
 const discounts = {
   3: 0,
   6: 0.05,
-  12: 0.10,
+  12: 0.1,
   24: 0.15,
 };
 
@@ -49,9 +49,7 @@ export default function PriceCalculator() {
       <div className="max-w-4xl mx-auto">
         <ScrollReveal>
           <div className="text-center mb-12">
-            <h2 className="heading-1 mb-4">
-              Räkna ut din månadskostnad
-            </h2>
+            <h2 className="heading-1 mb-4">Räkna ut din månadskostnad</h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
               Anpassa efter ditt teams behov och se vad det kostar per månad
             </p>
@@ -62,20 +60,27 @@ export default function PriceCalculator() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <FadeIn delay={0.1}>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-4" id="people-label">
+                <label
+                  className="block text-sm font-semibold text-gray-700 mb-4"
+                  id="people-label"
+                >
                   Antal personer
                 </label>
-                <div className="flex gap-2 flex-wrap" role="group" aria-labelledby="people-label">
+                <div
+                  className="flex gap-2 flex-wrap"
+                  role="group"
+                  aria-labelledby="people-label"
+                >
                   {[1, 2, 3, 4, 5, 6].map((num) => (
                     <button
                       key={num}
                       onClick={() => setPeople(num)}
                       aria-pressed={people === num}
-                      aria-label={`${num} person${num > 1 ? 'er' : ''}`}
+                      aria-label={`${num} person${num > 1 ? "er" : ""}`}
                       className={`px-6 py-3 rounded-lg font-semibold transition-all focus:outline-none focus:ring-4 focus:ring-primary-500/30 ${
                         people === num
-                          ? 'bg-primary-600 text-white shadow-lg'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? "bg-primary-600 text-white shadow-lg"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
                       {num}
@@ -87,10 +92,17 @@ export default function PriceCalculator() {
 
             <FadeIn delay={0.2}>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-4" id="months-label">
+                <label
+                  className="block text-sm font-semibold text-gray-700 mb-4"
+                  id="months-label"
+                >
                   Avtalslängd (månader)
                 </label>
-                <div className="flex gap-2 flex-wrap" role="group" aria-labelledby="months-label">
+                <div
+                  className="flex gap-2 flex-wrap"
+                  role="group"
+                  aria-labelledby="months-label"
+                >
                   {[3, 6, 12, 24].map((num) => (
                     <button
                       key={num}
@@ -99,8 +111,8 @@ export default function PriceCalculator() {
                       aria-label={`${num} månader`}
                       className={`px-6 py-3 rounded-lg font-semibold transition-all focus:outline-none focus:ring-4 focus:ring-primary-500/30 ${
                         months === num
-                          ? 'bg-primary-600 text-white shadow-lg'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? "bg-primary-600 text-white shadow-lg"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
                       {num} mån
@@ -138,28 +150,37 @@ export default function PriceCalculator() {
                 </h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-700">Baspris ({calculatedPrice.people} personer)</span>
+                    <span className="text-gray-700">
+                      Baspris ({calculatedPrice.people} personer)
+                    </span>
                     <span className="text-lg font-semibold">
-                      {calculatedPrice.base.toLocaleString('sv-SE')} kr/mån
+                      {calculatedPrice.base.toLocaleString("sv-SE")} kr/mån
                     </span>
                   </div>
                   {calculatedPrice.discount > 0 && (
                     <div className="flex justify-between items-center text-green-600">
                       <span>Rabatt ({calculatedPrice.months} månader)</span>
                       <span className="text-lg font-semibold">
-                        -{calculatedPrice.discount.toLocaleString('sv-SE')} kr/mån
+                        -{calculatedPrice.discount.toLocaleString("sv-SE")}{" "}
+                        kr/mån
                       </span>
                     </div>
                   )}
                   <div className="border-t border-gray-300 pt-4 mt-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-xl font-bold text-gray-900">Totalt per månad</span>
+                      <span className="text-xl font-bold text-gray-900">
+                        Totalt per månad
+                      </span>
                       <span className="text-3xl font-bold text-primary-600">
-                        {calculatedPrice.final.toLocaleString('sv-SE')} kr
+                        {calculatedPrice.final.toLocaleString("sv-SE")} kr
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 mt-2 text-right">
-                      Totalt {calculatedPrice.months} månader: {(calculatedPrice.final * calculatedPrice.months).toLocaleString('sv-SE')} kr
+                      Totalt {calculatedPrice.months} månader:{" "}
+                      {(
+                        calculatedPrice.final * calculatedPrice.months
+                      ).toLocaleString("sv-SE")}{" "}
+                      kr
                     </p>
                   </div>
                 </div>
@@ -175,8 +196,9 @@ export default function PriceCalculator() {
           <FadeIn delay={0.4}>
             <div className="mt-8 text-center text-sm text-gray-500">
               <p>
-                * Alla priser är exklusive moms. Priset är en uppskattning och kan variera beroende på
-                tillgänglighet och specifika behov. Kontakta oss för en exakt offert.
+                * Alla priser är exklusive moms. Priset är en uppskattning och
+                kan variera beroende på tillgänglighet och specifika behov.
+                Kontakta oss för en exakt offert.
               </p>
             </div>
           </FadeIn>
@@ -185,4 +207,3 @@ export default function PriceCalculator() {
     </section>
   );
 }
-

@@ -8,6 +8,7 @@ export default function NewsletterSignup({
 }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [error, setError] = useState('');
   const timeoutRef = useRef(null);
 
   // Cleanup timeouts on unmount
@@ -22,21 +23,47 @@ export default function NewsletterSignup({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
+    setError('');
 
     // Clear any existing timeout
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
-    // Simulate API call
-    timeoutRef.current = setTimeout(() => {
-      setStatus('success');
-      setEmail('');
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.success) {
+        setStatus('success');
+        setEmail('');
+        timeoutRef.current = setTimeout(() => {
+          setStatus('idle');
+          timeoutRef.current = null;
+        }, 3000);
+      } else {
+        setStatus('error');
+        setError(data.error || 'Ett fel uppstod');
+        timeoutRef.current = setTimeout(() => {
+          setStatus('idle');
+          setError('');
+          timeoutRef.current = null;
+        }, 5000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setError('Kunde inte ansluta till servern');
       timeoutRef.current = setTimeout(() => {
         setStatus('idle');
+        setError('');
         timeoutRef.current = null;
-      }, 3000);
-    }, 1000);
+      }, 5000);
+    }
   };
 
   const isDark = variant === 'dark';
@@ -94,6 +121,16 @@ export default function NewsletterSignup({
           className={`text-center mt-4 ${isDark ? 'text-white/90' : 'text-green-600'}`}
         >
           ✓ Tack för din anmälan! Kolla din e-post för att bekräfta.
+        </motion.div>
+      )}
+
+      {status === 'error' && error && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`text-center mt-4 ${isDark ? 'text-red-300' : 'text-red-600'}`}
+        >
+          {error}
         </motion.div>
       )}
 
