@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import { motion } from 'framer-motion';
-import { 
-  HeroNoiseGradient,
+import PageHero from '../components/PageHero';
+import {
   MagneticButton,
   ScrollReveal,
   FadeIn,
@@ -44,23 +44,19 @@ export default function CoLocate() {
       path="/colocate"
     >
       {/* Hero Section with Noise Gradient */}
-      <HeroNoiseGradient
+      <PageHero
         title="CO-LOCATE"
         subtitle="Flexibel workspace där företag möts, samarbetar och växer tillsammans"
-        cta={
-          <MagneticButton 
-            variant="accent" 
-            onClick={() => window.location.href = '/kontakt'}
-          >
-            Kom igång idag
-          </MagneticButton>
-        }
-        className="min-h-[60vh]"
-      />
+        minHeight={true}
+      >
+        <MagneticButton variant="accent" href="/kontakt">
+          Kom igång idag
+        </MagneticButton>
+      </PageHero>
 
       {/* Marquee */}
       <div className="py-8 bg-gray-50">
-        <GradientMarquee 
+        <GradientMarquee
           items={["Samarbete", "Innovation", "Flexibilitet", "Community", "Nätverk", "Tillväxt"]}
           speed={40}
         />
@@ -72,19 +68,19 @@ export default function CoLocate() {
           <ScrollReveal>
             <h2 className="heading-2 mb-6 text-center">Vad är CO-LOCATE?</h2>
           </ScrollReveal>
-          
+
           <FadeIn direction="up" delay={0.2}>
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              CO-LOCATE är vår moderna workspace-lösning som kombinerar det bästa från 
-              coworking och kontorshotell. Här får du tillgång till flexibla arbetsplatser 
+              CO-LOCATE är vår moderna workspace-lösning som kombinerar det bästa från
+              coworking och kontorshotell. Här får du tillgång till flexibla arbetsplatser
               i en inspirerande miljö där företag från olika branscher möts och samarbetar.
             </p>
           </FadeIn>
-          
+
           <FadeIn direction="up" delay={0.4}>
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              Perfekt för dig som vill ha en professionell arbetsmiljö utan att vara bunden 
-              till ett fast kontorsrum. Du får tillgång till alla våra faciliteter och blir 
+              Perfekt för dig som vill ha en professionell arbetsmiljö utan att vara bunden
+              till ett fast kontorsrum. Du får tillgång till alla våra faciliteter och blir
               en del av vår växande community av entreprenörer och företag.
             </p>
           </FadeIn>
@@ -94,7 +90,7 @@ export default function CoLocate() {
             <ScrollReveal>
               <h2 className="heading-2 text-center mb-12">Fördelar med CO-LOCATE</h2>
             </ScrollReveal>
-            
+
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               {benefits.map((benefit, index) => (
                 <StaggerChild key={index}>
@@ -118,7 +114,7 @@ export default function CoLocate() {
           <FadeIn direction="up" className="mt-16">
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-lg shadow-lg">
               <h2 className="heading-3 mb-8 text-center">Vad ingår?</h2>
-              
+
               <StaggerReveal staggerDelay={0.1}>
                 <ul className="space-y-4 text-gray-700">
                   {[
@@ -131,9 +127,9 @@ export default function CoLocate() {
                   ].map((item, index) => (
                     <StaggerChild key={index}>
                       <li className="flex items-start group">
-                        <motion.svg 
-                          className="w-6 h-6 text-accent-600 mr-3 flex-shrink-0 mt-0.5" 
-                          fill="currentColor" 
+                        <motion.svg
+                          className="w-6 h-6 text-accent-600 mr-3 flex-shrink-0 mt-0.5"
+                          fill="currentColor"
                           viewBox="0 0 20 20"
                           whileHover={{ scale: 1.2, rotate: 360 }}
                           transition={{ duration: 0.3 }}
@@ -157,7 +153,7 @@ export default function CoLocate() {
       {/* CTA Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-accent-600 to-accent-700" />
-        
+
         {/* Animated background shapes */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(3)].map((_, i) => (
@@ -183,22 +179,22 @@ export default function CoLocate() {
             />
           ))}
         </div>
-        
+
         <div className="relative section-container text-white">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal>
               <h2 className="heading-2 text-white mb-6">Intresserad av CO-LOCATE?</h2>
             </ScrollReveal>
-            
+
             <FadeIn delay={0.2}>
               <p className="text-lg text-accent-100 mb-10">
-                Kontakta oss idag för mer information om våra flexibla workspace-lösningar 
+                Kontakta oss idag för mer information om våra flexibla workspace-lösningar
                 och hur CO-LOCATE kan passa ditt företag.
               </p>
             </FadeIn>
-            
+
             <FadeIn delay={0.4}>
-              <MagneticButton 
+              <MagneticButton
                 className="bg-white text-accent-600 hover:bg-gray-100"
                 onClick={() => window.location.href = '/kontakt'}
               >

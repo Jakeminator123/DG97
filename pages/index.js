@@ -35,9 +35,12 @@ const BlogCard = dynamic(() => import("../components/BlogCard"), {
   loading: () => <div className="h-48 bg-gray-100 animate-pulse rounded-lg" />,
 });
 
-const TestimonialsComponent = dynamic(() => import("../components/Testimonials"), {
-  loading: () => <div className="h-64 bg-gray-50 animate-pulse" />,
-});
+const TestimonialsComponent = dynamic(
+  () => import("../components/Testimonials"),
+  {
+    loading: () => <div className="h-64 bg-gray-50 animate-pulse" />,
+  }
+);
 
 const PricingComponent = dynamic(() => import("../components/Pricing"), {
   loading: () => <div className="h-96 bg-gray-50 animate-pulse" />,
@@ -47,13 +50,19 @@ const EventsComponent = dynamic(() => import("../components/Events"), {
   loading: () => <div className="h-64 bg-gray-50 animate-pulse" />,
 });
 
-const TrustBadgesComponent = dynamic(() => import("../components/TrustBadges"), {
-  loading: () => <div className="h-48 bg-gray-50 animate-pulse" />,
-});
+const TrustBadgesComponent = dynamic(
+  () => import("../components/TrustBadges"),
+  {
+    loading: () => <div className="h-48 bg-gray-50 animate-pulse" />,
+  }
+);
 
-const PriceCalculatorComponent = dynamic(() => import("../components/PriceCalculator"), {
-  loading: () => <div className="h-96 bg-gray-50 animate-pulse" />,
-});
+const PriceCalculatorComponent = dynamic(
+  () => import("../components/PriceCalculator"),
+  {
+    loading: () => <div className="h-96 bg-gray-50 animate-pulse" />,
+  }
+);
 
 const faqItems = [
   {
@@ -416,7 +425,7 @@ export default function Home() {
       <MorphingDivider className="h-24 bg-gray-50" color="#4B5B9C" />
 
       {/* CTA Section */}
-      <section className="section-container section-dark relative overflow-hidden">
+      <section className="section-dark relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 opacity-5">
           {blobPositions.map((pos, i) => (
@@ -442,96 +451,98 @@ export default function Home() {
         {/* Smooth gradient overlay to remove harsh edges */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-900/5 to-transparent pointer-events-none"></div>
 
-        <div className="relative max-w-4xl mx-auto text-center">
-          <ScrollReveal>
-            <h2
-              className="heading-hero text-white mb-6 shimmer-text"
-              style={{
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Redo att ta steget?
-            </h2>
-          </ScrollReveal>
-
-          <FadeIn delay={0.2}>
-            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">
-              Boka en kostnadsfri visning och se varför så många företag väljer
-              DG97 som sitt kontor.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <MagneticButton
-                href="/kontakt"
-                className="bg-gradient-to-r from-secondary-500 to-secondary-600 text-white hover:from-secondary-600 hover:to-secondary-700 shadow-2xl text-lg px-8 py-4 border border-secondary-500/20"
+        <div className="section-container">
+          <div className="relative max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <h2
+                className="heading-hero text-white mb-6 shimmer-text"
+                style={{
+                  letterSpacing: "-0.02em",
+                }}
               >
-                Boka visning nu →
-              </MagneticButton>
+                Redo att ta steget?
+              </h2>
+            </ScrollReveal>
 
-              <MagneticButton
-                href="/vara-foretag"
-                variant="outline"
-                className="border-2 border-white/60 text-white hover:bg-white/10 text-lg px-8 py-4"
-              >
-                Se våra medlemmar
-              </MagneticButton>
-            </div>
-          </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Boka en kostnadsfri visning och se varför så många företag
+                väljer DG97 som sitt kontor.
+              </p>
+            </FadeIn>
 
-          <FadeIn delay={0.6}>
-            <div className="mt-12 flex items-center justify-center gap-8 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <FadeIn delay={0.4}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <MagneticButton
+                  href="/kontakt"
+                  className="bg-gradient-to-r from-secondary-500 to-secondary-600 text-white hover:from-secondary-600 hover:to-secondary-700 shadow-2xl text-lg px-8 py-4 border border-secondary-500/20"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>Inga bindningstider</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  Boka visning nu →
+                </MagneticButton>
+
+                <MagneticButton
+                  href="/vara-foretag"
+                  variant="outline"
+                  className="border-2 border-white/60 text-white hover:bg-white/10 text-lg px-8 py-4"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>Allt inkluderat</span>
+                  Se våra medlemmar
+                </MagneticButton>
               </div>
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>Flytta in direkt</span>
+            </FadeIn>
+
+            <FadeIn delay={0.6}>
+              <div className="mt-12 flex items-center justify-center gap-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>Inga bindningstider</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>Allt inkluderat</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>Flytta in direkt</span>
+                </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
       </section>
 

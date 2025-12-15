@@ -144,23 +144,6 @@ export default function Events({ limit = null, showTitle = true }) {
           </div>
         </StaggerReveal>
 
-        {showTitle && (
-          <ScrollReveal delay={0.5}>
-            <div className="mt-12 text-center">
-              <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-xl p-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                  Varje måndag: Frukostmöte
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Börja veckan rätt med frukost och nätverkande. Alla medlemmar är välkomna!
-                </p>
-                <p className="text-sm text-gray-500">
-                  Frukost serveras varje måndag kl 08:00 i receptionen
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        )}
       </div>
     </section>
   );

@@ -44,3 +44,8 @@ external_files/
 
 external_files/
 old/
+
+.glb
+posts
+3d
+cleaner.py

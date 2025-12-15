@@ -14,6 +14,7 @@ import {
 } from "../components/animations";
 import Founder3DModel from "../components/Founder3DModel";
 import Layout from "../components/Layout";
+import PageHero from "../components/PageHero";
 
 export default function OmOss() {
   const breadcrumbs = [
@@ -43,51 +44,18 @@ export default function OmOss() {
       pageType="AboutPage"
       persons={founders}
     >
-      {/* Hero Section with Panorama Image */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/panorama.jpg"
-            alt="Panoramautsikt från DG97 kontorshotell"
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-        </div>
-
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1
-            className="heading-hero text-white mb-6 drop-shadow-lg shimmer-text"
-            style={{
-              letterSpacing: "-0.03em",
-              lineHeight: "1.1",
-              textShadow:
-                "0 4px 30px rgba(0,0,0,0.4), 0 10px 60px rgba(0,0,0,0.3)",
-              background:
-                "linear-gradient(135deg, #ffffff 0%, #e0f2fe 50%, #ffffff 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Om DG97
-          </h1>
-          <p
-            className="text-2xl md:text-3xl text-white/95 drop-shadow-md font-light"
-            style={{
-              letterSpacing: "0.02em",
-              textShadow: "0 2px 15px rgba(0,0,0,0.3)",
-            }}
-          >
+      <PageHero
+        title="Om DG97"
+        subtitle={
+          <>
             Din flexibla kontorspartner i{" "}
             <span className="font-semibold text-blue-200">
               hjärtat av Stockholm
             </span>
-          </p>
-        </div>
-      </section>
+          </>
+        }
+        minHeight={true}
+      />
 
       {/* Main Content */}
       <section className="section-container">

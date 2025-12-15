@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Layout from "../components/Layout";
+import PageHero from "../components/PageHero";
 import {
   FadeIn,
   ScrollReveal,
@@ -230,65 +231,15 @@ export default function FragorOchSvar() {
       faq={allFaqItems}
     >
       {/* Hero Section - Same style as Galleri */}
-      <section className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 py-20 overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-10">
-          {[
-            { left: "5%", top: "10%" },
-            { left: "85%", top: "20%" },
-            { left: "15%", top: "70%" },
-            { left: "75%", top: "60%" },
-          ].map((pos, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-32 h-32 bg-white opacity-5 rounded-lg"
-              style={{
-                left: pos.left,
-                top: pos.top,
-              }}
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 20 + i * 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-4 text-center">
-            <h1
-              className="heading-hero text-white mb-5 no-shimmer"
-              style={{
-                letterSpacing: "-0.025em",
-                textShadow: "0 4px 28px rgba(36, 60, 115, 0.5)",
-                background:
-                  "linear-gradient(135deg, #f6faff 0%, #e4ecff 45%, #c7d8ff 75%, #f6faff 100%)",
-                backgroundSize: "220% auto",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              FAQ
-            </h1>
-          <FadeIn delay={0.3}>
-            <p
-              className="text-lg sm:text-xl md:text-2xl text-white/90 font-light max-w-3xl mx-auto"
-              style={{
-                letterSpacing: "0.02em",
-                textShadow: "0 2px 16px rgba(40, 58, 105, 0.4)",
-              }}
-            >
-              Här hittar du svar på de vanligaste frågorna om DG97 kontorshotell.
-              Hittar du inte svar på din fråga? Kontakta oss så hjälper vi dig!
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        title="FAQ"
+        subtitle={
+          <>
+            Här hittar du svar på de vanligaste frågorna om DG97 kontorshotell.
+            Hittar du inte svar på din fråga? Kontakta oss så hjälper vi dig!
+          </>
+        }
+      />
 
       {/* FAQ Content */}
       <section className="section-container">

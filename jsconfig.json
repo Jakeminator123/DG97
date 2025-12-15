@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"],
+      "@config/*": ["config/*"],
+      "@styles/*": ["styles/*"],
+      "@pages/*": ["pages/*"]
+    }
+  },
+  "include": ["**/*.js", "**/*.jsx"],
+  "exclude": ["node_modules", ".next", "out"]
+}

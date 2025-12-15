@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Layout from '../components/Layout';
 import CompanyProfile from '../components/CompanyProfile';
+import PageHero from '../components/PageHero';
 import { FadeIn, ScrollReveal, StaggerChild, StaggerReveal } from '../components/animations';
 import SectionBackground from '../components/SectionBackground';
 
@@ -290,22 +291,18 @@ export default function Foretagsportal() {
       path="/foretagsportal"
     >
       {/* Hero Section */}
-      <section className="py-12 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="heading-1 text-white mb-2">Företagsportal</h1>
-              <p className="text-primary-100">Hantera din företagsprofil och låt AI hitta synergier</p>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="btn-secondary bg-white/10 border-white/30 text-white hover:bg-white/20"
-            >
-              Logga ut
-            </button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Företagsportal"
+        subtitle="Hantera din företagsprofil och låt AI hitta synergier"
+        actions={
+          <button
+            onClick={handleLogout}
+            className="btn-secondary bg-white/10 border-white/30 text-white hover:bg-white/20"
+          >
+            Logga ut
+          </button>
+        }
+      />
 
       {/* Main Content */}
       <section className="section-container bg-white min-h-screen py-12 relative">

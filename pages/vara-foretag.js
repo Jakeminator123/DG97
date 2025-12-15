@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
+import PageHero from "../components/PageHero";
 import {
   FadeIn,
   ScrollReveal,
@@ -246,48 +247,15 @@ export default function VaraForetag() {
       itemList={companyList}
     >
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 py-20">
-        <div className="absolute inset-0 opacity-15">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 2px 2px, rgba(255,255,255,0.35) 1px, transparent 0)",
-              backgroundSize: "38px 38px",
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1
-            className="heading-hero text-white mb-5 no-shimmer"
-            style={{
-              letterSpacing: "-0.02em",
-              textShadow: "0 4px 25px rgba(38, 63, 120, 0.45)",
-              background:
-                "linear-gradient(135deg, #f7f9ff 0%, #e3edff 40%, #c7d8ff 70%, #f7faff 100%)",
-              backgroundSize: "220% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Våra företag
-          </h1>
-          <FadeIn delay={0.2}>
-            <p
-              className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-light"
-              style={{
-                letterSpacing: "0.015em",
-                textShadow: "0 2px 14px rgba(32, 52, 100, 0.35)",
-              }}
-            >
-              På DG97 samlas innovativa och framgångsrika företag från olika
-              branscher. Möt några av medlemmarna i vårt växande community.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        title="Våra företag"
+        subtitle={
+          <>
+            På DG97 samlas innovativa och framgångsrika företag från olika
+            branscher. Möt några av medlemmarna i vårt växande community.
+          </>
+        }
+      />
 
       {/* Stats Section */}
       <section className="section-container bg-gradient-to-br from-primary-50/20 via-white to-primary-50/10">

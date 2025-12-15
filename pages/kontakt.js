@@ -5,6 +5,7 @@ import { FadeIn, MagneticButton, ScrollReveal } from "../components/animations";
 import DistanceToOffice from "../components/DistanceToOffice";
 import ContactForm from "../components/ContactForm";
 import Layout from "../components/Layout";
+import PageHero from "../components/PageHero";
 import NewsletterSignup from "../components/NewsletterSignup";
 import SectionBackground from "../components/SectionBackground";
 
@@ -113,99 +114,55 @@ export default function Kontakt() {
         pageType="ContactPage"
       >
         {/* Hero Section - Same style as Galleri */}
-        <section className="relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 py-20 overflow-hidden min-h-[60vh] flex items-center">
-          {/* Animated background elements */}
-          <div className="absolute inset-0 opacity-10">
-            {[
-              { left: "5%", top: "10%" },
-              { left: "85%", top: "20%" },
-              { left: "15%", top: "70%" },
-              { left: "75%", top: "60%" },
-            ].map((pos, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-32 h-32 bg-white opacity-5 rounded-lg"
-                style={{
-                  left: pos.left,
-                  top: pos.top,
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 20 + i * 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="relative z-10 text-center max-w-4xl mx-auto px-4 w-full">
-            <span className="badge-primary bg-white/20 text-white border border-white/30 mb-6 text-sm sm:text-base">
-              💼 Lediga kontor från 4 990 kr/mån
-            </span>
-            <h1
-              className="heading-hero text-white mb-6 no-shimmer"
-              style={{
-                letterSpacing: "-0.025em",
-                textShadow: "0 4px 28px rgba(36, 60, 115, 0.5)",
-                background:
-                  "linear-gradient(135deg, #f6faff 0%, #e4ecff 45%, #c7d8ff 75%, #f6faff 100%)",
-                backgroundSize: "220% auto",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Kontakt
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-light max-w-3xl mx-auto"
-              style={{
-                letterSpacing: "0.02em",
-                textShadow: "0 2px 16px rgba(40, 58, 105, 0.4)",
-              }}
-            >
+        <PageHero
+          title="Kontakt"
+          subtitle={
+            <>
               Boka en kostnadsfri visning idag och se varför över 30 företag
               valt DG97 som sitt kontorshotell
-            </p>
-
-            <FadeIn delay={0.3}>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-                <MagneticButton
-                  href="tel:0708862279"
-                  variant="primary"
-                  className="bg-white text-primary-600 hover:bg-gray-100 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto"
-                >
-                  <span className="flex items-center gap-2 justify-center">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                    Ring direkt: 070-886 22 79
-                  </span>
-                </MagneticButton>
-                <MagneticButton
-                  href="#boka-visning"
-                  variant="outline"
-                  className="text-white border-white hover:bg-white hover:text-primary-600 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto"
-                >
-                  Boka visning online →
-                </MagneticButton>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+            </>
+          }
+          kicker={
+            <span className="badge-primary bg-white/20 text-white border border-white/30 text-sm sm:text-base">
+              💼 Lediga kontor från 4 990 kr/mån
+            </span>
+          }
+          minHeight={true}
+        >
+          <FadeIn delay={0.3}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <MagneticButton
+                href="tel:0708862279"
+                variant="primary"
+                className="bg-white text-primary-600 hover:bg-gray-100 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto"
+              >
+                <span className="flex items-center gap-2 justify-center">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                  Ring direkt: 070-886 22 79
+                </span>
+              </MagneticButton>
+              <MagneticButton
+                href="#boka-visning"
+                variant="outline"
+                className="text-white border-white hover:bg-white hover:text-primary-600 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto"
+              >
+                Boka visning online →
+              </MagneticButton>
+            </div>
+          </FadeIn>
+        </PageHero>
 
         {/* Contact Methods Section - Förbättrad design */}
         <section className="section-container bg-gradient-to-br from-blue-50/20 via-white to-primary-50/15">
