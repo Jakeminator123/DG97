@@ -12,11 +12,13 @@
   "files.eol": "\n",
   "files.exclude": {
     "**/node_modules/**": true,
+    "**/.next/**": true,
     "**/dist/**": true,
     "**/build/**": true
   },
   "search.exclude": {
     "**/node_modules/**": true,
+    "**/.next/**": true,
     "**/dist/**": true,
     "**/build/**": true
   }
