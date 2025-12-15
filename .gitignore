@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
@@ -45,7 +46,4 @@ external_files/
 external_files/
 old/
 
-.glb
-posts
-3d
 cleaner.py
