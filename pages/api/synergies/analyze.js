@@ -1,5 +1,6 @@
 // API route for AI-powered synergy analysis
-// This simulates GPT model analysis - in production, integrate with OpenAI API
+// Currently uses rule-based matching - can be enhanced with OpenAI API integration
+// To integrate OpenAI: use gpt-4o or gpt-4o-mini models (see https://platform.openai.com/docs/api-reference/models)
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

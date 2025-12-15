@@ -122,8 +122,8 @@ export default function DIDAvatar({ isOpen, onClose }) {
               allow="autoplay; microphone; camera; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               className="w-full h-full"
               style={{ border: 0 }}
-              title={agent.name}
-              aria-label={agent.description}
+              title={`${agent.name} (videochatt)`}
+              aria-label={`Videochatt med ${agent.name}. ${agent.description || ''}`.trim()}
             />
           </motion.div>
         </>

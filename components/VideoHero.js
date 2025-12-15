@@ -52,7 +52,8 @@ export default function VideoHero() {
           <h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5 drop-shadow-lg shimmer-text float-text leading-tight"
             style={{
-              fontFamily: "'Poppins', 'Inter', sans-serif",
+              fontFamily:
+                "var(--font-poppins), var(--font-inter), system-ui, sans-serif",
               fontWeight: "800",
               letterSpacing: "-0.02em",
               textShadow: "0 2px 25px rgba(79, 120, 180, 0.35)",
@@ -170,7 +171,8 @@ export default function VideoHero() {
         <h1
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 drop-shadow-lg shimmer-text leading-tight opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]"
           style={{
-            fontFamily: "'Poppins', 'Inter', sans-serif",
+            fontFamily:
+              "var(--font-poppins), var(--font-inter), system-ui, sans-serif",
             fontWeight: "900",
             letterSpacing: "-0.03em",
             textShadow:

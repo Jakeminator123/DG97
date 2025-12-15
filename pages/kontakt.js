@@ -116,6 +116,7 @@ export default function Kontakt() {
         {/* Hero Section - Same style as Galleri */}
         <PageHero
           title="Kontakt"
+          animationVariant="orbs"
           subtitle={
             <>
               Boka en kostnadsfri visning idag och se varför över 30 företag

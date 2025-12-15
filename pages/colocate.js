@@ -48,6 +48,7 @@ export default function CoLocate() {
         title="CO-LOCATE"
         subtitle="Flexibel workspace där företag möts, samarbetar och växer tillsammans"
         minHeight={true}
+        animationVariant="waves"
       >
         <MagneticButton variant="accent" href="/kontakt">
           Kom igång idag

@@ -294,6 +294,7 @@ export default function Foretagsportal() {
       <PageHero
         title="Företagsportal"
         subtitle="Hantera din företagsprofil och låt AI hitta synergier"
+        animationVariant="particles"
         actions={
           <button
             onClick={handleLogout}

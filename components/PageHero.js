@@ -9,6 +9,102 @@ const DEFAULT_SHAPES = [
   { left: "75%", top: "60%" },
 ];
 
+// Animation variant configurations
+const ANIMATION_VARIANTS = {
+  // Default: rotating squares (original)
+  default: {
+    getAnimation: (i, shouldReduceMotion) => {
+      if (shouldReduceMotion) return undefined;
+      return {
+        rotate: [0, 360],
+        scale: [1, 1.2, 1],
+      };
+    },
+    getTransition: (i) => ({
+      duration: 20 + i * 5,
+      repeat: Infinity,
+      ease: "linear",
+    }),
+  },
+  // Orbs: floating circular shapes with gentle movement
+  orbs: {
+    getAnimation: (i, shouldReduceMotion) => {
+      if (shouldReduceMotion) return undefined;
+      return {
+        x: [0, 15, -10, 0],
+        y: [0, -20, 10, 0],
+        scale: [1, 1.15, 0.95, 1],
+        opacity: [0.1, 0.15, 0.08, 0.1],
+      };
+    },
+    getTransition: (i) => ({
+      duration: 15 + i * 3,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: i * 2,
+    }),
+    getShapeClass: () => "rounded-full",
+  },
+  // Waves: horizontal flowing movement
+  waves: {
+    getAnimation: (i, shouldReduceMotion) => {
+      if (shouldReduceMotion) return undefined;
+      return {
+        x: [0, 30, -20, 0],
+        y: [0, 5, -5, 0],
+        rotate: [0, 5, -5, 0],
+      };
+    },
+    getTransition: (i) => ({
+      duration: 12 + i * 2,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: i * 1.5,
+    }),
+    getShapeClass: () => "rounded-lg",
+  },
+  // Particles: small, fast-moving dots
+  particles: {
+    getAnimation: (i, shouldReduceMotion) => {
+      if (shouldReduceMotion) return undefined;
+      // Use deterministic values based on index to avoid hydration mismatch
+      const seedX = (i * 7) % 40 - 20;
+      const seedY = (i * 11) % 40 - 20;
+      return {
+        x: [0, seedX, 0],
+        y: [0, seedY, 0],
+        scale: [0.8, 1.2, 0.8],
+        opacity: [0.08, 0.18, 0.08],
+      };
+    },
+    getTransition: (i) => ({
+      duration: 8 + i * 1.5,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: i * 0.5,
+    }),
+    getShapeClass: () => "rounded-full",
+    getShapeSize: () => "w-24 h-24",
+  },
+  // Pulse: breathing effect
+  pulse: {
+    getAnimation: (i, shouldReduceMotion) => {
+      if (shouldReduceMotion) return undefined;
+      return {
+        scale: [1, 1.3, 1],
+        opacity: [0.1, 0.2, 0.1],
+      };
+    },
+    getTransition: (i) => ({
+      duration: 4 + i * 0.5,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: i * 0.8,
+    }),
+    getShapeClass: () => "rounded-lg",
+  },
+};
+
 const DEFAULT_TITLE_STYLE = {
   letterSpacing: "-0.025em",
   textShadow: "0 4px 28px rgba(36, 60, 115, 0.5)",
@@ -40,6 +136,7 @@ export default function PageHero({
   showShapes = true,
   shapes = DEFAULT_SHAPES,
   shapesOpacityClassName = "opacity-10",
+  animationVariant = "default", // New prop: "default" | "orbs" | "waves" | "particles" | "pulse"
   className = "",
 }) {
   const shouldReduceMotion = useReducedMotion();
@@ -48,6 +145,11 @@ export default function PageHero({
     variant === "r"
       ? "bg-gradient-to-r from-primary-500 to-primary-600"
       : "bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700";
+
+  // Get animation config for selected variant
+  const animConfig = ANIMATION_VARIANTS[animationVariant] || ANIMATION_VARIANTS.default;
+  const getShapeClass = animConfig.getShapeClass || (() => "rounded-lg");
+  const getShapeSize = animConfig.getShapeSize || (() => "w-32 h-32");
 
   return (
     <section
@@ -71,24 +173,13 @@ export default function PageHero({
           {shapes.map((pos, i) => (
             <motion.div
               key={i}
-              className="absolute w-32 h-32 bg-white opacity-10 rounded-lg pointer-events-none"
+              className={`absolute ${getShapeSize()} bg-white opacity-10 ${getShapeClass()} pointer-events-none`}
               style={{ left: pos.left, top: pos.top }}
-              animate={
-                shouldReduceMotion
-                  ? undefined
-                  : {
-                      rotate: [0, 360],
-                      scale: [1, 1.2, 1],
-                    }
-              }
+              animate={animConfig.getAnimation(i, shouldReduceMotion)}
               transition={
                 shouldReduceMotion
                   ? undefined
-                  : {
-                      duration: 20 + i * 5,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }
+                  : animConfig.getTransition(i)
               }
             />
           ))}

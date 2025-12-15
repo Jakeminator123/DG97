@@ -46,6 +46,7 @@ export default function OmOss() {
     >
       <PageHero
         title="Om DG97"
+        animationVariant="pulse"
         subtitle={
           <>
             Din flexibla kontorspartner i{" "}

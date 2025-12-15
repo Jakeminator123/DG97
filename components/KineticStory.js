@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
-import { ScrollReveal } from "./animations";
 
 /**
  * Interactive story block for the homepage.
@@ -144,7 +143,8 @@ export default function KineticStory() {
           </div>
         </div>
 
-        <ScrollReveal className="relative z-10">
+        {/* SEO note: keep core copy as plain HTML (h2/p/li) so it's indexable and not hidden by reveal animations */}
+        <div className="relative z-10">
           <p className="text-xs sm:text-sm tracking-[0.25em] uppercase text-primary-100/80 mb-4">
             DG97 • kontorshotell • vasastan
           </p>
@@ -193,7 +193,7 @@ export default function KineticStory() {
               </li>
             </ul>
           </div>
-        </ScrollReveal>
+        </div>
 
         <style jsx>{`
           .progress-line {

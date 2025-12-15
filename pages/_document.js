@@ -6,28 +6,10 @@ export default function Document() {
       <Head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://maps.gstatic.com" />
         <link rel="preconnect" href="https://booking.agendo.io" />
-
-        {/* Load critical fonts with optimal performance */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap&subset=latin"
-          rel="stylesheet"
-        />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap&subset=latin"
-            rel="stylesheet"
-          />
-        </noscript>
+        {/* Fonts are loaded via next/font in pages/_app.js to reduce CLS */}
 
         {/* Agendo Booking Widget Script - Loaded dynamically to avoid CORS issues */}
         <script

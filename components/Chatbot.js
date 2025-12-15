@@ -1,13 +1,28 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MagneticButton } from './animations/MagneticButton';
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MagneticButton } from "./animations/MagneticButton";
 
-export default function Chatbot() {
+const POSITION_CLASSES = {
+  "bottom-right": {
+    button: "fixed bottom-6 right-6 z-[100]",
+    window: "fixed bottom-24 right-6 z-[100]",
+  },
+  "bottom-left": {
+    button: "fixed bottom-6 left-6 z-[100]",
+    window: "fixed bottom-24 left-6 z-[100]",
+  },
+};
+
+export default function Chatbot({ position = "bottom-right" }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hej! Jag är DG97:s virtuella assistent. Hur kan jag hjälpa dig idag?", sender: 'bot' }
+    {
+      id: 1,
+      text: "Hej! Jag är DG97:s virtuella assistent. Hur kan jag hjälpa dig idag?",
+      sender: "bot",
+    },
   ]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const messageIdRef = useRef(2); // Start from 2 since we have initial message
@@ -73,7 +88,7 @@ export default function Chatbot() {
     <>
       {/* Chat Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-[60] bg-primary-600 text-white rounded-full p-4 shadow-lg hover:bg-primary-700 transition-colors"
+        className={`${(POSITION_CLASSES[position] || POSITION_CLASSES["bottom-right"]).button} bg-primary-600 text-white rounded-full p-4 shadow-lg hover:bg-primary-700 transition-colors`}
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -98,7 +113,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-[60] w-96 max-w-[calc(100vw-3rem)] bg-white rounded-lg shadow-2xl overflow-hidden"
+            className={`${(POSITION_CLASSES[position] || POSITION_CLASSES["bottom-right"]).window} w-96 max-w-[calc(100vw-3rem)] bg-white rounded-lg shadow-2xl overflow-hidden`}
           >
             {/* Header */}
             <div className="bg-primary-600 text-white p-4">

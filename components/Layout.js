@@ -4,12 +4,6 @@ import SEO from './SEO';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-// Lazy load chatbot with reduced motion support
-const Chatbot = dynamic(() => import('./Chatbot'), {
-  ssr: false,
-  loading: () => null
-});
-
 // Lazy load D-ID controller
 const DIDController = dynamic(() => import('./DIDController'), {
   ssr: false,
@@ -71,7 +65,6 @@ export default function Layout({
         <Footer />
         {!isAdminPage && (
           <>
-            <Chatbot />
             <DIDController />
             <FloatingCTA />
           </>

@@ -258,6 +258,7 @@ export default function VaraForetag() {
             branscher. Möt några av medlemmarna i vårt växande community.
           </>
         }
+        animationVariant="orbs"
       />
 
       {/* Stats Section */}

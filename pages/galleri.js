@@ -139,6 +139,7 @@ export default function Galleri() {
       <PageHero
         title="Galleri"
         subtitle="Se våra moderna lokaler och inspirerande arbetsmiljö"
+        animationVariant="particles"
       />
 
       {/* Gallery Grid */}

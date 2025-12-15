@@ -55,6 +55,7 @@ export default function BlogIndex() {
           title="Blogg"
           subtitle="Senaste nytt om kontorshotell och flexibla arbetslösningar"
           showShapes={false}
+          animationVariant="waves"
         />
         <div className="section-container text-center py-16">
           <div className="animate-pulse">
@@ -75,6 +76,7 @@ export default function BlogIndex() {
       <PageHero
         title="Blogg"
         subtitle="Senaste nytt om kontorshotell och flexibla arbetslösningar"
+        animationVariant="waves"
       />
 
       {/* Marquee */}

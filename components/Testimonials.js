@@ -124,32 +124,34 @@ export default function Testimonials({ limit = null, showTitle = true }) {
     <section className="section-container bg-gradient-to-br from-primary-50/20 via-white to-primary-50/10 isolate">
       <div className="max-w-7xl mx-auto">
         {showTitle && (
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              {/* Visual element - office workspace image */}
-              <div className="relative w-full max-w-3xl mx-auto mb-8 rounded-xl overflow-hidden shadow-lg h-44 sm:h-56 md:h-64 bg-primary-100/30">
-                <Image
-                  src="/images/working_man.jpg"
-                  alt="Professionell arbetsmiljö på DG97 Kontorshotell"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 70vw"
-                  className="object-cover object-right"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent pointer-events-none"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <h2 className="heading-1 mb-4">Vad våra kunder säger</h2>
-              <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-                Över 30 företag litar på DG97 för sin kontorslösning. Här är vad
-                de säger.
-              </p>
+          <div className="text-center mb-16">
+            {/* Keep image outside ScrollReveal so it never ends up invisible if IO doesn't trigger */}
+            <div className="relative w-full max-w-3xl mx-auto mb-8 rounded-xl overflow-hidden shadow-lg h-44 sm:h-56 md:h-64 bg-primary-100/30">
+              <Image
+                src="/images/working_man.jpg"
+                alt="Professionell arbetsmiljö på DG97 Kontorshotell"
+                fill
+                sizes="(max-width: 768px) 100vw, 70vw"
+                className="object-cover object-right"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent pointer-events-none"
+                aria-hidden="true"
+              />
             </div>
-          </ScrollReveal>
+
+            <ScrollReveal y={18}>
+              <div>
+                <h2 className="heading-1 mb-4">Vad våra kunder säger</h2>
+                <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+                  Över 30 företag litar på DG97 för sin kontorslösning. Här är
+                  vad de säger.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         )}
 
         <StaggerReveal staggerDelay={0.1}>

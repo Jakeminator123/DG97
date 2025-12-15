@@ -74,7 +74,8 @@ export default function DIDController() {
               <button
                 onClick={() => setIsOpen(true)}
                 className="relative w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center group"
-                aria-label={`Öppna ${agent.name}`}
+                aria-label={`Prata med ${agent.name}`}
+                title={`Prata med ${agent.name}`}
               >
                 {/* Chat icon */}
                 <svg
@@ -104,7 +105,7 @@ export default function DIDController() {
               {/* Tooltip */}
               <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <div className="bg-gray-900 text-white text-sm py-1 px-3 rounded-lg whitespace-nowrap">
-                  {agent.description || 'Starta videoassistent'}
+                  {`Prata med ${agent.name}`}
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
                     <div className="border-4 border-transparent border-t-gray-900" />
                   </div>

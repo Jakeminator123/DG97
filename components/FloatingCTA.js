@@ -39,7 +39,7 @@ export default function FloatingCTA() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-45 md:bottom-20 w-[calc(100%-2rem)] max-w-md md:w-auto"
+          className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-[90] md:bottom-20 w-[calc(100%-2rem)] max-w-md md:w-auto"
         >
           <Link href="/kontakt">
             <motion.div

@@ -255,7 +255,7 @@ def main():
     # GPT‑artikel
     prompt = skapa_prompt(html_data, ton_text, subämne)
     chat = openai.ChatCompletion.create(
-        model="gpt-4.5-preview",
+        model="gpt-4o",  # Updated: gpt-4.5-preview doesn't exist, using gpt-4o instead
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7,
         max_tokens=2500,
