@@ -10,6 +10,7 @@ export default function DIDAvatar({ isOpen, onClose }) {
 
   // Auto-close on mobile if not allowed
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     if (isOpen && !agentSettings.showOnMobile && window.innerWidth < 768) {
       onClose();
     }
@@ -28,10 +29,8 @@ export default function DIDAvatar({ isOpen, onClose }) {
   // Base classes
   const baseClasses = `fixed ${positionClasses[position]} z-[100] overflow-hidden`;
   
-  // Size classes
-  const sizeClasses = variant === 'fullscreen' 
-    ? 'inset-0' 
-    : `w-[${sizes[variant].width}] h-[${sizes[variant].height}]`;
+  // Size classes - removed dynamic Tailwind classes, using inline styles instead
+  const sizeClasses = variant === 'fullscreen' ? 'inset-0' : '';
   
   // Style classes
   const styleClasses = [

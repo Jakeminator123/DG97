@@ -15,10 +15,14 @@ export default function VideoHero() {
   useEffect(() => {
     setIsClient(true);
 
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const isMobile = window.innerWidth < 768;
     const isSlowConnection =
+      typeof navigator !== 'undefined' &&
       navigator.connection &&
       (navigator.connection.effectiveType === "slow-2g" ||
         navigator.connection.effectiveType === "2g");

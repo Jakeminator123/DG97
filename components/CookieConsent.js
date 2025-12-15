@@ -11,15 +11,21 @@ export default function CookieConsent() {
   const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+    
     // Kolla om användaren redan har gjort ett val
     const consent = localStorage.getItem('dg97_cookie_consent');
     if (!consent) {
       // Visa banner efter en kort fördröjning
-      setTimeout(() => setShowBanner(true), 1000);
+      const timer = setTimeout(() => setShowBanner(true), 1000);
+      return () => clearTimeout(timer);
     }
   }, []);
 
   const acceptAll = () => {
+    if (typeof window === 'undefined') return;
+    
     const allAccepted = {
       necessary: true,
       analytics: true,
@@ -36,6 +42,8 @@ export default function CookieConsent() {
   };
 
   const acceptNecessary = () => {
+    if (typeof window === 'undefined') return;
+    
     const necessaryOnly = {
       necessary: true,
       analytics: false,
@@ -50,6 +58,8 @@ export default function CookieConsent() {
   };
 
   const savePreferences = () => {
+    if (typeof window === 'undefined') return;
+    
     localStorage.setItem('dg97_cookie_consent', JSON.stringify(preferences));
     setShowBanner(false);
     // Only log in development

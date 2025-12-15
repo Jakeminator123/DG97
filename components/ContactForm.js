@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 
@@ -6,6 +6,16 @@ export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const timeoutRef = useRef(null);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const {
     register,
@@ -36,7 +46,15 @@ export default function ContactForm() {
       if (result.success) {
         setIsSubmitted(true);
         reset();
-        setTimeout(() => setIsSubmitted(false), 5000);
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        // Set timeout to hide success message
+        timeoutRef.current = setTimeout(() => {
+          setIsSubmitted(false);
+          timeoutRef.current = null;
+        }, 5000);
       } else {
         setError(result.error || 'Ett fel uppstod vid skickande av meddelandet');
       }

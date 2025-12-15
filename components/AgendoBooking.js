@@ -78,26 +78,24 @@ export default function AgendoBooking({
 
     // Also observe container specifically
     const container = document.querySelector(".agendo-button-container");
+    let containerObserver = null;
+    
     if (container) {
-      const containerObserver = new MutationObserver(() => {
+      containerObserver = new MutationObserver(() => {
         setIframeA11y();
       });
       containerObserver.observe(container, { childList: true, subtree: true });
-
-      return () => {
-        clearTimeout(timeout1);
-        clearTimeout(timeout2);
-        clearTimeout(timeout3);
-        observer.disconnect();
-        containerObserver.disconnect();
-      };
     }
 
+    // Always return cleanup function to prevent memory leaks
     return () => {
       clearTimeout(timeout1);
       clearTimeout(timeout2);
       clearTimeout(timeout3);
       observer.disconnect();
+      if (containerObserver) {
+        containerObserver.disconnect();
+      }
     };
   }, []);
 

@@ -27,6 +27,8 @@ export default function CompanyProfile({
 
   // Load saved data from localStorage (in production, this would be from a database)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const savedData = localStorage.getItem(`company_${companyId}`);
     if (savedData) {
       try {
@@ -42,6 +44,8 @@ export default function CompanyProfile({
   }, [companyId]);
 
   const handleSave = () => {
+    if (typeof window === 'undefined') return;
+    
     localStorage.setItem(`company_${companyId}`, JSON.stringify(profileData));
     setIsEditing(false);
     if (onSave) onSave(profileData);

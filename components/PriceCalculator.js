@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ScrollReveal, FadeIn, MagneticButton } from './animations';
 import SectionBackground from './SectionBackground';
 
@@ -24,7 +24,7 @@ export default function PriceCalculator() {
   const [months, setMonths] = useState(6);
   const [calculatedPrice, setCalculatedPrice] = useState(null);
 
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     const basePrice = basePrices[people] || basePrices[6];
     const discountRate = discounts[months] || 0;
     const discount = basePrice * discountRate;
@@ -36,12 +36,12 @@ export default function PriceCalculator() {
       months,
       people,
     });
-  };
+  }, [people, months]);
 
   // Auto-calculate when people or months change
   useEffect(() => {
     calculatePrice();
-  }, [people, months]);
+  }, [calculatePrice]);
 
   return (
     <section className="section-container bg-gradient-to-br from-primary-50/30 via-white to-primary-50/20">

@@ -192,6 +192,9 @@ export default function VaraForetag() {
 
   // Load public profiles from localStorage
   useEffect(() => {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+    
     const loadPublicProfiles = () => {
       const profiles = [];
       for (let i = 0; i < localStorage.length; i++) {

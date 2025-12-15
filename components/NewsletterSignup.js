@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export default function NewsletterSignup({
@@ -8,16 +8,34 @@ export default function NewsletterSignup({
 }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const timeoutRef = useRef(null);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
 
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
     // Simulate API call
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setStatus('success');
       setEmail('');
-      setTimeout(() => setStatus('idle'), 3000);
+      timeoutRef.current = setTimeout(() => {
+        setStatus('idle');
+        timeoutRef.current = null;
+      }, 3000);
     }, 1000);
   };
 

@@ -26,6 +26,8 @@ export default function DIDController() {
 
   // Kolla om vi ska visa på denna enhet
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const checkDevice = () => {
       const isMobile = window.innerWidth < 768;
       if (isMobile && !agentSettings.showOnMobile) {

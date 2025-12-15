@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const funnyMessages = [
   "Wow, bara {distance} till världens bästa kontorshotell!",
@@ -22,12 +22,17 @@ export default function DistanceToOffice() {
   const [distance, setDistance] = useState(null);
   const [message, setMessage] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const timeoutRef = useRef(null);
+  const visibilityTimeoutRef = useRef(null);
 
   useEffect(() => {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined') return;
+    
     const getLocationAndDistance = async () => {
       try {
         // First try browser geolocation (more accurate if user allows)
-        if (navigator.geolocation) {
+        if (typeof navigator !== 'undefined' && navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
               const dist = calculateDistance(
@@ -58,6 +63,9 @@ export default function DistanceToOffice() {
 
     const getIPLocation = async () => {
       try {
+        // Check if we're in browser environment
+        if (typeof window === 'undefined') return;
+        
         // Check if running locally
         const isLocalhost = window.location.hostname === "localhost" ||
                            window.location.hostname === "127.0.0.1";
@@ -118,16 +126,31 @@ export default function DistanceToOffice() {
       ].replace("{distance}", dist);
       setMessage(randomMessage);
 
+      // Clear any existing visibility timeout
+      if (visibilityTimeoutRef.current) {
+        clearTimeout(visibilityTimeoutRef.current);
+      }
+      
       // Show after a small delay
-      setTimeout(() => setIsVisible(true), 1000);
+      visibilityTimeoutRef.current = setTimeout(() => {
+        setIsVisible(true);
+        visibilityTimeoutRef.current = null;
+      }, 1000);
     };
 
     // Only run on client side and after a delay
-    const timer = setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       getLocationAndDistance();
     }, 2000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (visibilityTimeoutRef.current) {
+        clearTimeout(visibilityTimeoutRef.current);
+      }
+    };
   }, []);
 
   if (!distance || !isVisible) return null;

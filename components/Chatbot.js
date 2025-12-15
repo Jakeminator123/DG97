@@ -10,6 +10,7 @@ export default function Chatbot() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
+  const messageIdRef = useRef(2); // Start from 2 since we have initial message
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -29,9 +30,10 @@ export default function Chatbot() {
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
+    const messageText = inputValue; // Store before clearing
     const userMessage = {
-      id: messages.length + 1,
-      text: inputValue,
+      id: messageIdRef.current++,
+      text: messageText,
       sender: 'user'
     };
 
@@ -42,8 +44,8 @@ export default function Chatbot() {
     // Simulate bot response (placeholder for real API integration)
     setTimeout(() => {
       const botResponse = {
-        id: messages.length + 2,
-        text: getBotResponse(inputValue),
+        id: messageIdRef.current++,
+        text: getBotResponse(messageText),
         sender: 'bot'
       };
       setMessages(prev => [...prev, botResponse]);
