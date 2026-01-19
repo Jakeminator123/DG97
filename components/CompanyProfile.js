@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function CompanyProfile({
@@ -103,10 +104,13 @@ export default function CompanyProfile({
         <div className="flex items-center gap-4">
           {profileData.logo ? (
             <div className="relative w-20 h-20 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={profileData.logo}
                 alt={profileData.companyName}
-                className="w-full h-full object-cover"
+                fill
+                sizes="80px"
+                className="object-cover"
+                unoptimized
               />
             </div>
           ) : (

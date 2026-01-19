@@ -61,7 +61,12 @@ export default function Layout({
       </a>
       <div className="flex flex-col min-h-screen">
         <Header />
-        <main id="main-content" className="flex-grow">{children}</main>
+        <div className="relative flex-grow">
+          <div className="app-ambient" aria-hidden="true" />
+          <main id="main-content" className="relative z-10">
+            {children}
+          </main>
+        </div>
         <Footer />
         {!isAdminPage && (
           <>

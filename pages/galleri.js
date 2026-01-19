@@ -162,7 +162,7 @@ export default function Galleri() {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover"
-                      loading={index < 6 ? "eager" : "lazy"}
+                      loading="lazy"
                     />
 
                     {/* Hover Overlay with gradient */}

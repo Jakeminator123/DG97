@@ -5,8 +5,20 @@ import { useEffect, useState } from "react";
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
+    const checkConsent = () => {
+      if (typeof window === "undefined") return false;
+      return Boolean(localStorage.getItem("dg97_cookie_consent"));
+    };
+
+    setHasConsent(checkConsent());
+
+    const handleConsentEvent = () => {
+      setHasConsent(checkConsent());
+    };
+
     const handleScroll = () => {
       const scrolled = window.scrollY > 300;
       setHasScrolled(scrolled);
@@ -23,23 +35,27 @@ export default function FloatingCTA() {
     }, 3000);
 
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("storage", handleConsentEvent);
+    window.addEventListener("dg97:cookie-consent", handleConsentEvent);
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("storage", handleConsentEvent);
+      window.removeEventListener("dg97:cookie-consent", handleConsentEvent);
       clearTimeout(timer);
     };
   }, []);
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && hasConsent && (
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-[90] md:bottom-20 w-[calc(100%-2rem)] max-w-md md:w-auto"
+          className="fixed bottom-24 right-6 z-[90] w-auto max-w-[calc(100%-2rem)]"
         >
           <Link href="/kontakt">
             <motion.div

@@ -1,14 +1,14 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-
-  "eslint.validate": ["javascript", "javascriptreact"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact"
+  ],
   "eslint.format.enable": false,
-
   "files.eol": "\n",
   "files.exclude": {
     "**/node_modules/**": true,

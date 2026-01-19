@@ -20,7 +20,7 @@ export default function BlogCard({ post, index = 0 }) {
               fill
               className="object-cover"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              {...(index < 3 ? { priority: true } : { loading: "lazy" })}
+              loading="lazy"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400">

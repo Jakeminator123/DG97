@@ -1,4 +1,5 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import Link from 'next/link';
 import { useRef, useState, useCallback } from 'react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
@@ -40,19 +41,31 @@ export function MagneticButton({
     x.set(0);
     y.set(0);
     setIsHovered(false);
-  }, [x]);
+  }, [x, y]);
 
-  const baseClasses = "relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-semibold text-sm md:text-base rounded-xl transition-all duration-300 overflow-hidden cursor-pointer";
+  const baseClasses = "relative overflow-hidden cursor-pointer";
   const variantClasses = {
-    primary: "bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg hover:from-primary-700 hover:to-primary-800 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-500/30",
-    secondary: "bg-white text-primary-600 border-2 border-primary-200 shadow-md hover:bg-primary-50 hover:border-primary-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md focus:outline-none focus:ring-4 focus:ring-primary-500/30",
-    accent: "bg-gradient-to-r from-secondary-500 to-accent-500 text-white shadow-lg hover:from-secondary-600 hover:to-accent-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-lg focus:outline-none focus:ring-4 focus:ring-secondary-500/30",
-    outline: "bg-transparent text-primary-600 border-2 border-primary-300 hover:bg-primary-600 hover:text-white hover:border-primary-600 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-primary-500/30",
-    ghost: "text-primary-600 hover:bg-primary-50 hover:text-primary-700 active:bg-primary-100 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
+    primary: "btn-primary",
+    secondary: "btn-secondary",
+    accent: "btn-accent",
+    outline: "btn-outline",
+    ghost: "btn-ghost"
   };
 
-  const ButtonComponent = href ? 'a' : motion.button;
-  const buttonProps = href ? { href } : { onClick, ...props };
+  const { type, ...restProps } = props;
+  const isLink = typeof href === 'string' && href.length > 0;
+  const ButtonComponent = isLink ? motion.a : motion.button;
+  const resolvedVariant = variantClasses[variant] || variantClasses.primary;
+  const componentProps = {
+    className: `${baseClasses} ${resolvedVariant} ${className}`,
+    ...(isLink
+      ? { href, ...restProps }
+      : { type: type || 'button', onClick, ...restProps }),
+  };
+
+  if (isLink && restProps.target === '_blank' && !restProps.rel) {
+    componentProps.rel = 'noopener noreferrer';
+  }
 
   return (
     <motion.div
@@ -63,40 +76,77 @@ export function MagneticButton({
       onMouseLeave={handleMouseLeave}
       style={{ x: xSpring, y: ySpring }}
     >
-      <motion.div
-        className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-        whileTap={{ scale: shouldReduceMotion ? 1 : 0.98 }}
-        style={{ willChange: 'transform' }}
-        {...buttonProps}
-      >
-        {/* Background animation - OPTIMIZED: Uses transform instead of x for GPU acceleration */}
-        {!shouldReduceMotion && (
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0"
-            initial={{ transform: 'translateX(-100%)', opacity: 0 }}
-            animate={isHovered ? { transform: 'translateX(100%)', opacity: 1 } : { transform: 'translateX(-100%)', opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-          />
-        )}
+      {isLink ? (
+        <Link href={href} passHref legacyBehavior>
+          <ButtonComponent
+            {...componentProps}
+            whileTap={{ scale: shouldReduceMotion ? 1 : 0.98 }}
+            style={{ willChange: 'transform' }}
+          >
+            {/* Background animation - OPTIMIZED: Uses transform instead of x for GPU acceleration */}
+            {!shouldReduceMotion && (
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0"
+                initial={{ transform: 'translateX(-100%)', opacity: 0 }}
+                animate={isHovered ? { transform: 'translateX(100%)', opacity: 1 } : { transform: 'translateX(-100%)', opacity: 0 }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
+              />
+            )}
 
-        {/* Ripple effect on click - OPTIMIZED: Only when not reduced motion */}
-        {!shouldReduceMotion && (
-          <motion.div
-            className="absolute inset-0 rounded-xl pointer-events-none"
-            initial={{ scale: 0, opacity: 0 }}
-            whileTap={{ scale: 2, opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            style={{
-              background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
-              willChange: 'transform, opacity',
-            }}
-          />
-        )}
+            {/* Ripple effect on click - OPTIMIZED: Only when not reduced motion */}
+            {!shouldReduceMotion && (
+              <motion.div
+                className="absolute inset-0 rounded-xl pointer-events-none"
+                initial={{ scale: 0, opacity: 0 }}
+                whileTap={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+                  willChange: 'transform, opacity',
+                }}
+              />
+            )}
 
-        {/* Button content */}
-        <span className="relative z-10">{children}</span>
-      </motion.div>
+            {/* Button content */}
+            <span className="relative z-10">{children}</span>
+          </ButtonComponent>
+        </Link>
+      ) : (
+        <ButtonComponent
+          {...componentProps}
+          whileTap={{ scale: shouldReduceMotion ? 1 : 0.98 }}
+          style={{ willChange: 'transform' }}
+        >
+          {/* Background animation - OPTIMIZED: Uses transform instead of x for GPU acceleration */}
+          {!shouldReduceMotion && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0"
+              initial={{ transform: 'translateX(-100%)', opacity: 0 }}
+              animate={isHovered ? { transform: 'translateX(100%)', opacity: 1 } : { transform: 'translateX(-100%)', opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+            />
+          )}
+
+          {/* Ripple effect on click - OPTIMIZED: Only when not reduced motion */}
+          {!shouldReduceMotion && (
+            <motion.div
+              className="absolute inset-0 rounded-xl pointer-events-none"
+              initial={{ scale: 0, opacity: 0 }}
+              whileTap={{ scale: 2, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              style={{
+                background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
+                willChange: 'transform, opacity',
+              }}
+            />
+          )}
+
+          {/* Button content */}
+          <span className="relative z-10">{children}</span>
+        </ButtonComponent>
+      )}
     </motion.div>
   );
 }

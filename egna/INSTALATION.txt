@@ -1,0 +1,18 @@
+Snabb “install-lista” per projekt (så du får allt att matcha filerna)
+
+Next + TS + ESLint + Prettier:
+
+npm i next react react-dom
+npm i -D eslint eslint-config-next prettier typescript @types/node @types/react @types/react-dom
+
+
+Next visar exakt detta upplägg (ESLint + eslint-config-next + flat config).
+
+Om Tailwind också:
+
+npm i -D tailwindcss postcss autoprefixer prettier-plugin-tailwindcss
+
+
+(Tailwind plugin till Prettier är officiell för class-sorting.)
+
+Om du vill kan jag även göra en “mallstruktur” (mappar + exempelkomponent + basic layout) som matchar detta, men ovan är allt som brukar behövas för extensions + editor-config + lint/format i webprojekt.

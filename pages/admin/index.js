@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,13 +25,6 @@ export default function AdminDashboard() {
   useEffect(() => {
     checkAuth();
   }, []);
-
-  // Load data when authenticated
-  useEffect(() => {
-    if (isAuthenticated) {
-      loadDashboardData();
-    }
-  }, [isAuthenticated, activeTab]);
 
   const checkAuth = async () => {
     try {
@@ -99,7 +93,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const loadDashboardData = async () => {
+  const loadDashboardData = useCallback(async () => {
     try {
       // Load stats
       const statsRes = await fetch('/api/admin/stats', {
@@ -170,7 +164,14 @@ export default function AdminDashboard() {
         console.error('Error loading dashboard data:', error);
       }
     }
-  };
+  }, [activeTab]);
+
+  // Load data when authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadDashboardData();
+    }
+  }, [isAuthenticated, loadDashboardData]);
 
   const handleGenerate = async (title, category, autoPublish = false) => {
     setGenerating(true);
@@ -1385,7 +1386,15 @@ function ImagesTab({ images, onRefresh }) {
         ) : (
           images.map((img, idx) => (
             <div key={idx} className="card-gradient p-4">
-              <img src={img.url} alt={img.filename} className="w-full h-48 object-cover rounded mb-3" />
+              <div className="relative w-full h-48 rounded mb-3 overflow-hidden">
+                <Image
+                  src={img.url}
+                  alt={img.filename}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
               <p className="text-sm font-medium truncate mb-1">{img.filename}</p>
               <p className="text-xs text-gray-500 mb-3">
                 {(img.size / 1024).toFixed(1)} KB

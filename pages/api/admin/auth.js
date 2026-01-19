@@ -22,12 +22,26 @@ export default async function handler(req, res) {
     const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
     const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin';
 
+    if (
+      process.env.NODE_ENV === 'production' &&
+      (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD)
+    ) {
+      return res.status(503).json({
+        success: false,
+        error: 'Admin credentials are not configured',
+      });
+    }
+
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       // Create simple session token (in production, use proper JWT)
       const token = Buffer.from(`${username}:${Date.now()}`).toString('base64');
 
       // Set cookie
-      res.setHeader('Set-Cookie', `admin_token=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400`);
+      const secureFlag = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+      res.setHeader(
+        'Set-Cookie',
+        `admin_token=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400${secureFlag}`
+      );
 
       return res.status(200).json({
         success: true,
@@ -44,7 +58,11 @@ export default async function handler(req, res) {
 
   if (req.method === 'DELETE') {
     // Logout
-    res.setHeader('Set-Cookie', 'admin_token=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0');
+    const secureFlag = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+    res.setHeader(
+      'Set-Cookie',
+      `admin_token=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secureFlag}`
+    );
     return res.status(200).json({ success: true, message: 'Logged out' });
   }
 

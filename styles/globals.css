@@ -126,6 +126,19 @@
     @apply focus:outline-none focus:ring-4 focus:ring-primary-500/30;
   }
 
+  /* Outline Button - Tydlig men lätt */
+  .btn-outline {
+    @apply inline-flex items-center justify-center;
+    @apply px-6 py-3 md:px-8 md:py-4;
+    @apply bg-transparent text-primary-600;
+    @apply font-semibold text-sm md:text-base;
+    @apply rounded-xl border-2 border-primary-300;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary-600 hover:text-white hover:border-primary-600;
+    @apply active:translate-y-0;
+    @apply focus:outline-none focus:ring-4 focus:ring-primary-500/30;
+  }
+
   /* Button Sizes */
   .btn-sm {
     @apply px-4 py-2 text-sm;
@@ -225,6 +238,18 @@
     @apply max-w-7xl mx-auto;
     @apply px-4 sm:px-6 lg:px-8;
     @apply py-8 md:py-12;
+  }
+
+  .section-gradient {
+    @apply bg-gradient-to-br from-primary-50/60 via-white to-primary-50/30;
+    background-image: linear-gradient(
+      140deg,
+      rgba(238, 242, 255, 0.92) 0%,
+      rgba(247, 250, 255, 0.96) 45%,
+      rgba(226, 234, 255, 0.85) 100%
+    );
+    background-size: 220% 220%;
+    animation: sectionBreathe 24s ease-in-out infinite;
   }
 
   .section-gradient-primary {
@@ -413,6 +438,16 @@
     }
   }
 
+  @keyframes sectionBreathe {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
   .animate-fadeInUp {
     animation: fadeInUp 0.8s ease-out forwards;
   }
@@ -462,6 +497,102 @@
       background-position: 100% 50%;
     }
   }
+
+  @keyframes ambientFloat {
+    0% {
+      transform: translate3d(-6%, -4%, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(4%, 6%, 0) scale(1.05);
+    }
+    100% {
+      transform: translate3d(-6%, -4%, 0) scale(1);
+    }
+  }
+
+  @keyframes ambientFloatReverse {
+    0% {
+      transform: translate3d(6%, 4%, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-4%, -6%, 0) scale(1.05);
+    }
+    100% {
+      transform: translate3d(6%, 4%, 0) scale(1);
+    }
+  }
+
+  @keyframes heroBackgroundFloat {
+    0% {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    50% {
+      transform: scale(1.03) translate3d(-1.5%, 1.5%, 0);
+    }
+    100% {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-ambient::before,
+    .app-ambient::after,
+    .hero-bg-animate {
+      animation: none !important;
+    }
+  }
+}
+
+/* ============================================
+   🌈 Ambient App Background
+   ============================================ */
+.app-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.app-ambient::before,
+.app-ambient::after {
+  content: "";
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+
+.app-ambient::before {
+  top: -15%;
+  left: -10%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(75, 91, 156, 0.45),
+    rgba(75, 91, 156, 0)
+  );
+  animation: ambientFloat 20s ease-in-out infinite;
+}
+
+.app-ambient::after {
+  bottom: -20%;
+  right: -15%;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(99, 115, 190, 0.35),
+    rgba(99, 115, 190, 0)
+  );
+  animation: ambientFloatReverse 22s ease-in-out infinite;
+}
+
+/* ============================================
+   🖼️ Hero Background Image Animation
+   ============================================ */
+.hero-bg-animate {
+  animation: heroBackgroundFloat 26s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* ============================================

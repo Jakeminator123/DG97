@@ -26,6 +26,7 @@ export default function Chatbot({ position = "bottom-right" }) {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const messageIdRef = useRef(2); // Start from 2 since we have initial message
+  const responseTimeoutRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,6 +35,14 @@ export default function Chatbot({ position = "bottom-right" }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    return () => {
+      if (responseTimeoutRef.current) {
+        clearTimeout(responseTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const quickResponses = [
     "Berätta om era kontorsrum",
@@ -56,8 +65,13 @@ export default function Chatbot({ position = "bottom-right" }) {
     setInputValue('');
     setIsTyping(true);
 
+    // Clear any existing response timeout
+    if (responseTimeoutRef.current) {
+      clearTimeout(responseTimeoutRef.current);
+    }
+
     // Simulate bot response (placeholder for real API integration)
-    setTimeout(() => {
+    responseTimeoutRef.current = setTimeout(() => {
       const botResponse = {
         id: messageIdRef.current++,
         text: getBotResponse(messageText),
@@ -65,6 +79,7 @@ export default function Chatbot({ position = "bottom-right" }) {
       };
       setMessages(prev => [...prev, botResponse]);
       setIsTyping(false);
+      responseTimeoutRef.current = null;
     }, 1500);
   };
 

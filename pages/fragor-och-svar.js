@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import Layout from "../components/Layout";
 import PageHero from "../components/PageHero";
@@ -292,12 +293,12 @@ export default function FragorOchSvar() {
               Ring oss: 070-886 22 79
             </a>
 
-            <a
+            <Link
               href="/kontakt"
               className="inline-block px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg border-2 border-primary-600 hover:bg-primary-50 transition-colors duration-200"
             >
               Boka visning
-            </a>
+            </Link>
           </div>
         </div>
       </section>

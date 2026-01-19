@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import PageHero from "../components/PageHero";
@@ -64,12 +65,12 @@ function CompanyCard({ company, index }) {
             {company.name}
           </h3>
           <p className="text-gray-600 mb-6">{company.description}</p>
-          <a
+          <Link
             href="/kontakt"
             className="inline-block px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
           >
             Kontakta oss
-          </a>
+          </Link>
         </div>
       </FadeIn>
     );
@@ -577,19 +578,19 @@ export default function VaraForetag() {
           </FadeIn>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/kontakt"
               className="inline-block px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-lg hover:shadow-xl"
             >
               Boka visning
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/om-oss"
               className="inline-block px-8 py-4 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white/10 transition-colors duration-200"
             >
               Läs mer om oss
-            </a>
+            </Link>
           </div>
         </div>
       </section>

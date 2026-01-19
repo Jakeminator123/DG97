@@ -47,7 +47,7 @@ export const agentSettings = {
   autoOpenDelay: 0,
 
   // Position och storlek
-  position: 'top-right', // 'bottom-right', 'bottom-left', 'top-right', 'top-left'
+  position: 'bottom-right', // 'bottom-right', 'bottom-left', 'top-right', 'top-left'
   variant: 'panel', // 'panel', 'bubble', 'fullscreen'
 
   // Storlekar

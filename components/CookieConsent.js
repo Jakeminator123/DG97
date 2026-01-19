@@ -148,6 +148,7 @@ export default function CookieConsent() {
     };
     localStorage.setItem("dg97_cookie_consent", JSON.stringify(allAccepted));
     setShowBanner(false);
+    window.dispatchEvent(new Event("dg97:cookie-consent"));
 
     // Här kan du aktivera Google Analytics, Facebook Pixel etc.
     // Only log in development
@@ -166,6 +167,7 @@ export default function CookieConsent() {
     };
     localStorage.setItem("dg97_cookie_consent", JSON.stringify(necessaryOnly));
     setShowBanner(false);
+    window.dispatchEvent(new Event("dg97:cookie-consent"));
     // Only log in development
     if (process.env.NODE_ENV === "development") {
       console.log("Only necessary cookies accepted");
@@ -177,6 +179,7 @@ export default function CookieConsent() {
 
     localStorage.setItem("dg97_cookie_consent", JSON.stringify(preferences));
     setShowBanner(false);
+    window.dispatchEvent(new Event("dg97:cookie-consent"));
     // Only log in development
     if (process.env.NODE_ENV === "development") {
       console.log("Custom preferences saved:", preferences);

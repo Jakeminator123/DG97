@@ -88,7 +88,8 @@ except Exception as e:
     print(json.dumps({'success': False, 'error': str(e)}))
 `;
 
-    const scriptPath = path.join(process.cwd(), 'temp_generate.py');
+    const tempSuffix = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const scriptPath = path.join(process.cwd(), `temp_generate_${tempSuffix}.py`);
 
     // Timeout reference
     var timeoutId = null;

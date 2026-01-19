@@ -260,7 +260,7 @@ export default function Foretagsportal() {
                       autoComplete="current-password"
                     />
                     <p className="text-xs text-gray-500 mt-2">
-                      Tips: Använd "dg97" som lösenord för demo
+                      Tips: Använd &quot;dg97&quot; som lösenord för demo
                     </p>
                   </div>
 
@@ -542,7 +542,7 @@ export default function Foretagsportal() {
                       </div>
                       <p className="text-gray-600 mb-2">Inga matchande företag hittades</p>
                       <p className="text-sm text-gray-500">
-                        Se till att du har aktiverat "Vi söker synergier" i din profil
+                        Se till att du har aktiverat &quot;Vi söker synergier&quot; i din profil
                       </p>
                     </div>
                   )}
@@ -561,7 +561,7 @@ export default function Foretagsportal() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    Aktivera "Visa företagsprofil publikt" för att synas på hemsidan och öka synligheten
+                    Aktivera &quot;Visa företagsprofil publikt&quot; för att synas på hemsidan och öka synligheten
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
@@ -569,7 +569,7 @@ export default function Foretagsportal() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    Använd "Knyt an"-funktionen för att skicka personliga förfrågningar baserade på AI-analysen
+                    Använd &quot;Knyt an&quot;-funktionen för att skicka personliga förfrågningar baserade på AI-analysen
                   </li>
                 </ul>
               </div>

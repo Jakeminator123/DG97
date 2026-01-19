@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { FadeIn } from "./animations";
@@ -137,6 +138,9 @@ export default function PageHero({
   shapes = DEFAULT_SHAPES,
   shapesOpacityClassName = "opacity-10",
   animationVariant = "default", // New prop: "default" | "orbs" | "waves" | "particles" | "pulse"
+  backgroundImage = "/images/reception_bred.jpg",
+  backgroundImageOpacity = 0.18,
+  showBackgroundImage = true,
   className = "",
 }) {
   const shouldReduceMotion = useReducedMotion();
@@ -165,15 +169,30 @@ export default function PageHero({
         .filter(Boolean)
         .join(" ")}
     >
+      {showBackgroundImage && backgroundImage ? (
+        <div className="absolute inset-0 z-0" aria-hidden="true">
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover hero-bg-animate"
+            style={{ opacity: backgroundImageOpacity }}
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/70 via-primary-700/70 to-primary-800/70" />
+        </div>
+      ) : null}
+
       {showShapes && (
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-[5]"
           aria-hidden="true"
         >
           {shapes.map((pos, i) => (
             <motion.div
               key={i}
-              className={`absolute ${getShapeSize()} bg-white opacity-10 ${getShapeClass()} pointer-events-none`}
+              className={`absolute ${getShapeSize()} bg-white ${shapesOpacityClassName} ${getShapeClass()} pointer-events-none`}
               style={{ left: pos.left, top: pos.top }}
               animate={animConfig.getAnimation(i, shouldReduceMotion)}
               transition={

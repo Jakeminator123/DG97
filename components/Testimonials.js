@@ -96,7 +96,7 @@ function TestimonialCard({ testimonial, index }) {
           <StarRating rating={testimonial.rating} />
         </div>
         <p className="text-neutral-700 mb-6 flex-grow italic leading-relaxed text-base">
-          "{testimonial.text}"
+          &quot;{testimonial.text}&quot;
         </p>
         <div className="border-t border-gray-200 pt-4">
           <p className="font-semibold text-neutral-900">{testimonial.name}</p>

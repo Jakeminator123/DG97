@@ -71,8 +71,24 @@ export default function GoogleMap() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isActive = true;
+    const timeouts = [];
+    let mapObserver = null;
+    let bodyObserver = null;
+
+    const registerTimeout = (timeoutId) => {
+      timeouts.push(timeoutId);
+      return timeoutId;
+    };
+
+    const clearAllTimeouts = () => {
+      timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+      timeouts.length = 0;
+    };
+
     loadGoogleMaps()
       .then((google) => {
+        if (!isActive) return;
         // Ensure google.maps is available
         if (!google?.maps?.Map) {
           throw new Error("Google Maps API not fully loaded");
@@ -166,6 +182,7 @@ export default function GoogleMap() {
               <p style="margin: 0 0 8px 0;">Drottninggatan 97<br>113 60 Stockholm</p>
               <a href="https://www.google.com/maps/dir/?api=1&destination=59.3413,18.0596"
                  target="_blank"
+                 rel="noopener noreferrer"
                  style="color: #ff6b6b; text-decoration: none; font-weight: 500;">
                 Vägbeskrivning →
               </a>
@@ -180,6 +197,7 @@ export default function GoogleMap() {
 
         // Set title on Google Maps iframe for accessibility
         const setIframeTitle = () => {
+          if (!isActive) return false;
           if (!mapRef.current) return false;
 
           // Try direct query first
@@ -206,46 +224,72 @@ export default function GoogleMap() {
 
         // Try to set title immediately and after delays
         const attempts = [100, 500, 1000, 2000, 3000];
-        const timeouts = attempts.map(delay => setTimeout(setIframeTitle, delay));
+        attempts.forEach((delay) => {
+          registerTimeout(setTimeout(setIframeTitle, delay));
+        });
 
         // Observe for iframe creation if not found immediately
         if (!setIframeTitle() && mapRef.current) {
-          const observer = new MutationObserver(() => {
+          mapObserver = new MutationObserver(() => {
             if (setIframeTitle()) {
-              observer.disconnect();
-              // Clear remaining timeouts
-              timeouts.forEach(timeout => clearTimeout(timeout));
+              mapObserver.disconnect();
+              if (bodyObserver) {
+                bodyObserver.disconnect();
+              }
+              clearAllTimeouts();
             }
           });
-          observer.observe(mapRef.current, { childList: true, subtree: true });
+          mapObserver.observe(mapRef.current, { childList: true, subtree: true });
 
           // Also observe document body in case iframe is added outside container
-          const bodyObserver = new MutationObserver(() => {
+          bodyObserver = new MutationObserver(() => {
             if (setIframeTitle()) {
-              observer.disconnect();
+              if (mapObserver) {
+                mapObserver.disconnect();
+              }
               bodyObserver.disconnect();
-              timeouts.forEach(timeout => clearTimeout(timeout));
+              clearAllTimeouts();
             }
           });
           bodyObserver.observe(document.body, { childList: true, subtree: true });
 
           // Disconnect after 10 seconds
-          setTimeout(() => {
-            observer.disconnect();
-            bodyObserver.disconnect();
-            timeouts.forEach(timeout => clearTimeout(timeout));
-          }, 10000);
+          registerTimeout(
+            setTimeout(() => {
+              if (mapObserver) {
+                mapObserver.disconnect();
+              }
+              if (bodyObserver) {
+                bodyObserver.disconnect();
+              }
+              clearAllTimeouts();
+            }, 10000)
+          );
         }
 
-        setIsLoaded(true);
+        if (isActive) {
+          setIsLoaded(true);
+        }
       })
       .catch((err) => {
+        if (!isActive) return;
         // Only log errors in development
         if (process.env.NODE_ENV === 'development') {
           console.error("Failed to load Google Maps:", err);
         }
         setError(err.message || 'Kunde inte ladda kartan');
       });
+
+    return () => {
+      isActive = false;
+      if (mapObserver) {
+        mapObserver.disconnect();
+      }
+      if (bodyObserver) {
+        bodyObserver.disconnect();
+      }
+      clearAllTimeouts();
+    };
   }, []);
 
   if (error) {
@@ -293,7 +337,7 @@ export default function GoogleMap() {
                   </a>
                 </li>
                 <li>2. Skapa eller välj ett projekt</li>
-                <li>3. Aktivera "Maps JavaScript API"</li>
+                <li>3. Aktivera &quot;Maps JavaScript API&quot;</li>
                 <li>4. Skapa en API-nyckel</li>
                 <li>
                   5. Lägg till nyckeln i{" "}

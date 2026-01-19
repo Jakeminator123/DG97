@@ -102,6 +102,7 @@ export const Button = ({
     secondary: 'btn-secondary',
     accent: 'btn-accent',
     ghost: 'btn-ghost',
+    outline: 'btn-outline',
   };
   
   const sizes = {
@@ -267,7 +268,7 @@ export const getSpacing = (size = 'md') => spacing[size] || spacing.md;
   </Section>
 */
 
-export default {
+const designSystem = {
   colors,
   spacing,
   typography,
@@ -280,3 +281,5 @@ export default {
   getGradient,
   getSpacing,
 };
+
+export default designSystem;

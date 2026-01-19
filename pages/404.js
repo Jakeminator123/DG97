@@ -110,7 +110,7 @@ export default function Custom404() {
             className="mt-12"
           >
             <p className="text-sm text-gray-500 italic">
-              "Inte alla som vandrar omkring är vilse" - men den här sidan är verkligen borta 😅
+              &quot;Inte alla som vandrar omkring är vilse&quot; - men den här sidan är verkligen borta 😅
             </p>
           </motion.div>
         </div>

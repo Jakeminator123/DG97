@@ -290,7 +290,7 @@ export default function SEO({
     "@type": "Article",
     "headline": article.title,
     "description": article.excerpt,
-    "image": article.image || `${siteUrl}/images/blog-default.jpg`,
+    "image": article.image || `${siteUrl}/images/reception_bred.jpg`,
     "datePublished": article.date,
     "dateModified": article.modifiedDate || article.date,
     "author": {

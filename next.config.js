@@ -8,7 +8,7 @@ const nextConfig = {
   swcMinify: true,
   poweredByHeader: false,
   generateEtags: false,
-  // Disable source maps in dev to prevent webpack:// errors
+  // Disable production browser source maps to prevent webpack:// errors
   productionBrowserSourceMaps: false,
   // Fix for hot reload flickering
   experimental: {
@@ -53,8 +53,6 @@ const nextConfig = {
   // },
   // Optimize fonts
   optimizeFonts: true,
-  // Production optimizations
-  productionBrowserSourceMaps: false,
   // Webpack optimizations
   webpack: (config, { dev, isServer }) => {
     // Production optimizations

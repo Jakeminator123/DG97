@@ -66,10 +66,7 @@ export default function DIDController() {
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className={`fixed ${fabPosition[agentSettings.position]} z-50`}
           >
-            {/* Pulse animation för uppmärksamhet */}
             <div className="relative">
-              <div className="absolute inset-0 bg-primary-500 rounded-full animate-ping opacity-75" />
-
               {/* Main button */}
               <button
                 onClick={() => setIsOpen(true)}

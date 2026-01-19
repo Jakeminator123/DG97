@@ -42,8 +42,7 @@ export default function VideoHero() {
             fill
             sizes="100vw"
             className="object-cover"
-            priority
-            fetchPriority="high"
+            loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
         </div>

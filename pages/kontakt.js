@@ -134,8 +134,8 @@ export default function Kontakt() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <MagneticButton
                 href="tel:0708862279"
-                variant="primary"
-                className="bg-white text-primary-600 hover:bg-gray-100 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto"
+                variant="accent"
+                className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 w-full sm:w-auto"
               >
                 <span className="flex items-center gap-2 justify-center">
                   <svg
