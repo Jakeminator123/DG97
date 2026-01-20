@@ -10,7 +10,7 @@ export default function Loading() {
       <div className="text-center">
         <LogoLoader 
           size={220} 
-          variant="breathe" 
+          variant="spin" 
           speed={4}
           showText={true}
           className="mb-4"

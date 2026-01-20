@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import LogoLoader from "./animations/LogoLoader";
 
 let isGoogleMapsLoaded = false;
 let googleMapsPromise = null;
@@ -378,10 +379,14 @@ export default function GoogleMap() {
 
       {/* Loading placeholder - only show if not loaded */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
+        <div
+          className="absolute inset-0 bg-gray-100 flex items-center justify-center"
+          role="status"
+          aria-live="polite"
+        >
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mb-4"></div>
-            <p className="text-gray-600">Laddar karta...</p>
+            <LogoLoader size={64} variant="spin" speed={4} />
+            <span className="sr-only">Laddar karta...</span>
           </div>
         </div>
       )}

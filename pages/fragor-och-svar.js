@@ -97,7 +97,7 @@ const faqCategories = [
       {
         question: "Hur tar jag mig hit med kollektivtrafik?",
         answer:
-          "Det är mycket enkelt! Närmaste tunnelbanestation är Rådmansgatan (gröna linjen) på cirka 5 minuters promenад. Även Odenplan ligger nära med både tunnelbana och pendeltåg. Flera bussar stannar också i närheten.",
+          "Det är mycket enkelt! Närmaste tunnelbanestation är Rådmansgatan (gröna linjen) på cirka 5 minuters promenad. Även Odenplan ligger nära med både tunnelbana och pendeltåg. Flera bussar stannar också i närheten.",
       },
       {
         question: "Kan jag ta med mig besökare?",

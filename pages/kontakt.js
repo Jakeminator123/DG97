@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { FadeIn, MagneticButton, ScrollReveal } from "../components/animations";
+import { FadeIn, MagneticButton, ScrollReveal, LogoLoader } from "../components/animations";
 import DistanceToOffice from "../components/DistanceToOffice";
 import ContactForm from "../components/ContactForm";
 import Layout from "../components/Layout";
@@ -17,12 +17,22 @@ const Testimonials = dynamic(() => import("../components/Testimonials"), {
 // Lazy load Google Maps
 const GoogleMap = dynamic(() => import("../components/GoogleMap"), {
   loading: () => (
-    <div className="w-full h-full min-h-[400px] bg-gray-100 animate-pulse flex items-center justify-center rounded-lg">
-      <p className="text-gray-500">Laddar karta...</p>
+    <div
+      className="w-full h-full min-h-[400px] bg-gray-100 flex items-center justify-center rounded-lg"
+      role="status"
+      aria-live="polite"
+    >
+      <div className="text-center">
+        <LogoLoader size={72} variant="spin" speed={4} />
+        <span className="sr-only">Laddar karta...</span>
+      </div>
     </div>
   ),
   ssr: false,
 });
+
+const GOOGLE_MAPS_DIRECTIONS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=59.3413,18.0596";
 
 // Contact info data med ikoner
 const contactMethods = [
@@ -47,7 +57,7 @@ const contactMethods = [
     icon: "📍",
     title: "Besök oss",
     value: "Drottninggatan 97",
-    link: "https://goo.gl/maps/xyz",
+    link: GOOGLE_MAPS_DIRECTIONS_URL,
     description: "113 60 Stockholm",
     cta: "Se vägbeskrivning",
   },
@@ -291,8 +301,15 @@ export default function Kontakt() {
                   {showMap ? (
                     <GoogleMap />
                   ) : (
-                    <div className="w-full h-full bg-gray-100 animate-pulse flex items-center justify-center">
-                      <p className="text-gray-500">Laddar karta…</p>
+                    <div
+                      className="w-full h-full bg-gray-100 flex items-center justify-center"
+                      role="status"
+                      aria-live="polite"
+                    >
+                      <div className="text-center">
+                        <LogoLoader size={72} variant="spin" speed={4} />
+                        <span className="sr-only">Laddar karta...</span>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -310,7 +327,7 @@ export default function Kontakt() {
                       113 60 Stockholm
                     </p>
                     <a
-                      href="https://goo.gl/maps/xyz"
+                      href={GOOGLE_MAPS_DIRECTIONS_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-ghost mt-4 inline-flex items-center gap-2"

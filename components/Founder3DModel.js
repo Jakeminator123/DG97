@@ -129,7 +129,7 @@ export default function Founder3DModel({
             </Canvas>
           ) : (
             <div className="h-full flex items-center justify-center">
-              <LogoLoader size={80} variant="breathe" speed={3} />
+              <LogoLoader size={80} variant="spin" speed={4} />
             </div>
           )}
         </div>
@@ -138,7 +138,7 @@ export default function Founder3DModel({
         {isInView && !isLoaded && (
           <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center rounded-2xl">
             <div className="text-center">
-              <LogoLoader size={60} variant="breathe" speed={2} />
+              <LogoLoader size={60} variant="spin" speed={4} />
               <p className="text-sm text-gray-600 mt-2">Laddar 3D-modell...</p>
             </div>
           </div>

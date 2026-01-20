@@ -136,7 +136,7 @@ export default function VideoHero() {
           </div>
           {/* Show logo loader while video is loading */}
           <div className="absolute inset-0 flex items-center justify-center z-20">
-            <LogoLoader size={120} variant="breathe" speed={3} />
+            <LogoLoader size={120} variant="spin" speed={4} />
           </div>
         </>
       )}
