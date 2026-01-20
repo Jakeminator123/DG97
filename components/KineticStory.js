@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
 /**
@@ -11,11 +11,33 @@ export default function KineticStory() {
   const rootRef = useRef(null);
   const glowRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || shouldReduceMotion) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsActive(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsActive(entry.isIntersecting);
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(root);
+
+    return () => observer.disconnect();
+  }, [shouldReduceMotion]);
 
   useEffect(() => {
     const root = rootRef.current;
     const glow = glowRef.current;
-    if (!root || !glow || shouldReduceMotion) return;
+    if (!root || !glow || shouldReduceMotion || !isActive) return;
 
     let raf = 0;
     let targetX = 0;
@@ -79,11 +101,11 @@ export default function KineticStory() {
       root.removeEventListener("pointermove", onPointerMove);
       root.removeEventListener("pointerleave", onPointerLeave);
     };
-  }, [shouldReduceMotion]);
+  }, [isActive, shouldReduceMotion]);
 
   useEffect(() => {
     const root = rootRef.current;
-    if (!root || shouldReduceMotion) return;
+    if (!root || shouldReduceMotion || !isActive) return;
 
     let raf = 0;
 
@@ -112,7 +134,7 @@ export default function KineticStory() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [shouldReduceMotion]);
+  }, [isActive, shouldReduceMotion]);
 
   return (
     <section className="section-container bg-gradient-to-br from-primary-900 via-primary-800 to-primary-950 text-white relative overflow-hidden">

@@ -191,7 +191,7 @@
     @apply shadow-md hover:shadow-xl;
     @apply transition-all duration-300 ease-out;
     @apply overflow-hidden;
-    @apply backdrop-blur-sm border border-gray-100/50;
+    @apply border border-gray-100/60;
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.98) 0%,
@@ -212,15 +212,15 @@
 
   .card-gradient {
     @apply bg-gradient-to-br from-white via-primary-50 to-primary-100;
-    @apply rounded-xl shadow-md hover:shadow-xl;
+    @apply rounded-2xl shadow-md hover:shadow-xl;
     @apply transition-all duration-300 ease-out;
     @apply overflow-hidden;
-    @apply backdrop-blur-sm border border-gray-100;
+    @apply border border-gray-100/60;
     background-image: linear-gradient(
-      to bottom right,
-      rgba(255, 255, 255, 0.9),
-      rgba(239, 246, 255, 0.2),
-      rgba(219, 234, 254, 0.1)
+      135deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(239, 246, 255, 0.45) 55%,
+      rgba(226, 234, 255, 0.25) 100%
     );
   }
 
@@ -304,34 +304,34 @@
 
   .heading-2 {
     @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
-    @apply font-bold;
+    @apply font-bold tracking-tight;
     @apply text-neutral-900;
     @apply leading-tight;
   }
 
   .heading-3 {
     @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
-    @apply font-semibold;
+    @apply font-semibold tracking-tight;
     @apply text-neutral-900;
     @apply leading-snug;
   }
 
   .heading-4 {
     @apply text-base sm:text-lg md:text-xl lg:text-2xl;
-    @apply font-semibold;
+    @apply font-semibold tracking-tight;
     @apply text-neutral-900;
     @apply leading-snug;
   }
 
   .text-lead {
-    @apply text-base sm:text-lg md:text-xl;
-    @apply text-neutral-600;
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl;
+    @apply text-neutral-700;
     @apply leading-relaxed;
   }
 
   .text-body {
     @apply text-base;
-    @apply text-neutral-600;
+    @apply text-neutral-700;
     @apply leading-relaxed;
   }
 
@@ -478,16 +478,6 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   }
 
-  /* Gradient text animation */
-  .gradient-text {
-    background: linear-gradient(45deg, #4b5b9c, #ff6b6b, #4b5b9c);
-    background-size: 200% 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 15s ease-in-out infinite;
-  }
-
   @keyframes gradientShift {
     0%,
     100% {
@@ -500,25 +490,25 @@
 
   @keyframes ambientFloat {
     0% {
-      transform: translate3d(-6%, -4%, 0) scale(1);
+      transform: translate3d(-4%, -3%, 0) scale(1);
     }
     50% {
-      transform: translate3d(4%, 6%, 0) scale(1.05);
+      transform: translate3d(3%, 4%, 0) scale(1.03);
     }
     100% {
-      transform: translate3d(-6%, -4%, 0) scale(1);
+      transform: translate3d(-4%, -3%, 0) scale(1);
     }
   }
 
   @keyframes ambientFloatReverse {
     0% {
-      transform: translate3d(6%, 4%, 0) scale(1);
+      transform: translate3d(4%, 3%, 0) scale(1);
     }
     50% {
-      transform: translate3d(-4%, -6%, 0) scale(1.05);
+      transform: translate3d(-3%, -4%, 0) scale(1.03);
     }
     100% {
-      transform: translate3d(6%, 4%, 0) scale(1);
+      transform: translate3d(4%, 3%, 0) scale(1);
     }
   }
 
@@ -565,33 +555,28 @@
   overflow: hidden;
   background-image:
     radial-gradient(
-      60vmax 50vmax at 12% 18%,
-      rgba(120, 140, 220, 0.12),
+      55vmax 45vmax at 12% 18%,
+      rgba(120, 140, 220, 0.1),
       rgba(120, 140, 220, 0)
     ),
     radial-gradient(
-      55vmax 45vmax at 88% 12%,
-      rgba(255, 210, 220, 0.1),
+      50vmax 40vmax at 88% 12%,
+      rgba(255, 210, 220, 0.08),
       rgba(255, 210, 220, 0)
-    ),
-    radial-gradient(
-      65vmax 55vmax at 20% 85%,
-      rgba(99, 115, 190, 0.1),
-      rgba(99, 115, 190, 0)
     );
-  background-size: 180% 180%;
-  animation: ambientClouds 55s ease-in-out infinite;
+  background-size: 160% 160%;
+  animation: ambientClouds 70s ease-in-out infinite;
 }
 
 .app-ambient::before,
 .app-ambient::after {
   content: "";
   position: absolute;
-  width: 80vmax;
-  height: 80vmax;
+  width: 70vmax;
+  height: 70vmax;
   border-radius: 9999px;
-  filter: blur(100px);
-  opacity: 0.14;
+  filter: blur(70px);
+  opacity: 0.1;
 }
 
 .app-ambient::before {

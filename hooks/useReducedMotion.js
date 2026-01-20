@@ -6,39 +6,44 @@ export function useReducedMotion() {
 
   useEffect(() => {
     setIsClient(true);
-    
-    // Check user preference
+
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let reducedMotion = mediaQuery.matches;
 
-    // Check connection speed
-    if ('connection' in navigator) {
+    const getShouldReduceMotion = () => {
+      const isMobile = window.innerWidth < 768;
       const connection = navigator.connection;
-      // Reduce animations on slow connections
-      if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-        reducedMotion = true;
-      }
-    }
+      const slowConnection = Boolean(
+        connection &&
+          (connection.saveData ||
+            connection.effectiveType === 'slow-2g' ||
+            connection.effectiveType === '2g')
+      );
+      const lowEndDevice = Boolean(
+        (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+          (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
+      );
 
-    // Check if mobile device
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      reducedMotion = true;
-    }
-
-    setShouldReduceMotion(reducedMotion);
+      return mediaQuery.matches || isMobile || slowConnection || lowEndDevice;
+    };
 
     const handleChange = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      setShouldReduceMotion(mediaQuery.matches || isMobile);
+      setShouldReduceMotion(getShouldReduceMotion());
     };
-    
+
+    handleChange();
+
     mediaQuery.addEventListener('change', handleChange);
     window.addEventListener('resize', handleChange);
+    if (navigator.connection?.addEventListener) {
+      navigator.connection.addEventListener('change', handleChange);
+    }
 
     return () => {
       mediaQuery.removeEventListener('change', handleChange);
       window.removeEventListener('resize', handleChange);
+      if (navigator.connection?.removeEventListener) {
+        navigator.connection.removeEventListener('change', handleChange);
+      }
     };
   }, []);
 

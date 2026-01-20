@@ -1,6 +1,5 @@
 // Export all animation components - tree-shakeable
 export * from './AnimatedLogo';
-export * from './HeroNoiseGradient';
 export * from './MagneticButton';
 export * from './Marquee';
 export * from './MorphingDivider';

@@ -1,21 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const rafRef = useRef(0);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      if (rafRef.current) return;
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = 0;
+        const shouldShow = window.pageYOffset > 300;
+        if (shouldShow !== visibleRef.current) {
+          visibleRef.current = shouldShow;
+          setIsVisible(shouldShow);
+        }
+      });
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
 
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, []);
 
   const scrollToTop = () => {

@@ -2,17 +2,16 @@ import { motion } from 'framer-motion';
 
 /**
  * LogoLoader - Animated DG97 logo for loading states
- * 
+ *
  * Usage:
  *   <LogoLoader size={200} variant="spin" speed={8} />
- * 
+ *
  * Variants: 'spin' | 'pendulum' | 'breathe'
  */
 export default function LogoLoader({
   size = 180,
   variant = 'breathe',
   speed = 6,
-  showText = false,
   className = '',
 }) {
   const ringThickness = Math.max(4, Math.round(size * 0.08));
@@ -45,10 +44,10 @@ export default function LogoLoader({
           mask: `radial-gradient(circle, transparent calc(50% - ${ringThickness}px), #000 calc(50% - ${ringThickness}px))`,
         }}
         animate={{ rotate: variant === 'breathe' ? 0 : -360 }}
-        transition={{ 
-          repeat: Infinity, 
-          duration: speed * 1.2, 
-          ease: 'linear' 
+        transition={{
+          repeat: Infinity,
+          duration: speed * 1.2,
+          ease: 'linear'
         }}
       />
 
@@ -75,20 +74,6 @@ export default function LogoLoader({
         draggable={false}
       />
 
-      {/* Optional loading text */}
-      {showText && (
-        <motion.div
-          className="absolute bottom-2 text-xs tracking-wider text-gray-600"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ 
-            repeat: Infinity, 
-            duration: Math.max(3, speed / 1.5), 
-            ease: 'easeInOut' 
-          }}
-        >
-          Laddar…
-        </motion.div>
-      )}
     </div>
   );
 }

@@ -225,7 +225,7 @@ export default function PageHero({
               <FadeIn delay={0.2}>
                 <p
                   className={[
-                    "text-lg sm:text-xl md:text-2xl",
+                    "text-lead",
                     "text-white/90",
                     "font-light",
                     actions ? "" : "max-w-3xl mx-auto",

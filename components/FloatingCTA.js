@@ -1,11 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
   const [hasConsent, setHasConsent] = useState(false);
+  const rafRef = useRef(0);
+  const hasShownRef = useRef(false);
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
     const checkConsent = () => {
@@ -19,22 +21,33 @@ export default function FloatingCTA() {
       setHasConsent(checkConsent());
     };
 
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 300;
-      setHasScrolled(scrolled);
-
-      // Show after 3 seconds OR when scrolled down
-      if (scrolled) {
+    const showCTA = () => {
+      if (!hasShownRef.current) {
+        hasShownRef.current = true;
         setIsVisible(true);
       }
     };
 
-    // Show after 3 seconds even without scroll
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 3000);
+    const handleScroll = () => {
+      if (rafRef.current) return;
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = 0;
+        const scrolled = window.scrollY > 300;
+        if (scrolled !== scrolledRef.current) {
+          scrolledRef.current = scrolled;
+        }
 
-    window.addEventListener("scroll", handleScroll);
+        // Show after scroll once
+        if (scrolled) {
+          showCTA();
+        }
+      });
+    };
+
+    // Show after 3 seconds even without scroll
+    const timer = setTimeout(showCTA, 3000);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("storage", handleConsentEvent);
     window.addEventListener("dg97:cookie-consent", handleConsentEvent);
     handleScroll();
@@ -44,6 +57,9 @@ export default function FloatingCTA() {
       window.removeEventListener("storage", handleConsentEvent);
       window.removeEventListener("dg97:cookie-consent", handleConsentEvent);
       clearTimeout(timer);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
