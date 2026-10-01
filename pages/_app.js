@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Inter, Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "../styles/globals.css";
 import "../styles/shimmer.css";
 
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }) {
       <div className={`${inter.variable} ${poppins.variable} relative z-10`}>
         <Component {...pageProps} />
       </div>
+      <Analytics />
     </>
   );
 }
