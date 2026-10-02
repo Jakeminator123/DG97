@@ -2,18 +2,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
-  AnimatedLogoText,
-  BlurReveal,
-  FadeIn,
-  MagneticButton,
   ScaleReveal,
-  ScrollReveal,
   StaggerChild,
   StaggerReveal,
   WaveDivider,
 } from "../components/animations";
 import Layout from "../components/Layout";
-import PageHero from "../components/PageHero";
+import GuideHero from "../components/GuideHero";
+import OfficialCTA from "../components/OfficialCTA";
 import { getImageProps } from "../lib/images";
 
 // Real gallery images from DG97
@@ -128,19 +124,17 @@ export default function Galleri() {
 
   return (
     <Layout
-      title="Galleri - Kontorsrum & Lokaler | DG97 Kontorshotell Stockholm"
-      description="Se bilder från DG97 Kontorshotell. Moderna kontorsrum, konferensrum och gemensamma ytor i hjärtat av Stockholm på Drottninggatan 97. Boka visning idag!"
-      keywords="kontorshotell galleri, kontorsrum bilder stockholm, kontorshotell lokaler, moderna kontorsrum bilder, dg97 bilder, kontorshotell vasastan bilder"
+      title="Miljöbilder från DG97"
+      description="Bilder från DG97 på Drottninggatan 97. Se miljön och gå till huvudwebbplatsen för aktuella rum och kontakt inför ett besök."
       path="/galleri"
       breadcrumbs={breadcrumbs}
       imageGallery={imageGalleryData}
+      pageType="ImageGallery"
     >
       {/* Hero Section */}
-      <PageHero
-        title="Galleri"
-        subtitle="Se våra moderna lokaler och inspirerande arbetsmiljö"
-        animationVariant="particles"
-      />
+      <GuideHero title="En inblick i miljön på DG97">
+        <p>Bilderna visar miljöer på kontorshotellet. De är inte en förteckning över lediga rum. Aktuell utformning och tillgänglighet bekräftas av DG97 inför ett besök.</p>
+      </GuideHero>
 
       {/* Gallery Grid */}
       <section className="section-container">
@@ -306,26 +300,7 @@ export default function Galleri() {
 
       {/* CTA Section */}
       <section className="section-container bg-gray-50">
-        <div className="max-w-3xl mx-auto text-center">
-          <ScrollReveal>
-            <AnimatedLogoText className="text-5xl mb-6" />
-          </ScrollReveal>
-
-          <BlurReveal delay={0.2}>
-            <h2 className="heading-2 mb-6">Boka en visning</h2>
-          </BlurReveal>
-
-          <FadeIn delay={0.4}>
-            <p className="text-lg text-gray-700 mb-10">
-              Bilder säger mycket, men ingenting slår att se våra lokaler på
-              plats. Boka en visning idag!
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.6}>
-            <MagneticButton href="/kontakt">Boka visning</MagneticButton>
-          </FadeIn>
-        </div>
+        <OfficialCTA title="Se kontoret i verkligheten" />
       </section>
     </Layout>
   );

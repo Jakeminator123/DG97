@@ -1,9 +1,9 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.dg97.org',
+  siteUrl: require('./config/site').GUIDE_URL,
   generateRobotsTxt: true,
   trailingSlash: false,
-  additionalPaths: async () => require('./lib/posts').getPosts().map(post => ({ loc: `/blogg/${post.slug}`, lastmod: post.date || undefined })),
+  additionalPaths: async () => require('./lib/posts').getPosts().map(post => ({ loc: `/blogg/${post.slug}`, lastmod: post.modifiedDate || post.date || undefined })),
   exclude: [
     '/admin',
     '/api/*',

@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "mode": "publish",
+  "timezone": "Europe/Stockholm",
+  "batch": "2026-10-office-guides",
+  "nextReleaseDate": "2026-10-07",
+  "intervalDays": 5,
+  "queue": [
+    "checklista-infor-kontorsvisning",
+    "coworking-eller-eget-kontorsrum",
+    "planera-kontoret-for-hybridteam",
+    "tysta-zoner-och-telefonsamtal",
+    "jamfor-kontorsofferter",
+    "flytta-litet-foretag-till-kontorshotell",
+    "forsta-veckan-pa-nytt-kontor",
+    "motesrum-for-kundmoten",
+    "digitala-moten-fran-kontoret",
+    "kontor-for-konsultteam",
+    "kontor-for-tva-personer",
+    "nar-teamet-vaxer-ur-kontoret",
+    "forvaring-pa-delat-kontor",
+    "ta-emot-besokare-pa-kontoret",
+    "planera-kontorsdagen-i-stockholm",
+    "plats-for-koncentration-pa-kontoret",
+    "gemensamt-kok-pa-kontoret",
+    "planera-workshop-pa-kontoret",
+    "kontorsbilder-och-visning",
+    "utvardera-kontoret-efter-inflyttning"
+  ],
+  "released": []
+}

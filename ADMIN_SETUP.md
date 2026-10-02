@@ -4,17 +4,18 @@ Den publika webbplatsen körs på Vercel-projektet `dg-97`, kopplat till `Jakemi
 
 ## Aktiva funktioner
 
-- Publika informationssidor, bilder, priser och kontaktuppgifter.
+- Separat guidesajt med jämförelser, artiklar, frågor inför kontorsvalet och miljöbilder. Priser och lediga rum publiceras inte här.
 - Blogg: Markdown i `content/posts/`. Startsidan, bloggindex och artiklar byggs från samma innehåll vid deployment. Ändringar publiceras via GitHub.
-- Kontaktformulär: öppnar ett mejlutkast till `hej@dg97.se`. Besökaren måste skicka mejlet i sitt e-postprogram. Ingen leverans bekräftas av servern.
-- Google Maps: inbäddad adresskarta utan API-nyckel. Externa kart- och bokningstjänster har egna driftsberoenden; telefon och mejl finns som kontaktalternativ.
+- Kontakt och visningar: länkar till `https://www.dg97.se/kontakt/`. Guiden har inget eget kontaktformulär, ingen inbäddad karta och inget globalt bokningsskript.
 - Admin: valfri, endast läsning av publicerade blogginlägg.
 
 ## Pausade funktioner
 
 Företagsportalen, nyhetsbrevet, AI-generering, schemaläggning, serverbaserad publicering, bildhantering och innehållsredigering är pausade. API:erna svarar med tydliga fel och gör inga filskrivningar, externa publiceringar eller mejlutskick. Gamla demo-inloggningar fungerar inte.
 
-Ingen Vercel-cron är definierad. Pythonverktygen i `blog_generator/` är separata lokala verktyg och startas aldrig av sajten. Återaktivering kräver en ny implementation med varaktig lagring, säker autentisering och fungerande bakgrundsjobb/mejltjänst. Använd inte Vercels lokala filsystem som databas.
+Ingen Vercel-cron är definierad. Pythonverktygen i `blog_generator/` är separata lokala verktyg och startas aldrig av sajten. Återaktivering av webbplatsens pausade API:er kräver en ny implementation med varaktig lagring, säker autentisering och fungerande bakgrundsjobb/mejltjänst. Använd inte Vercels lokala filsystem som databas.
+
+En förberedd serie med 20 bildsatta artiklar publiceras automatiskt via Codex med 4–6 dagars slumpat mellanrum. Detta är separat från webbplatsens API:er och kräver ingen OpenAI API-nyckel. Datorn och Codex-appen måste vara igång. Se [redaktionellt schema](docs/editorial-automation.md) för körning, återhämtning och artikelöversikt. Inga nya artiklar genereras av schemat.
 
 ## Valfri admininloggning
 

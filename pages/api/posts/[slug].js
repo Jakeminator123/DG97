@@ -25,6 +25,9 @@ export default function handler(req, res) {
 
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
+    if (data.draft === true) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
     const htmlContent = renderMarkdown(content);
 
     res.status(200).json({

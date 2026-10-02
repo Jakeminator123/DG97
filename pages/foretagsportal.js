@@ -1,14 +1,11 @@
 import Layout from '../components/Layout';
-import Link from 'next/link';
-
-export default function CompanyPortal() {
+import GuideHero from '../components/GuideHero';
+import OfficialCTA from '../components/OfficialCTA';
+export default function Foretagsportal() {
   return (
-    <Layout title="Företagsportalen är pausad" description="Kontakta DG97 för medlemsservice." path="/foretagsportal">
-      <section className="section-container py-24 text-center">
-        <h1 className="heading-1 mb-6">Företagsportalen är pausad</h1>
-        <p className="text-gray-700 mb-6">Behöver du hjälp med ditt kontor eller kontakt med andra företag? Hör av dig så hjälper vi dig.</p>
-        <Link href="/kontakt" className="btn-primary">Kontakta DG97</Link>
-      </section>
+    <Layout title="Kontakt för hyresgäster" description="Hyresgäster hänvisas till DG97:s huvudwebbplats för kontakt." path="/foretagsportal">
+      <GuideHero title="Behöver du hjälp med ditt kontor?"><p>Kontakta DG97 via huvudwebbplatsen för frågor som rör ditt kontor eller ditt avtal.</p></GuideHero>
+      <section className="section-container"><OfficialCTA title="Kontakt med DG97" /></section>
     </Layout>
   );
 }

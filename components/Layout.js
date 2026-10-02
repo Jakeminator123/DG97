@@ -4,26 +4,8 @@ import SEO from './SEO';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-// Lazy load D-ID controller
-const DIDController = dynamic(() => import('./DIDController'), {
-  ssr: false,
-  loading: () => null
-});
-
-// Lazy load Cookie Consent
-const CookieConsent = dynamic(() => import('./CookieConsent'), {
-  ssr: false,
-  loading: () => null
-});
-
 // Lazy load Scroll to Top
 const ScrollToTop = dynamic(() => import('./ScrollToTop'), {
-  ssr: false,
-  loading: () => null
-});
-
-// Lazy load Floating CTA
-const FloatingCTA = dynamic(() => import('./FloatingCTA'), {
   ssr: false,
   loading: () => null
 });
@@ -36,7 +18,11 @@ export default function Layout({
   image,
   type,
   article,
-  breadcrumbs = []
+  breadcrumbs = [],
+  faq,
+  pageType,
+  imageGallery,
+  noindex = false
 }) {
   const router = useRouter();
   const isAdminPage = path === '/admin' || router.pathname === '/admin';
@@ -51,7 +37,10 @@ export default function Layout({
         type={type}
         article={article}
         breadcrumbs={breadcrumbs}
-        noindex={isAdminPage || router.pathname === '/foretagsportal'}
+        faq={faq}
+        pageType={pageType}
+        imageGallery={imageGallery}
+        noindex={noindex || isAdminPage || ['/foretagsportal', '/404', '/loading'].includes(router.pathname)}
       />
       {/* Skip to main content link for accessibility */}
       <a
@@ -69,13 +58,6 @@ export default function Layout({
           </main>
         </div>
         <Footer />
-        {!isAdminPage && (
-          <>
-            <DIDController />
-            <FloatingCTA />
-          </>
-        )}
-        <CookieConsent />
         <ScrollToTop />
       </div>
     </>

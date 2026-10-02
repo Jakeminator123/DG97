@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { setTimeout as delay } from 'node:timers/promises';
+import fs from 'node:fs';
 
 const port = 3107;
 const base = `http://127.0.0.1:${port}`;
@@ -12,6 +13,18 @@ let output = '';
 server.stdout.on('data', chunk => { output += chunk; });
 server.stderr.on('data', chunk => { output += chunk; });
 const post = (body, cookie) => ({ method: 'POST', headers: { 'Content-Type': 'application/json', ...(cookie ? { Cookie: cookie } : {}) }, body: JSON.stringify(body) });
+const draftSlug = 'hur-martin-som-ar-utvecklare-och-startat-ett-foretagapp-for-plantor-kan-vinna-2-miljarder-pa-internetspel';
+const queuedSlugs = JSON.parse(fs.readFileSync('data/editorial-schedule.json', 'utf8')).queue;
+function checkGuide(html, path) {
+  assert.match(html, /DG97 Kontorsguiden/, `${path} guide identity`);
+  assert.match(html, /href="https:\/\/www\.dg97\.se(?:\/|"|\?)/, `${path} main-site link`);
+  assert.match(html, /href="https:\/\/sajtmaskin\.se\/"/, `${path} site credit`);
+  assert.doesNotMatch(html, /\b\d[\d\s.,]*\s*(?:kr|SEK)\b/, `${path} no fixed prices`);
+  assert.doesNotMatch(html, /agendo_loader|data-profile-id/, `${path} no separate booking integration`);
+  const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  assert.ok(schemas.some(schema => schema['@type'] === 'WebSite' && schema.url === 'https://www.dg97.org'), `${path} guide website schema`);
+  assert.doesNotMatch(JSON.stringify(schemas), /"(?:price|priceRange|aggregateRating|reviewCount|review|hasOfferCatalog)"|ReservationConfirmed|SearchAction/, `${path} no unsupported business claims`);
+}
 
 try {
   let ready = false;
@@ -27,16 +40,33 @@ try {
     const html = await response.text();
     assert.match(html, /https:\/\/www\.dg97\.org/, `${path} canonical domain`);
     if (['/admin', '/foretagsportal'].includes(path)) assert.match(html, /noindex, nofollow/);
-    if (path === '/kontakt') assert.match(html, /Öppna mejlutkast/);
+    if (!['/admin', '/foretagsportal'].includes(path)) checkGuide(html, path);
+    if (path === '/kontakt') {
+      assert.match(html, /href="https:\/\/www\.dg97\.se\/kontakt\/"/);
+      assert.doesNotMatch(html, /<form\b/, 'Enquiries go to the main site');
+    }
     console.log(`OK ${path}`);
   }
   const list = await fetch(`${base}/api/posts`).then(r => r.json());
   assert.ok(Array.isArray(list) && list.length > 0);
+  assert.ok(!list.some(post => post.slug === draftSlug), 'Drafts are excluded from the public post list');
   const image = await fetch(`${base}/_next/image?url=%2Fimages%2Foffice_room.jpg&w=64&q=75`);
   assert.equal(image.status, 200, 'Image optimization must work after the sharp upgrade');
   assert.match(image.headers.get('content-type'), /image\//);
   for (const post of list) {
-    assert.equal((await fetch(`${base}/blogg/${post.slug}`)).status, 200, post.slug);
+    const response = await fetch(`${base}/blogg/${post.slug}`);
+    assert.equal(response.status, 200, post.slug);
+    checkGuide(await response.text(), `/blogg/${post.slug}`);
+  }
+  assert.equal((await fetch(`${base}/blogg/${draftSlug}`)).status, 404, 'Draft page is unpublished');
+  assert.equal((await fetch(`${base}/api/posts/${draftSlug}`)).status, 404, 'Draft API is unpublished');
+  const sitemap = await fetch(`${base}/sitemap-0.xml`).then(response => response.text());
+  assert.doesNotMatch(sitemap, new RegExp(draftSlug), 'Drafts are excluded from the sitemap');
+  for (const slug of queuedSlugs) {
+    assert.ok(!list.some(post => post.slug === slug), `${slug} queued article is not listed`);
+    assert.equal((await fetch(`${base}/blogg/${slug}`)).status, 404, `${slug} queued page`);
+    assert.equal((await fetch(`${base}/api/posts/${slug}`)).status, 404, `${slug} queued API`);
+    assert.ok(!sitemap.includes(`/blogg/${slug}<`), `${slug} queued sitemap`);
   }
   assert.equal((await fetch(`${base}/blogg/this-post-does-not-exist`)).status, 404);
   assert.equal((await fetch(`${base}/api/posts`, post({}))).status, 405);

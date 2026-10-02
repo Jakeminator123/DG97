@@ -1,7 +1,7 @@
 {
-  "name": "DG97 Kontorshotell - Flexibla Kontorsrum Stockholm",
-  "short_name": "DG97",
-  "description": "Flexibelt kontorshotell i centrala Stockholm med fullt utrustade kontorsrum, konferensrum och alla faciliteter du behöver.",
+  "name": "DG97 Kontorsguiden",
+  "short_name": "Kontorsguiden",
+  "description": "Guider om kontorshotell och arbetsliv i Stockholm. Aktuella rum, priser och kontakt finns på www.dg97.se.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

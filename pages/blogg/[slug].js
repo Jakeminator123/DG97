@@ -1,102 +1,38 @@
 import Layout from '../../components/Layout';
-import { motion } from 'framer-motion';
+import OfficialCTA from '../../components/OfficialCTA';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { renderMarkdown } from '../../lib/blog-markdown';
 import Link from 'next/link';
-import { MagneticButton } from '../../components/animations/MagneticButton';
+import Image from 'next/image';
 
 export default function BlogPost({ post }) {
-  if (!post) {
-    return (
-      <Layout title="Inlägg saknas" description="Detta blogginlägg kunde inte hittas" path="/blogg">
-        <div className="section-container text-center">
-          <h1 className="heading-1 mb-6">Inlägget hittades inte</h1>
-          <MagneticButton href="/blogg" variant="secondary">
-            Tillbaka till bloggen
-          </MagneticButton>
-        </div>
-      </Layout>
-    );
-  }
-
   const breadcrumbs = [
-    { name: 'Hem', path: '/' },
-    { name: 'Blogg', path: '/blogg' },
-    { name: post.title, path: `/blogg/${post.slug}` }
+    { name: 'Start', path: '/' }, { name: 'Guider', path: '/blogg' },
+    { name: post.title, path: `/blogg/${post.slug}` },
   ];
-
   return (
-    <Layout
-      title={post.title}
-      description={post.excerpt}
-      path={`/blogg/${post.slug}`}
-      type="article"
-      article={{
-        title: post.title,
-        excerpt: post.excerpt,
-        date: post.date,
-        image: post.image
-      }}
-      breadcrumbs={breadcrumbs}
-    >
-      {/* Header */}
+    <Layout title={post.title} description={post.excerpt} path={`/blogg/${post.slug}`}
+      image={post.image} type="article" article={post} breadcrumbs={breadcrumbs}>
       <article className="section-container">
         <div className="max-w-4xl mx-auto">
-          <Link href="/blogg" className="text-primary-600 hover:underline mb-6 inline-block">
-            ← Tillbaka till bloggen
-          </Link>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="heading-1 mb-4">{post.title}</h1>
-
-            <div className="flex items-center gap-4 text-gray-600 mb-8">
-              {post.author && (
-                <div className="flex items-center gap-2">
-                  <span className="font-medium text-gray-900">{post.author}</span>
-                  {post.authorRole && (
-                    <span className="text-sm">• {post.authorRole}</span>
-                  )}
-                </div>
-              )}
-              <span>•</span>
-              <time dateTime={post.date}>
-                {new Date(post.date).toLocaleDateString('sv-SE', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
+          <Link href="/blogg" className="text-primary-700 underline underline-offset-4 mb-6 inline-block">Alla guider</Link>
+          <h1 className="heading-1 mb-5">{post.title}</h1>
+          <p className="text-sm text-neutral-600 mb-8">
+            DG97 Kontorsguiden · Uppdaterad <time dateTime={post.modifiedDate || post.date}>
+              {new Date(post.modifiedDate || post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+          </p>
+          {post.image && <figure className="mb-10">
+            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
+              <Image src={post.image} alt={post.imageAlt} fill priority
+                sizes="(max-width: 1024px) 100vw, 896px" className="object-cover" />
             </div>
-
-            {/* Content */}
-            <div
-              className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-primary-600 hover:prose-a:text-primary-700"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-          </motion.div>
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-16 p-8 bg-primary-50 rounded-lg text-center"
-          >
-            <h2 className="heading-3 mb-4">Intresserad av DG97?</h2>
-            <p className="text-gray-700 mb-6">
-              Kontakta oss idag för mer information om våra kontorslösningar och boka en visning.
-            </p>
-            <MagneticButton href="/kontakt" variant="primary">
-              Kontakta oss
-            </MagneticButton>
-          </motion.div>
+            <figcaption className="mt-3 text-sm text-neutral-600">Miljöbild från DG97.</figcaption>
+          </figure>}
+          <div className="guide-article" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="mt-12"><OfficialCTA title="Vill du undersöka DG97?" /></div>
         </div>
       </article>
     </Layout>
@@ -106,33 +42,24 @@ export default function BlogPost({ post }) {
 // Blog content is published with each Git deployment.
 export async function getStaticProps({ params }) {
   if (typeof params.slug !== 'string' || !/^[a-z0-9-]+$/.test(params.slug)) return { notFound: true };
-  const postsDirectory = path.join(process.cwd(), 'content/posts');
-  const filePath = path.join(postsDirectory, `${params.slug}.md`);
-
+  const filePath = path.join(process.cwd(), 'content/posts', `${params.slug}.md`);
   try {
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContents);
-    const htmlContent = renderMarkdown(content);
-
+    const { data, content } = matter(fs.readFileSync(filePath, 'utf8'));
+    if (data.draft === true) return { notFound: true };
     return {
-      props: {
-        post: {
-          slug: params.slug,
-          title: data.title,
-          date: data.date instanceof Date ? data.date.toISOString() : (data.date || null),
-          author: data.author || null,
-          authorRole: data.authorRole || null,
-          excerpt: data.excerpt || content.substring(0, 150) + '...',
-          content: htmlContent,
-        },
-      },
+      props: { post: {
+        slug: params.slug, title: data.title,
+        date: data.date instanceof Date ? data.date.toISOString() : (data.date || null),
+        modifiedDate: data.modifiedDate instanceof Date ? data.modifiedDate.toISOString() : (data.modifiedDate || null),
+        excerpt: data.excerpt || content.substring(0, 150) + '...',
+        image: data.featuredImage || null, imageAlt: data.featuredImageAlt || data.title,
+        content: renderMarkdown(content),
+      } },
     };
   } catch (error) {
     return { notFound: true };
   }
 }
-
-
 export async function getStaticPaths() {
   const { getPosts } = await import('../../lib/posts');
   return { paths: getPosts().map(post => ({ params: { slug: post.slug } })), fallback: false };

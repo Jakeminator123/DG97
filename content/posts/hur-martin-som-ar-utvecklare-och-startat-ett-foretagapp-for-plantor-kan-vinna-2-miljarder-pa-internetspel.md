@@ -1,4 +1,5 @@
 ---
+draft: true
 title: "Hur Martin som är utvecklare och startat ett företag/app för plantor kan vinna 2 miljarder på  internetspel?"
 date: "2025-10-31"
 author: "AIda"
