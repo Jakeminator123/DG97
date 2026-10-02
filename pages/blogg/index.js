@@ -1,7 +1,6 @@
 import Layout from "../../components/Layout";
 import BlogCard from "../../components/BlogCard";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import PageHero from "../../components/PageHero";
 import {
   ScrollReveal,
@@ -12,60 +11,7 @@ import {
 } from "../../components/animations";
 import { DocumentIcon } from "../../components/animations/AnimatedIcons";
 
-export default function BlogIndex() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadPosts = async () => {
-      try {
-        const res = await fetch("/api/posts");
-        const data = await res.json();
-        setPosts(data);
-      } catch (error) {
-        // Only log errors in development
-        if (process.env.NODE_ENV === 'development') {
-          console.error("Failed to load posts:", error);
-        }
-        setPosts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadPosts();
-
-    // In development, auto-refresh posts every 3 seconds for hot-reloading
-    if (process.env.NODE_ENV === "development") {
-      const interval = setInterval(loadPosts, 3000);
-      return () => clearInterval(interval);
-    }
-  }, []);
-
-  if (loading) {
-    return (
-      <Layout
-        title="Blogg - Tips & Nyheter om Kontorshotell | DG97"
-        description="Läs våra senaste artiklar om kontorshotell, flexibla arbetsplatser och tips för företagare i Stockholm. Allt om att hyra kontor, driva företag och välja kontorshotell."
-        keywords="kontorshotell blogg, hyra kontor stockholm, kontorshotell tips, flexibla arbetsplatser, kontorshotell nyheter, dg97 blogg"
-        path="/blogg"
-      >
-        {/* Hero Section - Same style as main page */}
-        <PageHero
-          title="Blogg"
-          subtitle="Senaste nytt om kontorshotell och flexibla arbetslösningar"
-          showShapes={false}
-          animationVariant="waves"
-        />
-        <div className="section-container text-center py-16">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-48 mx-auto mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-32 mx-auto"></div>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
+export default function BlogIndex({ posts }) {
   return (
     <Layout
       title="Blogg"
@@ -121,4 +67,9 @@ export default function BlogIndex() {
       </section>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const { getPosts } = await import('../../lib/posts');
+  return { props: { posts: getPosts() } };
 }

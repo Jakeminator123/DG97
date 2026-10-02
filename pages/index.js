@@ -93,34 +93,7 @@ const faqItems = [
   },
 ];
 
-const recentPosts = [
-  {
-    slug: "hur-fungerar-ett-kontorshotell",
-    title: "Hur fungerar ett kontorshotell?",
-    excerpt:
-      "Ett kontorshotell är den perfekta lösningen för företag som vill ha professionella lokaler utan långsiktiga åtaganden. Läs mer om hur det fungerar.",
-    date: "2023-02-05",
-    image: "/images/office_room.jpg",
-  },
-  {
-    slug: "vad-kostar-ett-kontorshotell-i-stockholm",
-    title: "Vad kostar ett kontorshotell i Stockholm?",
-    excerpt:
-      "Funderar du på att hyra kontorsrum i Stockholm? Här förklarar vi vad som ingår i priset och varför ett kontorshotell ofta är mer prisvärt än du tror.",
-    date: "2023-02-05",
-    image: "/images/reception_bred.jpg",
-  },
-  {
-    slug: "frukost-och-aw-viktigt-pa-kontorshotell",
-    title: "Frukost och AW viktigt på Kontorshotell",
-    excerpt:
-      "Sociala aktiviteter som frukost och after work är viktiga delar av ett kontorshotell. De skapar gemenskap och nätverk mellan företagen.",
-    date: "2023-01-15",
-    image: "/images/lunden.jpg",
-  },
-];
-
-export default function Home() {
+export default function Home({ recentPosts }) {
   // Deterministic positions to avoid hydration mismatch (no Math.random on SSR)
   const blobPositions = [
     { top: "12%", left: "8%" },
@@ -594,4 +567,9 @@ export default function Home() {
       </section>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const { getPosts } = await import('../lib/posts');
+  return { props: { recentPosts: getPosts().slice(0, 3) } };
 }

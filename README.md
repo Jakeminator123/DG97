@@ -17,3 +17,7 @@ This is the repository connected to the Vercel project `dg-97` in the account re
 ## Local development
 
 Use the Node.js range in `package.json`, then run `npm ci` and `npm run dev`. Build with `npm run build`. Configuration and local data should remain specific to the environment where the site runs.
+
+## Stabilisering
+
+Den publika sajten prioriteras. Ofärdiga funktioner är pausade; se [ADMIN_SETUP.md](ADMIN_SETUP.md) för aktiva funktioner, adminvariabler och verifiering. Kör `npm run lint`, `npm test`, `npm run test:images`, `npm run build` och `npm run test:smoke` före publicering.

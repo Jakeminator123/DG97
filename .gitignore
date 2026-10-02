@@ -47,3 +47,13 @@ external_files/
 old/
 
 cleaner.py
+
+# Local tooling and generated runtime data
+.npm-cache/
+__pycache__/
+*.pyc
+/temp_*.py
+/blog_generator/schedule.json
+/public/uploads/
+/data/newsletter_history.json
+/data/site_content.json

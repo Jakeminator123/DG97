@@ -117,7 +117,8 @@ function EventCard({ event, index }) {
 }
 
 export default function Events({ limit = null, showTitle = true }) {
-  const displayEvents = limit ? upcomingEvents.slice(0, limit) : upcomingEvents;
+  const futureEvents = upcomingEvents.filter(event => event.date >= new Date().toISOString().slice(0, 10));
+  const displayEvents = limit ? futureEvents.slice(0, limit) : futureEvents;
 
   return (
     <section className="section-container bg-gradient-to-br from-accent-50/20 via-white to-primary-50/10">
@@ -136,6 +137,7 @@ export default function Events({ limit = null, showTitle = true }) {
           </ScrollReveal>
         )}
 
+        {displayEvents.length === 0 && <p className="text-center text-neutral-600">Kontakta oss för information om kommande frukostar, after work och andra aktiviteter.</p>}
         <StaggerReveal staggerDelay={0.1}>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayEvents.map((event, index) => (

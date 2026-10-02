@@ -51,6 +51,7 @@ export default function Layout({
         type={type}
         article={article}
         breadcrumbs={breadcrumbs}
+        noindex={isAdminPage || router.pathname === '/foretagsportal'}
       />
       {/* Skip to main content link for accessibility */}
       <a

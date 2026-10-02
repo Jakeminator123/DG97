@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 
@@ -6,22 +6,11 @@ export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const timeoutRef = useRef(null);
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -29,35 +18,10 @@ export default function ContactForm() {
     setError('');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-
-      let result;
-      try {
-        result = await response.json();
-      } catch (parseError) {
-        setError('Kunde inte läsa svaret från servern. Försök igen.');
-        return;
-      }
-
-      if (result.success) {
-        setIsSubmitted(true);
-        reset();
-        // Clear any existing timeout
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
-        // Set timeout to hide success message
-        timeoutRef.current = setTimeout(() => {
-          setIsSubmitted(false);
-          timeoutRef.current = null;
-        }, 5000);
-      } else {
-        setError(result.error || 'Ett fel uppstod vid skickande av meddelandet');
-      }
+      const subject = `Förfrågan om DG97 från ${data.name}`;
+      const body = `Namn: ${data.name}\nE-post: ${data.email}\nTelefon: ${data.phone || '-'}\n\n${data.message}`;
+      window.location.href = `mailto:hej@dg97.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setIsSubmitted(true);
     } catch (error) {
       setError('Kunde inte skicka meddelandet. Kontrollera din internetanslutning och försök igen.');
     } finally {
@@ -67,6 +31,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <p className="text-gray-700">Formuläret öppnar ett mejlutkast i ditt e-postprogram. Skicka mejlet därifrån till <a href="mailto:hej@dg97.se" className="underline">hej@dg97.se</a>. Du kan också ringa <a href="tel:+46708862279" className="underline">070-886 22 79</a>.</p>
       {/* Name */}
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -76,8 +41,9 @@ export default function ContactForm() {
           type="text"
           id="name"
           name="name"
+          maxLength={100}
           autoComplete="name"
-          {...register('name', { required: 'Namn är obligatoriskt' })}
+          {...register('name', { maxLength: 100, required: 'Namn är obligatoriskt' })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
             errors.name ? 'border-red-500' : 'border-gray-300'
           }`}
@@ -97,6 +63,7 @@ export default function ContactForm() {
           type="email"
           id="email"
           name="email"
+          maxLength={254}
           autoComplete="email"
           {...register('email', {
             required: 'E-post är obligatoriskt',
@@ -124,8 +91,9 @@ export default function ContactForm() {
           type="tel"
           id="phone"
           name="phone"
+          maxLength={50}
           autoComplete="tel"
-          {...register('phone')}
+          {...register('phone', { maxLength: 50 })}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="070-123 45 67"
         />
@@ -139,9 +107,10 @@ export default function ContactForm() {
         <textarea
           id="message"
           name="message"
+          maxLength={5000}
           rows={5}
           autoComplete="off"
-          {...register('message', { required: 'Meddelande är obligatoriskt' })}
+          {...register('message', { maxLength: 5000, required: 'Meddelande är obligatoriskt' })}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent ${
             errors.message ? 'border-red-500' : 'border-gray-300'
           }`}
@@ -170,9 +139,9 @@ export default function ContactForm() {
         type="submit"
         disabled={isSubmitting}
         className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label={isSubmitting ? 'Skickar meddelande' : 'Skicka kontaktformulär'}
+        aria-label={isSubmitting ? 'Skickar meddelande' : 'Öppna mejlutkast'}
       >
-        {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
+        {isSubmitting ? 'Skickar...' : 'Öppna mejlutkast'}
       </button>
 
       {/* Success Message */}
@@ -184,7 +153,7 @@ export default function ContactForm() {
           role="alert"
           aria-live="polite"
         >
-          Tack för ditt meddelande! Vi återkommer så snart som möjligt.
+          Mejlutkastet har öppnats. Skicka mejlet i ditt e-postprogram. Om inget öppnades, mejla oss direkt på hej@dg97.se.
         </motion.div>
       )}
     </form>

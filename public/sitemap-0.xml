@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://dg97.se</loc><lastmod>2026-01-19T00:56:19.490Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/admin</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/blogg</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/colocate</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/foretagsportal</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/fragor-och-svar</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/galleri</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/kontakt</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/om-oss</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://dg97.se/vara-foretag</loc><lastmod>2026-01-19T00:56:19.491Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org</loc><lastmod>2026-10-02T13:10:09.177Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/colocate</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/fragor-och-svar</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/galleri</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/kontakt</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/om-oss</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/vara-foretag</loc><lastmod>2026-10-02T13:10:09.178Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/kopiator</loc><lastmod>2025-11-02</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/barnvakter-och-kontorshotell</loc><lastmod>2025-10-31</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/hur-martin-som-ar-utvecklare-och-startat-ett-foretagapp-for-plantor-kan-vinna-2-miljarder-pa-internetspel</loc><lastmod>2025-10-31</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/hur-man-natverkar-naturligt-pa-kontorshotell</loc><lastmod>2025-10-15</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/kaffe</loc><lastmod>2025-10-15</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/kopa-stolar</loc><lastmod>2025-10-15</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/vad-kostar-ett-kontorshotell-i-stockholm</loc><lastmod>2023-02-12</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/hur-fungerar-ett-kontorshotell</loc><lastmod>2023-02-05</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/fordelar-med-kontorshotell</loc><lastmod>2023-01-20</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/frukost-och-aw-viktigt-pa-kontorshotell</loc><lastmod>2023-01-15</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

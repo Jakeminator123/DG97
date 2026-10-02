@@ -164,7 +164,6 @@ export default function Footer() {
                 { href: "/fragor-och-svar", label: "Frågor & Svar" },
                 { href: "/blogg", label: "Blogg" },
                 { href: "/kontakt", label: "Kontakt" },
-                { href: "/foretagsportal", label: "🔒 Företagsportal" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link

@@ -1,9 +1,12 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /foretagsportal
 
 # Host
-Host: https://dg97.se
+Host: https://www.dg97.org
 
 # Sitemaps
-Sitemap: https://dg97.se/sitemap.xml
+Sitemap: https://www.dg97.org/sitemap.xml

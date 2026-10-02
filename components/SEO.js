@@ -16,7 +16,7 @@ export default function SEO({
   imageGallery = [],
   itemList = []
 }) {
-  const siteUrl = 'https://dg97.se';
+  const siteUrl = 'https://www.dg97.org';
   const fullUrl = `${siteUrl}${path}`;
   const fullTitle = title ? `${title} | DG97 Kontorshotell` : 'DG97 Kontorshotell - Flexibla Kontorsrum i Stockholm';
   const defaultDescription = 'DG97 Kontorshotell erbjuder flexibla kontorsrum på Drottninggatan 97 i Stockholm. Allt inkluderat från 4 990 kr/mån. Konferensrum, fiber, kaffe och mer. Kontakta oss idag!';

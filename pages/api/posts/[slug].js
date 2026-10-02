@@ -1,9 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { marked } from 'marked';
+import { renderMarkdown } from '../../../lib/blog-markdown';
 
 export default function handler(req, res) {
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
   const { slug } = req.query;
 
   // Validate slug format (prevent directory traversal)
@@ -21,7 +25,7 @@ export default function handler(req, res) {
 
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
-    const htmlContent = marked(content);
+    const htmlContent = renderMarkdown(content);
 
     res.status(200).json({
       slug,
