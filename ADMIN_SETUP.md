@@ -1,80 +1,47 @@
-# Admin Backoffice Setup Guide
+# DG97: drift och administration
 
-## Översikt
+Den publika webbplatsen körs på Vercel-projektet `dg-97`, kopplat till `Jakeminator123/DG97` och produktionsbranchen `main`. Produktionsdomänen är https://www.dg97.org.
 
-Adminpanelen finns på `/admin` och ger fullständig kontroll över:
-- Blogg (generera, redigera, ta bort inlägg)
-- Newsletter (prenumeranter, skicka nyhetsbrev)
-- Innehåll (redigera texter på sidan)
-- Bilder (ladda upp och hantera bilder)
-- Autoposting (schemalägg bloggposter)
+## Aktiva funktioner
 
-## Installation
+- Publika informationssidor, bilder, priser och kontaktuppgifter.
+- Blogg: Markdown i `content/posts/`. Startsidan, bloggindex och artiklar byggs från samma innehåll vid deployment. Ändringar publiceras via GitHub.
+- Kontaktformulär: öppnar ett mejlutkast till `hej@dg97.se`. Besökaren måste skicka mejlet i sitt e-postprogram. Ingen leverans bekräftas av servern.
+- Google Maps: inbäddad adresskarta utan API-nyckel. Externa kart- och bokningstjänster har egna driftsberoenden; telefon och mejl finns som kontaktalternativ.
+- Admin: valfri, endast läsning av publicerade blogginlägg.
 
-1. Installera dependencies:
-```bash
-npm install
-```
+## Pausade funktioner
 
-2. Skapa `.env` fil med:
+Företagsportalen, nyhetsbrevet, AI-generering, schemaläggning, serverbaserad publicering, bildhantering och innehållsredigering är pausade. API:erna svarar med tydliga fel och gör inga filskrivningar, externa publiceringar eller mejlutskick. Gamla demo-inloggningar fungerar inte.
+
+Ingen Vercel-cron är definierad. Pythonverktygen i `blog_generator/` är separata lokala verktyg och startas aldrig av sajten. Återaktivering kräver en ny implementation med varaktig lagring, säker autentisering och fungerande bakgrundsjobb/mejltjänst. Använd inte Vercels lokala filsystem som databas.
+
+## Valfri admininloggning
+
+Sätt dessa servervariabler i den miljö där admin behövs:
+
 ```env
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=ditt_säkra_lösenord
-OPENAI_API_KEY=din_openai_key  # För blog-generator
+ADMIN_USERNAME=<användarnamn>
+ADMIN_PASSWORD=<starkt lösenord>
+ADMIN_SESSION_SECRET=<slumpmässigt värde med minst 32 tecken>
 ```
 
-## Användning
+Utan alla tre är admininloggningen avstängd. Sessioner är signerade, gäller högst 24 timmar och lagras endast i HttpOnly-cookie med SameSite=Strict och Secure i produktion. Byte av sessionshemlighet återkallar tidigare sessioner. Inga standardlösenord eller gamla base64-token accepteras.
 
-### Logga in
-1. Gå till `/admin`
-2. Logga in med dina credentials från `.env`
+Den publika sajten behöver inte `OPENAI_API_KEY`, `GITHUB_TOKEN` eller `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`. Dessa gamla nycklar kan tas bort från Vercel om inget annat använder dem. Inga nycklar ändras automatiskt av denna upprensning.
 
-### Blogg-hantering
-- **Generera**: Välj kategori och ämne, klicka "Generera & Publicera"
-- **Redigera**: Klicka på ett inlägg i "Hantera Inlägg" (kommer snart)
-- **Ta bort**: Klicka "Ta bort" på ett inlägg
+## Verifiering och deployment
 
-### Newsletter
-- **Visa prenumeranter**: Gå till "Newsletter"-fliken
-- **Skicka**: Klicka "Skicka Newsletter", fyll i ämne och innehåll
-- **Exportera**: Klicka "Exportera CSV" för att ladda ner prenumerantlistan
+```sh
+npm ci
+npm run lint
+npm test
+npm run test:images
+npm audit --audit-level=moderate
+npm run build
+npm run test:smoke
+```
 
-### Innehåll
-- Gå till "Innehåll"-fliken
-- Redigera texter och klicka "Spara" på varje fält
+Smoke-testet startar en separat produktionsserver på loopback port 3107 med testuppgifter och kör publika sidor, alla blogginlägg, 404-svar, autentisering och pausade API:er. Det skickar inga mejl eller GitHub-publiceringar.
 
-### Bilder
-- Gå till "Bilder"-fliken
-- Klicka "Ladda upp bild" och välj fil
-- Kopiera URL:en för att använda bilden
-
-## Data-lagring
-
-All data sparas i filer:
-- `data/newsletter_subscribers.json` - Prenumeranter
-- `data/newsletter_history.json` - Skickhistorik
-- `data/site_content.json` - Redigerbart innehåll
-- `content/posts/*.md` - Blogginlägg
-- `public/uploads/*` - Uppladdade bilder
-- `blog_generator/schedule.json` - Autoposting-scheman
-
-## Säkerhet
-
-- Admin-routes är skyddade med HttpOnly cookies
-- Alla API-endpoints kräver autentisering
-- Lösenord lagras i `.env` (aldrig i kod)
-
-## Troubleshooting
-
-**Kan inte logga in:**
-- Kontrollera att `ADMIN_USERNAME` och `ADMIN_PASSWORD` är satta i `.env`
-- Starta om dev-servern efter att ha ändrat `.env`
-
-**Blog-generator fungerar inte:**
-- Kontrollera att `OPENAI_API_KEY` är satt
-- Se till att Python är installerat och tillgängligt i PATH
-
-**Bilder laddas inte upp:**
-- Kontrollera att `public/uploads/` mappen finns och är skrivbar
-- Max filstorlek är 10MB
-
+GitHub Actions kör samma kontroller för PR och `main`. Vercel bygger preview för reparationsbranchen; merge till `main` publicerar förändringen på produktionsdomänen. Det finns inga databasändringar.

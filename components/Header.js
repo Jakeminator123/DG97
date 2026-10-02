@@ -16,7 +16,6 @@ export default function Header() {
     { href: "/fragor-och-svar", label: "FAQ" },
     { href: "/blogg", label: "Blogg" },
     { href: "/kontakt", label: "Kontakt" },
-    { href: "/foretagsportal", label: "🔒 Företagsportal" },
   ];
 
   const isActive = (href) => router.pathname === href;

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { marked } from 'marked';
+import { renderMarkdown } from '../../lib/blog-markdown';
 import Link from 'next/link';
 import { MagneticButton } from '../../components/animations/MagneticButton';
 
@@ -103,22 +103,23 @@ export default function BlogPost({ post }) {
   );
 }
 
-// Use getServerSideProps for hot-reloading in development
-export async function getServerSideProps({ params }) {
+// Blog content is published with each Git deployment.
+export async function getStaticProps({ params }) {
+  if (typeof params.slug !== 'string' || !/^[a-z0-9-]+$/.test(params.slug)) return { notFound: true };
   const postsDirectory = path.join(process.cwd(), 'content/posts');
   const filePath = path.join(postsDirectory, `${params.slug}.md`);
 
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
-    const htmlContent = marked(content);
+    const htmlContent = renderMarkdown(content);
 
     return {
       props: {
         post: {
           slug: params.slug,
           title: data.title,
-          date: data.date,
+          date: data.date instanceof Date ? data.date.toISOString() : (data.date || null),
           author: data.author || null,
           authorRole: data.authorRole || null,
           excerpt: data.excerpt || content.substring(0, 150) + '...',
@@ -127,11 +128,12 @@ export async function getServerSideProps({ params }) {
       },
     };
   } catch (error) {
-    return {
-      props: {
-        post: null,
-      },
-    };
+    return { notFound: true };
   }
 }
 
+
+export async function getStaticPaths() {
+  const { getPosts } = await import('../../lib/posts');
+  return { paths: getPosts().map(post => ({ params: { slug: post.slug } })), fallback: false };
+}
