@@ -1,14 +1,17 @@
 ---
-title: "Ge koncentrationen en plats i kontorsdagen"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Vilka uppgifter behöver få vara ifred? Börja där när teamet diskuterar avbrott, samtal och gemensamma kontorsdagar."
-featuredImage: "/images/room_2.jpg"
-featuredImageAlt: "Kontorsrum hos DG97 med skärmar och skrivbord"
+title: Ge koncentrationen en plats i kontorsdagen
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Vilka uppgifter behöver få vara ifred? Börja där när teamet diskuterar
+  avbrott, samtal och gemensamma kontorsdagar.
+featuredImage: /images/room_2.jpg
+featuredImageAlt: Kontorsrum hos DG97 med skärmar och skrivbord
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 ”Vi behöver lite mer lugn” kan betyda många saker. Någon vill skriva utan avbrott. Någon vill läsa ett underlag utan att höra ett möte. En tredje behöver kunna fråga kollegan spontant för att komma vidare.

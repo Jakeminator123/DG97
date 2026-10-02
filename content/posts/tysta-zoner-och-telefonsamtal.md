@@ -1,15 +1,18 @@
 ---
-title: "Var tar man samtalet när någon annan behöver tystnad?"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Se över rummens användning och teamets samtalsvanor innan ni gör kontoret till en ständig diskussion om ljud."
-featuredImage: "/images/telefonboth1.jpg"
-featuredImageAlt: "Litet avskilt rum hos DG97 med bord, stol och bokhylla"
+title: Var tar man samtalet när någon annan behöver tystnad?
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Se över rummens användning och teamets samtalsvanor innan ni gör kontoret till
+  en ständig diskussion om ljud.
+featuredImage: /images/telefonboth1.jpg
+featuredImageAlt: 'Litet avskilt rum hos DG97 med bord, stol och bokhylla'
 sources:
-  - "https://www.av.se/inomhusmiljo/ljud-och-akustik/"
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.av.se/inomhusmiljo/ljud-och-akustik/'
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Ett kort svar i telefon är en sak. Ett långt kundsamtal bredvid någon som skriver ett svårt dokument är något annat. På ett litet kontor behöver ni ofta lösa båda situationerna utan att hela dagen ägnas åt att flytta runt.

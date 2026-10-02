@@ -1,14 +1,17 @@
 ---
-title: "Flytta det lilla företaget utan att tappa bort vardagen"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Dela upp kontorsflytten i beslut, utrustning och första arbetsdag. En enkel plan för ett mindre team."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Kontorsrum hos DG97 med möblerade arbetsplatser"
+title: Flytta det lilla företaget utan att tappa bort vardagen
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Dela upp kontorsflytten i beslut, utrustning och första arbetsdag. En enkel
+  plan för ett mindre team.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Kontorsrum hos DG97 med möblerade arbetsplatser
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Kartongerna är den synliga delen av en kontorsflytt. Den mindre synliga delen är allt som måste fungera när ni packat upp: tillträde, uppkoppling, skärmar, mötesbokningar och information till dem som besöker er.

@@ -1,11 +1,14 @@
 ---
-title: "Hur fungerar ett kontorshotell?"
-date: "2023-02-05"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Förstå vad du hyr på ett kontorshotell och vilka frågor om rum, service och avtal som behöver besvaras."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Hur fungerar ett kontorshotell?
+date: '2023-02-05'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Förstå vad du hyr på ett kontorshotell och vilka frågor om rum, service och
+  avtal som behöver besvaras.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Miljöbild från DG97
+category: valja-kontor
 ---
 
 På ett kontorshotell delar flera företag en kontorsmiljö. Ett vanligt upplägg är att företaget hyr ett eget rum och använder gemensamma ytor, som kök och mötesrum. Hur mycket service som ingår varierar mellan olika erbjudanden.

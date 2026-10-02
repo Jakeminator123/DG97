@@ -1,14 +1,17 @@
 ---
-title: "Ett bra kundmöte börjar innan någon sätter sig"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Entré, rumsval och teknik behöver passa mötets uppgift. Planera kundbesöket från ankomst till nästa steg."
-featuredImage: "/images/observatoriet.jpg"
-featuredImageAlt: "Mötesmiljö hos DG97 med ett stort bord och stolar"
+title: Ett bra kundmöte börjar innan någon sätter sig
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Entré, rumsval och teknik behöver passa mötets uppgift. Planera kundbesöket
+  från ankomst till nästa steg.
+featuredImage: /images/observatoriet.jpg
+featuredImageAlt: Mötesmiljö hos DG97 med ett stort bord och stolar
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: moten-och-samarbete
 ---
 
 En kund som vet var entrén finns och vem som möter upp kan ägna sin uppmärksamhet åt mötet. En kund som letar efter rätt dörr börjar i en annan ände. Rummet är viktigt, men hela besöket behöver fungera.

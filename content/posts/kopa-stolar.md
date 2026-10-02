@@ -1,11 +1,14 @@
 ---
-title: "Möblerna att prova under en kontorsvisning"
-date: "2025-10-15"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "En checklista för att prova stol, skrivbord och arbetsplats innan du väljer ett möblerat kontorsrum."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Möblerna att prova under en kontorsvisning
+date: '2025-10-15'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  En checklista för att prova stol, skrivbord och arbetsplats innan du väljer
+  ett möblerat kontorsrum.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Miljöbild från DG97
+category: kontorsvardag
 ---
 
 Ett möblerat kontor kan göra inflyttningen enklare. Men att möbler finns på plats säger inte om de passar personerna som ska använda dem. Lägg därför tid på att prova arbetsplatsen under visningen.

@@ -1,14 +1,17 @@
 ---
-title: "Digitala möten: testa platsen, inte bara länken"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Kamera, ljud och rumsbokning behöver fungera ihop. En praktisk genomgång innan ni tar digitala möten från kontoret."
-featuredImage: "/images/telefonboth1.jpg"
-featuredImageAlt: "Avskilt rum hos DG97 med ett litet bord"
+title: 'Digitala möten: testa platsen, inte bara länken'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Kamera, ljud och rumsbokning behöver fungera ihop. En praktisk genomgång innan
+  ni tar digitala möten från kontoret.
+featuredImage: /images/telefonboth1.jpg
+featuredImageAlt: Avskilt rum hos DG97 med ett litet bord
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: moten-och-samarbete
 ---
 
 Möteslänken fungerar hemma, men på kontoret använder ni en annan skärm, en annan plats och kanske flera mikrofoner. Därför säger ett fungerande program ganska lite om hela mötet.

@@ -1,14 +1,17 @@
 ---
-title: "Coworking eller eget rum? Utgå från jobbet, inte etiketten"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Samtal, utrustning och närvaro ger bättre vägledning än namnet på kontorsformen. Så kan ni resonera inför valet."
-featuredImage: "/images/reception_bred.jpg"
-featuredImageAlt: "Gemensam sittmiljö hos DG97 med soffor och bord"
+title: 'Coworking eller eget rum? Utgå från jobbet, inte etiketten'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Samtal, utrustning och närvaro ger bättre vägledning än namnet på
+  kontorsformen. Så kan ni resonera inför valet.
+featuredImage: /images/reception_bred.jpg
+featuredImageAlt: Gemensam sittmiljö hos DG97 med soffor och bord
 sources:
-  - "https://www.dg97.se/om-oss/"
+  - 'https://www.dg97.se/om-oss/'
+category: valja-kontor
 ---
 
 Två företag med lika många personer kan behöva helt olika kontor. Det ena skriver och räknar i långa pass. Det andra pratar med kunder större delen av dagen. Ett val som fungerar för det första behöver inte passa det andra.

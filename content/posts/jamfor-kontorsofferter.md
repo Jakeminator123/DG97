@@ -1,14 +1,17 @@
 ---
-title: "Två kontorsofferter på bordet: gör dem jämförbara"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "En enkel jämförelsemodell för erbjudanden som beskriver rum, service och användning på olika sätt."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Skrivbord och arbetsutrustning i ett kontorsrum hos DG97"
+title: 'Två kontorsofferter på bordet: gör dem jämförbara'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  En enkel jämförelsemodell för erbjudanden som beskriver rum, service och
+  användning på olika sätt.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Skrivbord och arbetsutrustning i ett kontorsrum hos DG97
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: valja-kontor
 ---
 
 Den ena offerten beskriver ett rum. Den andra räknar arbetsplatser. Båda nämner mötesrum, men ingen förklarar riktigt hur mycket ni får använda dem. Då är det för tidigt att jämföra totalsummorna.

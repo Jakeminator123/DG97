@@ -1,14 +1,17 @@
 ---
-title: "En workshop som leder vidare behöver ett tydligt uppdrag"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Planera uppgift, deltagande och rumsbehov tillsammans. En enkel struktur för teamets nästa arbetsmöte."
-featuredImage: "/images/observatoriet.jpg"
-featuredImageAlt: "Mötesmiljö hos DG97 med ett stort bord och stolar"
+title: En workshop som leder vidare behöver ett tydligt uppdrag
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Planera uppgift, deltagande och rumsbehov tillsammans. En enkel struktur för
+  teamets nästa arbetsmöte.
+featuredImage: /images/observatoriet.jpg
+featuredImageAlt: Mötesmiljö hos DG97 med ett stort bord och stolar
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: moten-och-samarbete
 ---
 
 En workshop börjar ofta med en rumsbokning. Men rummet kan inte svara på vad gruppen ska åstadkomma. Innan ni väljer plats behöver ni veta om ni ska samla idéer, reda ut alternativ eller fatta ett beslut.

@@ -1,14 +1,17 @@
 ---
-title: "När teamet växer: är det rummet eller rutinen som är för liten?"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Kartlägg vad som faktiskt blir trångt innan ni letar större. Arbetsplatser, samtal och besök kan kräva olika lösningar."
-featuredImage: "/images/room_2.jpg"
-featuredImageAlt: "Flera möblerade arbetsplatser hos DG97"
+title: 'När teamet växer: är det rummet eller rutinen som är för liten?'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Kartlägg vad som faktiskt blir trångt innan ni letar större. Arbetsplatser,
+  samtal och besök kan kräva olika lösningar.
+featuredImage: /images/room_2.jpg
+featuredImageAlt: Flera möblerade arbetsplatser hos DG97
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: valja-kontor
 ---
 
 En ny kollega märks ofta på fler ställen än vid skrivbordet. Fler samtal ska få plats, mer utrustning behöver förvaras och bokningar kan börja krocka. Samtidigt kanske inte alla är på kontoret varje dag.

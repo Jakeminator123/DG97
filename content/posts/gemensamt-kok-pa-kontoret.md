@@ -1,14 +1,17 @@
 ---
-title: "Det gemensamma köket behöver några enkla vanor"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Plats i kylen, disk och korta lunchpauser blir lättare när rutinerna är begripliga även för nya kollegor."
-featuredImage: "/images/kichen.jpg"
-featuredImageAlt: "Kök hos DG97 med diskho, skåp och mikrovågsugnar"
+title: Det gemensamma köket behöver några enkla vanor
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Plats i kylen, disk och korta lunchpauser blir lättare när rutinerna är
+  begripliga även för nya kollegor.
+featuredImage: /images/kichen.jpg
+featuredImageAlt: 'Kök hos DG97 med diskho, skåp och mikrovågsugnar'
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Det gemensamma köket är en av de platser där företag faktiskt möts. Det är också en plats där små oklarheter märks snabbt: en matlåda utan namn, disk som ingen känner igen eller en kaffekopp som blir stående.

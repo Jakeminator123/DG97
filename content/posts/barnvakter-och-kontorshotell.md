@@ -1,11 +1,14 @@
 ---
-title: "Kontorsvalet när arbetsdag och familjeliv ska fungera"
-date: "2025-10-31"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Planera restid, tillträde och mötesbehov utan att förutsätta att ett kontorshotell erbjuder barnomsorg."
-featuredImage: "/images/corridor.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Kontorsvalet när arbetsdag och familjeliv ska fungera
+date: '2025-10-31'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Planera restid, tillträde och mötesbehov utan att förutsätta att ett
+  kontorshotell erbjuder barnomsorg.
+featuredImage: /images/corridor.jpg
+featuredImageAlt: Miljöbild från DG97
+category: kontorsvardag
 ---
 
 När arbetsdagen behöver fungera ihop med hämtning, lämning och andra åtaganden blir kontorets läge och praktiska villkor viktiga. Börja med vardagens tider och resor, inte enbart adressen.

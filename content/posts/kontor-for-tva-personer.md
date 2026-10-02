@@ -1,14 +1,17 @@
 ---
-title: "Kontor för två: börja med hur ni delar dagen"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Två arbetsplatser behöver rymma mer än två datorer. Titta på samtal, rörelse, utrustning och gemensamma vanor."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Kontorsrum hos DG97 med skrivbord och arbetsstolar"
+title: 'Kontor för två: börja med hur ni delar dagen'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Två arbetsplatser behöver rymma mer än två datorer. Titta på samtal, rörelse,
+  utrustning och gemensamma vanor.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Kontorsrum hos DG97 med skrivbord och arbetsstolar
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: valja-kontor
 ---
 
 När två personer delar rum blir bådas arbetssätt en del av lokalen. Den ena börjar tidigt, den andra pratar ofta i telefon. Någon behöver två skärmar, någon vill kunna sprida ut papper. Därför är ”två platser” bara början på beskrivningen.

@@ -1,11 +1,14 @@
 ---
-title: "Utskrifter och dokument på ett delat kontor"
-date: "2025-11-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Frågor om utskriftskostnader, skanning, support och hantering av dokument när flera företag delar skrivare."
-featuredImage: "/images/reception_desk.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Utskrifter och dokument på ett delat kontor
+date: '2025-11-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Frågor om utskriftskostnader, skanning, support och hantering av dokument när
+  flera företag delar skrivare.
+featuredImage: /images/reception_desk.jpg
+featuredImageAlt: Miljöbild från DG97
+category: kontorsvardag
 ---
 
 En gemensam skrivare kan vara praktisk, men villkoren och rutinerna behöver passa verksamheten. Ta upp dokumenthanteringen vid visningen om ni skriver ut, skannar eller kopierar regelbundet.

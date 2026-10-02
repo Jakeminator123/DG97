@@ -1,11 +1,14 @@
 ---
-title: "Kontorshotell eller egen kontorslokal?"
-date: "2023-01-20"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Väg gemensam service mot kontroll över en egen lokal och välj utifrån teamets arbetssätt och ansvar."
-featuredImage: "/images/corridor.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Kontorshotell eller egen kontorslokal?
+date: '2023-01-20'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Väg gemensam service mot kontroll över en egen lokal och välj utifrån teamets
+  arbetssätt och ansvar.
+featuredImage: /images/corridor.jpg
+featuredImageAlt: Miljöbild från DG97
+category: valja-kontor
 ---
 
 När du jämför kontorshotell med en egen lokal är frågan större än själva hyran. Hur mycket vill ni ordna själva, hur länge kan ni planera framåt och vad kräver arbetet av miljön?

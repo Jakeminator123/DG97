@@ -18,7 +18,7 @@ This is the repository connected to the Vercel project `dg-97` in the account re
 
 Se [innehållsgranskningen](docs/content-review-2026-10-02.md) för underlag och redaktionella beslut.
 
-En färdig serie med 20 bildsatta artiklar publiceras en i taget genom Codex enligt [redaktionellt schema](docs/editorial-automation.md). Mellan släppen slumpas 4–6 dagar. Lokal körning kräver att datorn och Codex-appen är igång; ingen OpenAI API-nyckel behövs.
+Alla 20 artiklar i den första bildsatta serien har publicerats tillsammans. Bloggen har ämnesfilter, sökning, källor och relaterade guider. Codex skapar och publicerar därefter en ny artikel varje fredag enligt [redaktionellt schema](docs/editorial-automation.md), första gången 9 oktober 2026. Lokal körning kräver att datorn och Codex-appen är igång; ingen OpenAI API-nyckel behövs.
 
 ## Repository guide
 

@@ -1,15 +1,18 @@
 ---
-title: "Vad berättar en kontorsbild, och vad behöver du se på plats?"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Bilder hjälper dig att hitta frågor inför en visning. Skilj ett första intryck från sådant som behöver bekräftas."
-featuredImage: "/images/room_2.jpg"
-featuredImageAlt: "Miljöbild av ett möblerat kontorsrum hos DG97"
+title: 'Vad berättar en kontorsbild, och vad behöver du se på plats?'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Bilder hjälper dig att hitta frågor inför en visning. Skilj ett första intryck
+  från sådant som behöver bekräftas.
+featuredImage: /images/room_2.jpg
+featuredImageAlt: Miljöbild av ett möblerat kontorsrum hos DG97
 sources:
-  - "https://www.dg97.se/galleri/"
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/galleri/'
+  - 'https://www.dg97.se/kontakt/'
+category: valja-kontor
 ---
 
 En bra kontorsbild kan få dig att vilja veta mer. Du ser färger, möbler och hur rummet såg ut när bilden togs. Däremot hör du inte ljuden, känner inte avståndet mellan borden och vet inte vilket rum som är ledigt idag.

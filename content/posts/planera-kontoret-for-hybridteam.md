@@ -1,14 +1,17 @@
 ---
-title: "Hybridteamets kontor börjar med kalendern"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Utgå från de dagar då ni verkligen möts. Ett praktiskt sätt att planera arbetsplatser och mötesbehov för ett hybridteam."
-featuredImage: "/images/room_2.jpg"
-featuredImageAlt: "Flera arbetsplatser i ett kontorsrum hos DG97"
+title: Hybridteamets kontor börjar med kalendern
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Utgå från de dagar då ni verkligen möts. Ett praktiskt sätt att planera
+  arbetsplatser och mötesbehov för ett hybridteam.
+featuredImage: /images/room_2.jpg
+featuredImageAlt: Flera arbetsplatser i ett kontorsrum hos DG97
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: moten-och-samarbete
 ---
 
 Hur många personer arbetar i företaget? Det är en rimlig första fråga, men den räcker inte när alla inte är på kontoret samtidigt. En lugn måndag och en full torsdag ställer olika krav på samma rum.

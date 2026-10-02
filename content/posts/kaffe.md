@@ -1,11 +1,14 @@
 ---
-title: "Kök och fikapauser på det delade kontoret"
-date: "2025-10-15"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Så kan du bedöma köket, pauserna och de praktiska rutinerna när flera företag delar en arbetsplats."
-featuredImage: "/images/kichen.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Kök och fikapauser på det delade kontoret
+date: '2025-10-15'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Så kan du bedöma köket, pauserna och de praktiska rutinerna när flera företag
+  delar en arbetsplats.
+featuredImage: /images/kichen.jpg
+featuredImageAlt: Miljöbild från DG97
+category: kontorsvardag
 ---
 
 Köket är ofta en av de mest använda gemensamma ytorna på ett kontor. Under en visning är det lätt att fokusera på arbetsrummet, men små detaljer i köket kan påverka vardagen.

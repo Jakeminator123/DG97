@@ -1,56 +1,58 @@
-# Publiceringskö för DG97 Kontorsguiden
+# Veckovis publicering för DG97 Kontorsguiden
 
-## Upplägg
+## Status
 
-20 färdiga svenska artiklar med befintliga miljöbilder från DG97 ligger i `content/posts/`. Publiceringsordningen finns i `data/editorial-schedule.json`. Artiklarna har `draft: true` och ingår inte i publik blogg, API eller sitemap innan de släpps.
+De 20 bildsatta artiklarna i den första serien publiceras tillsammans den 2 oktober 2026, på användarens begäran. Tillsammans med de tidigare guiderna finns 29 publika artiklar. Den tidigare kön med slumpade släpp är ersatt av veckovis skapande och publicering av en ny artikel.
 
-Den första artikeln är planerad till **7 oktober 2026**. Codex kontrollerar kön dagligen klockan 09.00 i Europe/Stockholm. Varje släpp följs av ett slumpat uppehåll på 4, 5 eller 6 kalenderdagar. Vid en missad körning släpps högst en artikel nästa gång; nytt intervall räknas från den körningen. Serien tar ungefär tre månader. När kön är slut skapar eller publicerar schemat inget mer.
+Den befintliga uppföljningen i denna Codex-chatt körs **fredagar klockan 09.00 i Europe/Stockholm**, med första nya artikel planerad till **9 oktober 2026**. `data/editorial-schedule.json` håller nästa datum och publicerad historik. Efter en lyckad artikel räknas minst sju dagar till nästa. Missade veckor ger högst en ny artikel vid nästa körning, ingen serie av eftersläpande inlägg.
 
-Schemat körs som en återkommande uppföljning i denna Codex-chatt. Datorn måste vara på och Codex-appen igång för arbetet med lokala filer. Det kan ändras eller stoppas via appens schemalagda uppgifter. Detta är inte en serverbaserad cron som körs när datorn är avstängd.
-
-Inget anrop till OpenAI API görs. Projektets API-nycklar och den äldre Python-generatorn används inte. Webbplatsens pausade publicerings- och genererings-API:er återaktiveras inte.
+Datorn måste vara på och Codex-appen igång för arbetet med lokala filer. Uppgiften kan ändras eller stoppas via appens schemalagda uppgifter. Codex skapar texten direkt; inga anrop görs med projektets OpenAI API-nyckel och inga nycklar ändras. Webbplatsens pausade genererings- och publicerings-API:er och äldre Python-generator återaktiveras inte.
 
 ## Körning
 
-1. Arbeta i detta repo på `main`. Kontrollera först Git-status och eventuell ofärdig publicering från föregående körning. Rör inte användarens andra ändringar, inklusive `.vscode/settings.json`.
-2. Hämta aktuell remote och uppdatera med en vanlig fast-forward endast om det kan göras utan att påverka användarens filer. Skriv inte över lokala ändringar. Vid konflikt eller oklart ägarskap, avbryt och be om hjälp.
-3. Återuppta ett redan förberett men opushat släpp före ett nytt. Om artikel och schemastat ändrats av föregående körning, verifiera och färdigställ samma släpp. Kontrollera också om föregående push redan finns på remote. Släpp inte ytterligare en artikel som återhämtning.
-4. Kontrollera `node scripts/editorial-schedule.mjs status`. Om `due` är falskt och ingen tidigare publicering återstår, avsluta utan ändringar eller statusmeddelande.
-5. När `due` är sant, kontrollera nästa artikel och dess DG97-länkar. Artiklarna ska inte ges nya obestyrkta priser, tjänster eller verksamhetspåståenden.
-6. Kör `node scripts/editorial-schedule.mjs release`. Kommandot släpper exakt en artikel, sätter dess faktiska publiceringsdatum, tar bort den från kön och sparar nästa slumpade datum. En andra körning samma dag släpper inget nytt.
-7. Kör `npm run lint`, `npm test`, `npm run test:images`, `npm run build` och `npm run test:smoke`. Om någon kontroll misslyckas, pusha inte; behåll arbetet och rapportera felet så samma släpp kan slutföras senare.
-8. Committa och pusha endast den släppta artikelns Markdownfil, `data/editorial-schedule.json` och byggens uppdaterade `public/sitemap-0.xml` till `main`. Inga andra utkast ändras. Använd aldrig force-push, hård återställning eller en allmän `git add .`.
-9. Bekräfta pushen och kontrollera tillgänglig deployment-status. Meddela artikel, länk, commit och nästa datum när ett släpp har gjorts, eller rapportera ett fel som kräver åtgärd. En push är inte i sig en bekräftelse på lyckad Vercel-deployment.
+1. Arbeta i detta repo på `main`. Kontrollera Git-status och tidigare ofärdiga veckoinlägg innan du börjar. Rör inte användarens andra ändringar, inklusive `.vscode/settings.json`.
+2. Hämta aktuell remote och uppdatera med en vanlig fast-forward endast om det kan ske utan att påverka användarens filer. Ingen force-push eller hård återställning. Vid konflikt eller oklart ägarskap, bevara arbetet och be om hjälp.
+3. Återuppta ett redan förberett men opushat inlägg före ett nytt. Identifiera agentens tidigare arbete genom Markdownens `automation: dg97-weekly-guide`, schemastaten och Git-diffen. Kontrollera också om föregående push redan finns på remote. Färdigställ samma inlägg och skapa inget ytterligare som återhämtning.
+4. Kör `node scripts/editorial-schedule.mjs status`. Om `due` är falskt och ingen tidigare publicering återstår, avsluta utan ändringar eller statusmeddelande.
+5. Läs befintliga rubriker och relevanta artiklar, välj ett nytt ämne och kontrollera primärkällor. Skapa en artikel med en egen fråga och ett konkret resultat för läsaren. Undvik varianter av samma artikel eller ortssidor för enbart söktrafik.
+6. Skriv och kontrollera artikel, metadata, bild, källor och interna länkar enligt kraven nedan. Behåll `draft: true` under arbetet. Publicering är godkänd av användaren för en kvalitetskontrollerad artikel per vecka. När den är färdig, sätt `draft: false` och dagens datum.
+7. Kör `node scripts/editorial-schedule.mjs record <slug>` för att registrera artikeln. Det validerar grundmetadata, bild, källor och att veckan är förfallen, och sparar nästa datum. Upprepad registrering av samma slug ändrar inget. Detta är en teknisk kontroll, inte en automatisk faktagranskning.
+8. Kör `npm run lint`, `npm test`, `npm run test:images`, `npm run build` och `npm run test:smoke`. Verifiera att den nya sidan, bilden, källorna, relaterade guider och länkar till DG97 fungerar. Om någon kontroll misslyckas, pusha inte; bevara samma inlägg och rapportera felet för senare återhämtning.
+9. Committa och pusha endast den nya Markdownfilen, `data/editorial-schedule.json` och byggens uppdaterade `public/sitemap-0.xml` till `main`. Lägg inte till användarens filer och använd inte `git add .`. Om en egen publicering måste korrigeras senare ska dess datum motsvara det faktiska släppet.
+10. Bekräfta remote, CI och Vercels deployment. Efter lyckad publicering, meddela artikelns länk, commit och nästa datum. Vid fel, rapportera vad som behöver åtgärdas. En push bekräftar inte i sig att sidan finns live.
 
-Användaren har begärt automatisk, utspridd publicering av denna färdiga serie. Det tidigare förslaget att skapa nya granskningsutkast har därför ersatts. Skapa inte ytterligare artiklar eller aktivera API-generering inom detta schema.
+## Artikelkrav
 
-## Redaktionella principer
+- Svensk, naturlig och varierad text med en tydlig huvudfråga och konkreta råd, en checklista, en mall eller ett genomarbetat jämförelseunderlag. Cirka 400–700 ord är en riktlinje när ämnet behöver det, inget SEO-mål.
+- Kort och unik slug. Läs närliggande guider först och tillför något de inte redan besvarar. Ändra inte äldre publiceringsdatum för att få innehåll att verka nytt.
+- Frontmatter: `title`, dagens `date` och `modifiedDate`, `author: DG97 Kontorsguiden`, `excerpt`, en av kategorierna i `config/editorial.js`, `automation: dg97-weekly-guide`, bild och bildbeskrivning samt `sources` med faktiska HTTPS-källor. Vid färdig publicering: `draft: false`.
+- Använd ett befintligt, relevant foto från `public/images/`. Inspektera bilden innan du beskriver den och använd korrekt alt-text. Skapa inte påhittade bilder av DG97:s lokaler.
+- Kontrollera aktuella DG97-uppgifter på `www.dg97.se`. Övriga faktapåståenden ska vid behov stödjas av relevanta primärkällor. Ange och länka källorna; kopiera inte deras texter. Skilj egna praktiska råd från verifierade verksamhetsuppgifter.
+- Inga fasta eller påhittade priser, rabatter, lediga rum, certifieringar, svarstider eller löften om avtal, service, utrustning eller säkerhet. Om en uppgift inte går att styrka, ta bort den eller formulera en fråga att ställa till DG97.
+- Inga påhittade egna erfarenheter, kundcitat, intervjuer, personer eller författarbiografier. Ingen medicinsk, juridisk eller finansiell rådgivning. Tillskriv inte texten en människa som påstås ha skrivit den för hand. AI-stöd beskrivs på sidan Om guiden.
+- Länka naturligt till befintliga, publika relaterade guider och till `https://www.dg97.se/` eller kontaktvägen där det är användbart. Kontrollera att de interna artikellänkarna finns.
 
-Texterna har egna frågor, exempel och praktiska underlag. Språk och struktur varierar utan påhittade personliga erfarenheter, intervjuer eller kundhistorier. DG97 Kontorsguiden är avsändare. Ingen text tillskrivs en person som påstås ha skrivit den för hand.
+Ämnesfilter och relaterade guider använder kategorin automatiskt. Källor i frontmatter visas som vidare läsning. DG97-rutans länkar har kampanjparametrar för uppföljning på huvudwebbplatsen; detta installerar ingen egen analysfunktion och ger ingen garanti om Google-ranking.
 
-Bilderna kommer från projektets befintliga DG97-foton och används som miljöbilder. De är inte besked om lediga rum, möblering i ett specifikt erbjudande eller vilken service som ingår. Artiklarna hänvisar till huvudwebbplatsen för aktuella verksamhetsuppgifter.
+## Första serien: publicerad tillsammans
 
-Varje artikel har en egen begriplig slug. Det finns inga extra kopior för olika orter eller sökordsvarianter. Slumpade släppdatum är en redaktionell takt, inte ett löfte om bättre Google-ranking. Läsvärde och riktiga sakuppgifter prioriteras.
-
-## Artiklar i serien
-
-1. [Kontorsvisning: frågorna som är lätta att glömma](../content/posts/checklista-infor-kontorsvisning.md) · 402 ord
-2. [Coworking eller eget rum? Utgå från jobbet, inte etiketten](../content/posts/coworking-eller-eget-kontorsrum.md) · 400 ord
-3. [Hybridteamets kontor börjar med kalendern](../content/posts/planera-kontoret-for-hybridteam.md) · 387 ord
-4. [Var tar man samtalet när någon annan behöver tystnad?](../content/posts/tysta-zoner-och-telefonsamtal.md) · 368 ord
-5. [Två kontorsofferter på bordet: gör dem jämförbara](../content/posts/jamfor-kontorsofferter.md) · 404 ord
-6. [Flytta det lilla företaget utan att tappa bort vardagen](../content/posts/flytta-litet-foretag-till-kontorshotell.md) · 401 ord
-7. [Första veckan på nytt kontor: gör det lätt att hitta rätt](../content/posts/forsta-veckan-pa-nytt-kontor.md) · 381 ord
-8. [Ett bra kundmöte börjar innan någon sätter sig](../content/posts/motesrum-for-kundmoten.md) · 377 ord
-9. [Digitala möten: testa platsen, inte bara länken](../content/posts/digitala-moten-fran-kontoret.md) · 370 ord
-10. [Konsultteamets kontor behöver fungera mellan uppdragen](../content/posts/kontor-for-konsultteam.md) · 396 ord
-11. [Kontor för två: börja med hur ni delar dagen](../content/posts/kontor-for-tva-personer.md) · 366 ord
-12. [När teamet växer: är det rummet eller rutinen som är för liten?](../content/posts/nar-teamet-vaxer-ur-kontoret.md) · 400 ord
-13. [Förvaring på delat kontor: ge sakerna en bestämd plats](../content/posts/forvaring-pa-delat-kontor.md) · 384 ord
-14. [Ta emot besökare utan att någon behöver leta efter er](../content/posts/ta-emot-besokare-pa-kontoret.md) · 375 ord
-15. [Kontorsdagen i Stockholm: planera hela vägen fram](../content/posts/planera-kontorsdagen-i-stockholm.md) · 356 ord
-16. [Ge koncentrationen en plats i kontorsdagen](../content/posts/plats-for-koncentration-pa-kontoret.md) · 383 ord
-17. [Det gemensamma köket behöver några enkla vanor](../content/posts/gemensamt-kok-pa-kontoret.md) · 391 ord
-18. [En workshop som leder vidare behöver ett tydligt uppdrag](../content/posts/planera-workshop-pa-kontoret.md) · 369 ord
-19. [Vad berättar en kontorsbild, och vad behöver du se på plats?](../content/posts/kontorsbilder-och-visning.md) · 366 ord
-20. [Har kontoret blivit som ni tänkte? Följ upp med rätt frågor](../content/posts/utvardera-kontoret-efter-inflyttning.md) · 397 ord
+1. [Kontorsvisning: frågorna som är lätta att glömma](../content/posts/checklista-infor-kontorsvisning.md)
+2. [Coworking eller eget rum? Utgå från jobbet, inte etiketten](../content/posts/coworking-eller-eget-kontorsrum.md)
+3. [Hybridteamets kontor börjar med kalendern](../content/posts/planera-kontoret-for-hybridteam.md)
+4. [Var tar man samtalet när någon annan behöver tystnad?](../content/posts/tysta-zoner-och-telefonsamtal.md)
+5. [Två kontorsofferter på bordet: gör dem jämförbara](../content/posts/jamfor-kontorsofferter.md)
+6. [Flytta det lilla företaget utan att tappa bort vardagen](../content/posts/flytta-litet-foretag-till-kontorshotell.md)
+7. [Första veckan på nytt kontor: gör det lätt att hitta rätt](../content/posts/forsta-veckan-pa-nytt-kontor.md)
+8. [Ett bra kundmöte börjar innan någon sätter sig](../content/posts/motesrum-for-kundmoten.md)
+9. [Digitala möten: testa platsen, inte bara länken](../content/posts/digitala-moten-fran-kontoret.md)
+10. [Konsultteamets kontor behöver fungera mellan uppdragen](../content/posts/kontor-for-konsultteam.md)
+11. [Kontor för två: börja med hur ni delar dagen](../content/posts/kontor-for-tva-personer.md)
+12. [När teamet växer: är det rummet eller rutinen som är för liten?](../content/posts/nar-teamet-vaxer-ur-kontoret.md)
+13. [Förvaring på delat kontor: ge sakerna en bestämd plats](../content/posts/forvaring-pa-delat-kontor.md)
+14. [Ta emot besökare utan att någon behöver leta efter er](../content/posts/ta-emot-besokare-pa-kontoret.md)
+15. [Kontorsdagen i Stockholm: planera hela vägen fram](../content/posts/planera-kontorsdagen-i-stockholm.md)
+16. [Ge koncentrationen en plats i kontorsdagen](../content/posts/plats-for-koncentration-pa-kontoret.md)
+17. [Det gemensamma köket behöver några enkla vanor](../content/posts/gemensamt-kok-pa-kontoret.md)
+18. [En workshop som leder vidare behöver ett tydligt uppdrag](../content/posts/planera-workshop-pa-kontoret.md)
+19. [Vad berättar en kontorsbild, och vad behöver du se på plats?](../content/posts/kontorsbilder-och-visning.md)
+20. [Har kontoret blivit som ni tänkte? Följ upp med rätt frågor](../content/posts/utvardera-kontoret-efter-inflyttning.md)

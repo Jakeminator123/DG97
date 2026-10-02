@@ -1,14 +1,17 @@
 ---
-title: "Konsultteamets kontor behöver fungera mellan uppdragen"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "När teamet växlar mellan kundens arbetsplats, distans och eget kontor behöver ni beskriva mer än antalet personer."
-featuredImage: "/images/room_2.jpg"
-featuredImageAlt: "Arbetsstationer med skärmar i ett rum hos DG97"
+title: Konsultteamets kontor behöver fungera mellan uppdragen
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  När teamet växlar mellan kundens arbetsplats, distans och eget kontor behöver
+  ni beskriva mer än antalet personer.
+featuredImage: /images/room_2.jpg
+featuredImageAlt: Arbetsstationer med skärmar i ett rum hos DG97
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Ett konsultteam kan vara utspritt hos kunder större delen av veckan och ändå behöva en gemensam plats. Där förbereds uppdrag, nya kollegor introduceras och projekt jämförs utan att varje samtal måste bli ett bokat distansmöte.

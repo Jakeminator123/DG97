@@ -1,14 +1,17 @@
 ---
-title: "Förvaring på delat kontor: ge sakerna en bestämd plats"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Väskor, kablar och projektmaterial behöver egna lösningar. Så kan ni planera förvaring utan att fylla arbetsytorna."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Arbetsrum hos DG97 med skrivbord och personlig utrustning"
+title: 'Förvaring på delat kontor: ge sakerna en bestämd plats'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Väskor, kablar och projektmaterial behöver egna lösningar. Så kan ni planera
+  förvaring utan att fylla arbetsytorna.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Arbetsrum hos DG97 med skrivbord och personlig utrustning
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Ett skrivbord kan vara rymligt på morgonen och fullt efter några timmar. Väskan hamnar vid stolen, laddare på bordet och projektmaterial i den lediga högen bredvid. Problemet är ofta att sakerna saknar en bestämd plats.

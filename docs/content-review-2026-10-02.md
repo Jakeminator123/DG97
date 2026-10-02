@@ -34,4 +34,4 @@ Generella råd ska vara tydliga med vad besökaren behöver kontrollera. Bredare
 
 Guiderna har egna canonical-adresser. Att sätta alla canonical-länkar till dg97.se vore missvisande när innehållet är separat och inte finns där. Förändrad domän för guiden måste uppdateras i `config/site.js` före publicering.
 
-Granskningen är gjord mot publika webbkällor och projektet. Den ersätter inte DG97:s bekräftelse av operativa uppgifter. Ändringarna förbereddes först lokalt. Användaren har därefter begärt commit, push och en serie med 20 artiklar som publiceras en i taget enligt det redaktionella schemat.
+Granskningen är gjord mot publika webbkällor och projektet. Den ersätter inte DG97:s bekräftelse av operativa uppgifter. Ändringarna förbereddes först lokalt. Användaren har därefter begärt commit, push och en serie med 20 artiklar. Serien publiceras tillsammans, följd av en ny artikel per vecka enligt det redaktionella schemat.

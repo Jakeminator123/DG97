@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { setTimeout as delay } from 'node:timers/promises';
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 
 const port = 3107;
 const base = `http://127.0.0.1:${port}`;
@@ -14,7 +15,8 @@ server.stdout.on('data', chunk => { output += chunk; });
 server.stderr.on('data', chunk => { output += chunk; });
 const post = (body, cookie) => ({ method: 'POST', headers: { 'Content-Type': 'application/json', ...(cookie ? { Cookie: cookie } : {}) }, body: JSON.stringify(body) });
 const draftSlug = 'hur-martin-som-ar-utvecklare-och-startat-ett-foretagapp-for-plantor-kan-vinna-2-miljarder-pa-internetspel';
-const queuedSlugs = JSON.parse(fs.readFileSync('data/editorial-schedule.json', 'utf8')).queue;
+const initialSlugs = JSON.parse(fs.readFileSync('data/editorial-schedule.json', 'utf8')).initialBatch.slugs;
+const { getRelatedPosts } = createRequire(import.meta.url)('../lib/posts');
 function checkGuide(html, path) {
   assert.match(html, /DG97 Kontorsguiden/, `${path} guide identity`);
   assert.match(html, /href="https:\/\/www\.dg97\.se(?:\/|"|\?)/, `${path} main-site link`);
@@ -45,6 +47,11 @@ try {
       assert.match(html, /href="https:\/\/www\.dg97\.se\/kontakt\/"/);
       assert.doesNotMatch(html, /<form\b/, 'Enquiries go to the main site');
     }
+    if (path === '/blogg') {
+      assert.match(html, /Sök bland guiderna/);
+      assert.match(html, /Välj ämne/);
+      for (const slug of initialSlugs) assert.ok(html.includes(`/blogg/${slug}`), `${slug} listed in the guide index`);
+    }
     console.log(`OK ${path}`);
   }
   const list = await fetch(`${base}/api/posts`).then(r => r.json());
@@ -56,17 +63,23 @@ try {
   for (const post of list) {
     const response = await fetch(`${base}/blogg/${post.slug}`);
     assert.equal(response.status, 200, post.slug);
-    checkGuide(await response.text(), `/blogg/${post.slug}`);
+    const html = await response.text();
+    checkGuide(html, `/blogg/${post.slug}`);
+    assert.match(html, /<figure/, `${post.slug} visible article image`);
+    assert.match(html, /Läs vidare på samma tema/, `${post.slug} related guides`);
+    assert.match(html, /utm_source=dg97\.org/, `${post.slug} attributable main-site links`);
+    for (const related of getRelatedPosts(post.slug)) {
+      assert.ok(html.includes(`/blogg/${related.slug}`), `${post.slug} links to ${related.slug}`);
+    }
   }
   assert.equal((await fetch(`${base}/blogg/${draftSlug}`)).status, 404, 'Draft page is unpublished');
   assert.equal((await fetch(`${base}/api/posts/${draftSlug}`)).status, 404, 'Draft API is unpublished');
   const sitemap = await fetch(`${base}/sitemap-0.xml`).then(response => response.text());
   assert.doesNotMatch(sitemap, new RegExp(draftSlug), 'Drafts are excluded from the sitemap');
-  for (const slug of queuedSlugs) {
-    assert.ok(!list.some(post => post.slug === slug), `${slug} queued article is not listed`);
-    assert.equal((await fetch(`${base}/blogg/${slug}`)).status, 404, `${slug} queued page`);
-    assert.equal((await fetch(`${base}/api/posts/${slug}`)).status, 404, `${slug} queued API`);
-    assert.ok(!sitemap.includes(`/blogg/${slug}<`), `${slug} queued sitemap`);
+  for (const slug of initialSlugs) {
+    assert.ok(list.some(post => post.slug === slug), `${slug} initial article is published`);
+    assert.equal((await fetch(`${base}/api/posts/${slug}`)).status, 200, `${slug} public API`);
+    assert.ok(sitemap.includes(`/blogg/${slug}</loc>`), `${slug} sitemap`);
   }
   assert.equal((await fetch(`${base}/blogg/this-post-does-not-exist`)).status, 404);
   assert.equal((await fetch(`${base}/api/posts`, post({}))).status, 405);

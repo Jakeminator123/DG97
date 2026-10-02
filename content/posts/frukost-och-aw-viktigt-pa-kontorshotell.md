@@ -1,11 +1,14 @@
 ---
-title: "Gemenskap på kontorshotell: frukost och AW"
-date: "2023-01-15"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Frågor som hjälper dig att förstå den sociala miljön på ett kontorshotell och hitta en vardag som passar teamet."
-featuredImage: "/images/reception_bred.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: 'Gemenskap på kontorshotell: frukost och AW'
+date: '2023-01-15'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Frågor som hjälper dig att förstå den sociala miljön på ett kontorshotell och
+  hitta en vardag som passar teamet.
+featuredImage: /images/reception_bred.jpg
+featuredImageAlt: Miljöbild från DG97
+category: kontorsvardag
 ---
 
 Gemensam frukost, fika eller after work kan ge tillfällen att lära känna människorna i ett kontorshus. Men en social miljö behöver också fungera för den som vill arbeta ostört eller inte kan delta utanför arbetstid.

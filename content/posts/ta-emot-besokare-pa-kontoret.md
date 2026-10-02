@@ -1,14 +1,17 @@
 ---
-title: "Ta emot besökare utan att någon behöver leta efter er"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "En tydlig inbjudan och en känd mottagare gör besöket lättare att planera. Här är en enkel rutin för ett delat kontor."
-featuredImage: "/images/reception_bred.jpg"
-featuredImageAlt: "Gemensam miljö med sittplatser hos DG97"
+title: Ta emot besökare utan att någon behöver leta efter er
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  En tydlig inbjudan och en känd mottagare gör besöket lättare att planera. Här
+  är en enkel rutin för ett delat kontor.
+featuredImage: /images/reception_bred.jpg
+featuredImageAlt: Gemensam miljö med sittplatser hos DG97
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Det räcker inte alltid att skicka adressen. En besökare kan behöva veta vilken entré som gäller, vem som kommer ned och vad som händer om mötet börjar lite senare än planerat.

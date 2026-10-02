@@ -1,15 +1,18 @@
 ---
-title: "Kontorsdagen i Stockholm: planera hela vägen fram"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Se resan, ankomsten och arbetsdagen som en helhet när ni bedömer ett kontorsläge i Stockholm."
-featuredImage: "/images/reception_bred.jpg"
-featuredImageAlt: "Ljus gemensam miljö hos DG97"
+title: 'Kontorsdagen i Stockholm: planera hela vägen fram'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Se resan, ankomsten och arbetsdagen som en helhet när ni bedömer ett
+  kontorsläge i Stockholm.
+featuredImage: /images/reception_bred.jpg
+featuredImageAlt: Ljus gemensam miljö hos DG97
 sources:
-  - "https://sl.se/reseplanering"
-  - "https://www.dg97.se/kontakt/"
+  - 'https://sl.se/reseplanering'
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Ett kontorsläge bedöms lätt utifrån en punkt på kartan. För teamet är det snarare en serie vardagsresor: hemifrån till entrén, från kontoret till ett kundmöte och tillbaka när dagen fortsätter.

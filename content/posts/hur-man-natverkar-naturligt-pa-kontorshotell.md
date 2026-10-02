@@ -1,11 +1,14 @@
 ---
-title: "Nätverka naturligt på ett delat kontor"
-date: "2025-10-15"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "Praktiska sätt att lära känna andra företag utan att göra varje samtal till en säljpresentation."
-featuredImage: "/images/reception_galleri.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Nätverka naturligt på ett delat kontor
+date: '2025-10-15'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  Praktiska sätt att lära känna andra företag utan att göra varje samtal till en
+  säljpresentation.
+featuredImage: /images/reception_galleri.jpg
+featuredImageAlt: Miljöbild från DG97
+category: moten-och-samarbete
 ---
 
 Att arbeta nära andra företag kan göra det enklare att lära känna nya människor. Det innebär inte att varje samtal behöver handla om affärer. Börja med att vara en bra granne.

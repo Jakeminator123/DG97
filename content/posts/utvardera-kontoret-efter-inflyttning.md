@@ -1,14 +1,17 @@
 ---
-title: "Har kontoret blivit som ni tänkte? Följ upp med rätt frågor"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Gör en enkel uppföljning när teamet har börjat använda kontoret. Konkreta situationer ger bättre svar än ett allmänt betyg."
-featuredImage: "/images/reception_bred.jpg"
-featuredImageAlt: "Gemensam kontorsmiljö hos DG97 med bord och sittplatser"
+title: Har kontoret blivit som ni tänkte? Följ upp med rätt frågor
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Gör en enkel uppföljning när teamet har börjat använda kontoret. Konkreta
+  situationer ger bättre svar än ett allmänt betyg.
+featuredImage: /images/reception_bred.jpg
+featuredImageAlt: Gemensam kontorsmiljö hos DG97 med bord och sittplatser
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Efter en flytt kommer vardagen snabbt tillbaka. Kalendern fylls och kontoret blir den plats där ni arbetar, snarare än ett beslut ni diskuterar. Just därför kan det vara bra att avsätta en kort stund för uppföljning.

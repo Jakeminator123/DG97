@@ -15,7 +15,7 @@ Företagsportalen, nyhetsbrevet, AI-generering, schemaläggning, serverbaserad p
 
 Ingen Vercel-cron är definierad. Pythonverktygen i `blog_generator/` är separata lokala verktyg och startas aldrig av sajten. Återaktivering av webbplatsens pausade API:er kräver en ny implementation med varaktig lagring, säker autentisering och fungerande bakgrundsjobb/mejltjänst. Använd inte Vercels lokala filsystem som databas.
 
-En förberedd serie med 20 bildsatta artiklar publiceras automatiskt via Codex med 4–6 dagars slumpat mellanrum. Detta är separat från webbplatsens API:er och kräver ingen OpenAI API-nyckel. Datorn och Codex-appen måste vara igång. Se [redaktionellt schema](docs/editorial-automation.md) för körning, återhämtning och artikelöversikt. Inga nya artiklar genereras av schemat.
+Den första serien med 20 bildsatta artiklar har publicerats tillsammans. Codex skapar och publicerar sedan en ny artikel per vecka, fredagar 09.00 Europe/Stockholm från 9 oktober 2026. Det är separat från webbplatsens API:er och kräver ingen OpenAI API-nyckel. Datorn och Codex-appen måste vara igång. Se [redaktionellt schema](docs/editorial-automation.md) för körning, faktakrav, återhämtning och artikelöversikt.
 
 ## Valfri admininloggning
 

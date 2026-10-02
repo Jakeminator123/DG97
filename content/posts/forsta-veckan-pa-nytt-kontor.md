@@ -1,14 +1,17 @@
 ---
-title: "Första veckan på nytt kontor: gör det lätt att hitta rätt"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Ett välkomnande handlar också om praktiska svar. Samla det nya teamet behöver veta om rum, bokningar och kontaktvägar."
-featuredImage: "/images/reception_bred.jpg"
-featuredImageAlt: "Gemensamma sittplatser och passage hos DG97"
+title: 'Första veckan på nytt kontor: gör det lätt att hitta rätt'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Ett välkomnande handlar också om praktiska svar. Samla det nya teamet behöver
+  veta om rum, bokningar och kontaktvägar.
+featuredImage: /images/reception_bred.jpg
+featuredImageAlt: Gemensamma sittplatser och passage hos DG97
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: kontorsvardag
 ---
 
 Var finns ett glas? Hur bokar man ett rum? Och vem frågar man när tillträdet krånglar? Sådant kan låta litet tills alla i teamet ställer samma fråga under en hektisk arbetsdag.

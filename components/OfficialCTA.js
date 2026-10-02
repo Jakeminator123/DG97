@@ -1,4 +1,4 @@
-import { DG97_URL, DG97_CONTACT_URL } from '../config/site';
+import { DG97_URL, DG97_CONTACT_URL, referralUrl } from '../config/site';
 
 export default function OfficialCTA({ title = 'Ta nästa steg med DG97' }) {
   return (
@@ -10,8 +10,8 @@ export default function OfficialCTA({ title = 'Ta nästa steg med DG97' }) {
         Fråga DG97 om tillgängliga rum, aktuella priser och vad som ingår i ett upplägg för ditt företag.
       </p>
       <div className="flex flex-wrap gap-4">
-        <a href={DG97_CONTACT_URL} className="btn-primary">Kontakta DG97 på dg97.se</a>
-        <a href={DG97_URL} className="btn-secondary">Besök www.dg97.se</a>
+        <a href={referralUrl(DG97_CONTACT_URL, 'kontakt')} className="btn-primary">Kontakta DG97 på dg97.se</a>
+        <a href={referralUrl(DG97_URL, 'huvudwebbplats')} className="btn-secondary">Besök www.dg97.se</a>
       </div>
     </aside>
   );

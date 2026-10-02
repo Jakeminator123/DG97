@@ -1,14 +1,17 @@
 ---
-title: "Kontorsvisning: frågorna som är lätta att glömma"
-date: "2026-10-02"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-draft: true
-excerpt: "Ta med en vanlig arbetsdag till visningen. Här är en checklista för rum, möten, besök och sådant som behöver följas upp."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Kontorsrum hos DG97 med skrivbord och fönster"
+title: 'Kontorsvisning: frågorna som är lätta att glömma'
+date: '2026-10-02'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+draft: false
+excerpt: >-
+  Ta med en vanlig arbetsdag till visningen. Här är en checklista för rum,
+  möten, besök och sådant som behöver följas upp.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Kontorsrum hos DG97 med skrivbord och fönster
 sources:
-  - "https://www.dg97.se/kontakt/"
+  - 'https://www.dg97.se/kontakt/'
+category: valja-kontor
 ---
 
 Ett rum kan kännas helt rätt på en visning och ändå lämna flera vardagsfrågor obesvarade. Var tar ni ett långt telefonsamtal? Vad händer när kunden kommer tidigt? Och får den extra skärmen plats utan att skrivbordet blir fullt?

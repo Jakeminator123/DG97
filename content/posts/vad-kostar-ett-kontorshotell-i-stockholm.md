@@ -1,11 +1,14 @@
 ---
-title: "Vad kostar ett kontorshotell i Stockholm?"
-date: "2023-02-12"
-modifiedDate: "2026-10-02"
-author: "DG97 Kontorsguiden"
-excerpt: "En praktisk guide till att jämföra offerter, förstå tillägg och be om ett aktuellt prisförslag för ditt företag."
-featuredImage: "/images/office_room.jpg"
-featuredImageAlt: "Miljöbild från DG97"
+title: Vad kostar ett kontorshotell i Stockholm?
+date: '2023-02-12'
+modifiedDate: '2026-10-02'
+author: DG97 Kontorsguiden
+excerpt: >-
+  En praktisk guide till att jämföra offerter, förstå tillägg och be om ett
+  aktuellt prisförslag för ditt företag.
+featuredImage: /images/office_room.jpg
+featuredImageAlt: Miljöbild från DG97
+category: valja-kontor
 ---
 
 Ett användbart pris behöver höra ihop med ett bestämt rum och ett tydligt innehåll. Rumsstorlek, läge, möblering, service och avtalsvillkor påverkar vad erbjudandet omfattar. Därför ger ett allmänt frånpris sällan hela bilden.
