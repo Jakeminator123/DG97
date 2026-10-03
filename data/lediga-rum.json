@@ -11,19 +11,19 @@
   },
   "rooms": [
     {
-      "id": 18,
+      "id": 20,
       "sizeSqm": 10,
       "availableFrom": "2026-11-01",
       "monthlyPrice": 12000
     },
     {
-      "id": 20,
+      "id": 22,
       "sizeSqm": 7,
       "availableFrom": "2026-11-15",
       "monthlyPrice": 8400
     },
     {
-      "id": 9,
+      "id": 11,
       "sizeSqm": 13.5,
       "availableFrom": "2026-11-30",
       "monthlyPrice": 16200
