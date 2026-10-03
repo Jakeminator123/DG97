@@ -38,7 +38,8 @@ export default function LedigaRum({ snapshot }) {
           <h2 className="heading-2 mb-4">Planritning</h2>
           <p className="text-neutral-700 leading-relaxed mb-6">
             Ritningen visar alla rum, 1–23. Lediga rum är gröna. Rum 23 är konferensrum och
-            hyrs inte ut. Övriga rum är uthyrda. Håll muspekaren över ett rum för yta och datum.
+            hyrs inte ut. Övriga rum är inte publicerade som lediga. Håll muspekaren över ett grönt
+            rum för yta och datum.
           </p>
           <div className="rounded-2xl border border-primary-100 bg-white p-4 md:p-6 mb-6">
             <FloorPlan plan={snapshot.plan} vacantRooms={snapshot.rooms} />

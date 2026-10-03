@@ -36,7 +36,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
             ? `Rum ${room.rum}, konferensrum (hyrs inte ut)`
             : vacant
               ? `Rum ${room.rum}, ${vacant.sizeLabel}, ${vacant.availabilityLabel}`
-              : `Rum ${room.rum}, ej ledigt`;
+              : `Rum ${room.rum}`;
           return (
             <g key={room.rum} className="room" data-room-id={room.rum}
               data-available={vacant ? 'true' : 'false'}
@@ -68,7 +68,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
           <span aria-hidden="true" className="inline-block h-3 w-3 rounded-sm border" style={{ background: 'rgba(156,163,175,.7)', borderColor: '#4B5563' }} />
           Rum 23: konferensrum, hyrs inte ut
         </span>
-        Övriga rum är uthyrda. Inga priser eller namn på ritningen.
+        Övriga rum är inte publicerade som lediga. Inga priser eller namn på ritningen.
       </figcaption>
     </figure>
   );
