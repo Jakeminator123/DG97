@@ -1,123 +1,48 @@
-DG97 – samlad rapport, 4 oktober 2026
+DG97 - samlad slutrapport, 4 oktober 2026
 
-STATUS
-Backend, den rena planbilden och WordPress-modulen är färdiga och pushade till
-main i Jakeminator123/DG97. Produktionsversionen på Vercel är READY och
-https://www.dg97.org/api/planritning har kontrollerats utan inloggning.
-Den nya modulen med ren bild och automatisk hämtning är nu sparad i HFCM 3
-och publicerad på https://www.dg97.se/planritning/. Sparat innehåll matchar
-exakt snippet.html. Sidan har kontrollerats live och nås utan inloggning.
+Webbplatsen och den automatiska planritningen är publicerade.
+Rapporten sammanfattar både Codex och Grok-bottens arbete.
 
-WORDPRESS: GENOMFÖRT UNDER DENNA ARBETSOMGÅNG
-- Ljus header i DG97:s blåvita profil. Videons proportioner är 16:9 och introt
-  är bredare, med tydligare kontrast för rubrik och text.
-- Kortare, tydligare texter om möblerade, låsbara kontorsrum för 2–6 personer,
-  Vasastan, kommunikationer och service. Temats befintliga sidbyggare behölls.
-- Ny sida /kontorsrum-i-vasastan/ med service, läge, bilder och kontaktvägar.
-  Två WebP-bilder har bildtexter som anger illustrerad/stiliserad miljö;
-  ett verkligt rumsfoto finns kvar. Receptionsbild används som videoreserv.
-- SEO-titlar, metabeskrivningar, rubriker, interna länkar och företagsadressdata
-  har förbättrats. Inga uppnådda Google-placeringar eller SEO-resultat utlovas.
-- Prisartikeln anger tydligt att 1 200 kr/kvm/månad exklusive moms är ett
-  räkneexempel enligt ägarens beslut, inte en bekräftad aktuell prislista.
-- /lediga-kontor/ och /kampanjerbjudande-kontorsrum-2023/ omdirigeras med 301
-  till /kontorsrum-i-vasastan/.
-- Fyra dubblerade omdirigeringar från gamla -2-adresser till sidor i
-  papperskorgen är avstängda och kan återaktiveras.
-- Noindex har verifierats på /log-in/, /registrera/ och /nytt-password/.
-- /planritning/ är skapad med WordPress-ID 1879 och kortkoden [hfcm id="3"].
-  Rumssidan länkar till planen. Kontorsrum 1–22 och konferensrum 23 visas.
-- Just rumssidan och planritningen har lagts bland tillåtna publika sidor.
-  Utloggad åtkomst har kontrollerats. Gästbokning kräver fortsatt inloggning.
+LUGNARE UTSEENDE OCH TYDLIGARE ERBJUDANDE
+Headern är ljus i DG97:s blåvita profil. Startsidesvideon visas med rätt proportioner och introt har fått bättre bredd och läsbarhet. Den befintliga WordPress-layouten används fortfarande.
+Texter om möblerade, låsbara kontorsrum för 2-6 personer är kortare och tydligare. Den nya sidan om kontorsrum i Vasastan samlar läge, service, bilder och kontaktvägar. Illustrerade bilder är märkta som sådana; verkliga foton används också.
 
-AUTOMATIK OCH RENARE PLANBILD
-- Nytt, filtrerat dataflöde använder den befintliga publicerade CSV-källan.
-  Endast publicerbara kontorsrum 1–22 skickas vidare. Rader med publish=false
-  utesluts helt. Konferensrum 23 är en separat, neutral del av planen.
-- Svaret innehåller endast rumsnummer, yta, publicerad tillgänglighet och datum.
-  Kunduppgifter, interna anteckningar, verkliga hyror och arbetsarkets adress
-  finns inte i den nya frontendmodulen eller API-svaret.
-- WordPress hämtar uppgifter vid sidöppning, var femte minut i synlig flik och
-  när man återvänder efter fem minuter. Servercache är högst 60 sekunder;
-  Googles publicering kan tillföra fördröjning. Detta är inte sekundsnabb synk.
-- Datumet på sidan är senaste hämtning, inte tidpunkten för senaste arkändring.
-- Om källan inte går att läsa rensas tillgänglighetsmarkeringar och rumsfakta.
-  Besökaren hänvisas till DG97. Ingen gammal reservlista presenteras som aktuell.
-- En ren bild med vit bakgrund, tydligare linjer och läsbara nummer är framtagen
-  med det inbyggda bildverktyget. Originalets rum 1–23 och klickområden behålls.
-  Bilden är en illustrerad översikt, inte en måttsatt arkitektritning.
-- WebP-versionen är cirka 98 kB. PNG, prompt, källkod och färdig HTML finns
-  tillsammans i integrations/wordpress/planritning/.
-- Prisrutorna räknar yta x 1 200 kr och säger uttryckligen räkneexempel.
-  Källans prisfält används inte och den separata .org-prislogiken ändras inte.
-- Backendkontroll i produktion gav 21 publicerbara kontorsrum och ledigmarkeringar
-  för 11, 20 och 22. Alla 22 kontorsnummer finns fortfarande på själva planen.
+BÄTTRE UNDERLAG FÖR SÖKRESULTATEN
+Sidtitlar, beskrivningar, rubriker och interna länkar har förbättrats. Adressuppgifter för sökmotorer finns kvar. Inloggningssidorna är inställda för att hållas utanför Googles sökresultat.
+De gamla adresserna för lediga kontor och kampanjen från 2023 leder nu till den nya rumssidan. Fyra dubblerade omdirigeringar till borttagna sidor är avstängda.
+Prisartikeln förklarar att 1 200 kr/kvm/månad exklusive moms är ett räkneexempel enligt ditt beslut. Beloppet presenteras inte som en bekräftad aktuell hyra.
+
+PUBLICERAT OCH KONTROLLERAT
+Startsidan, rumssidan och planritningen är publicerade. De två nya sidorna har kontrollerats utan inloggning. Planens knappar, rumslista, tabell och tangentbordsstyrning har provats på dator och mobil.
+
+EN RENARE, KLICKBAR PLAN
+Den tidigare kluddiga bilden har ersatts av en renare översikt med vit bakgrund, tydligare linjer och läsbara nummer. Planen visar kontorsrum 1-22 samt konferensrum 23. Den är en illustrerad översikt, inte en måttsatt ritning.
+
+UPPGIFTERNA UPPDATERAS AUTOMATISKT
+Planen hämtar publicerade rumsuppgifter när sidan öppnas och därefter var femte minut medan fliken är synlig. Ändringar i det befintliga publiceringsarket kan därför slå igenom utan att WordPress-sidan behöver redigeras. Google kan tillföra viss fördröjning.
+Endast rumsnummer, yta, publicerad tillgänglighet och datum hämtas till den nya planmodulen. Interna kunduppgifter och verkliga hyror följer inte med. Om källan inte kan läsas tas tillgänglighetsmarkeringarna bort och besökaren hänvisas till DG97.
+Alla 22 kontorsnummer finns i planen. Rum 1 saknar publicerade fakta och visar en kontaktuppmaning. Rum 23 behandlas som konferensrum. Priser som räknas ut från ytan är tydligt märkta som räkneexempel.
+
+WORDPRESS ÄR FORTFARANDE HUVUDWEBBPLATSEN
+dg97.se är fortsatt WordPress. Den separata dg97.org hjälper till att läsa och filtrera uppgifter från arket. Den nya kopplingen gör att WordPress-sidan kan uppdateras automatiskt.
+
+SLUTKONTROLLEN I GOOGLE
+Search Console har kontrollerats för https://www.dg97.se/ med rätt konto. Google har accepterat indexeringsbegäranden för /planritning/ och /kontorsrum-i-vasastan/. Sidorna var ännu inte indexerade vid kontrollen.
+Huvudsidkartan och artikelkartan är lästa av Google. Sidkartan för vanliga sidor innehåller de nya sidorna. Googles livekontroll kunde hämta filen, men sidkartrapporten visar fortfarande ett läsfel. Den är inskickad på nytt och behöver kontrolleras igen.
+En accepterad indexeringsbegäran innebär att Google ombeds läsa sidan. Den garanterar inte att sidan indexeras eller får en viss placering.
 
 GROK-BOTTENS TIDIGARE ARBETE
-- Nuvarande ark och kod stöder den fysiska numreringen 1–22, med 23 som
-  konferensrum. Grok rapporterade mappningen 9->11, 18->20 och 20->22.
-- Groks kod för .org:s bilder, adressuppgifter, plan och CSV-läsning har behållits.
-  Befintligt /lediga-rum-flöde använder timvis återvalidering enligt koden.
-  Den nya .se-modulen har ett separat, tätare filtrerat flöde.
-- Grok rapporterade rättning av robots.txt, Search Console-verifiering,
-  inskickad sidkarta och indexerings-/borttagningsbegäranden för .se.
-  Robots/noindex och verifieringsmetatagg har granskats; kontots åtgärder
-  har inte verifierats oberoende.
-- Kontaktsidans rättning till Företag har behållits.
-- Groks startsidesändring återställdes efter layoutproblem. Därefter gjordes
-  den varsamma uppfräschning som redovisas ovan.
-- Groks nya sidor för konferensrum, företagsadress och lediga kontorsrum ligger
-  enligt överlämningen i papperskorgen. De har inte återpublicerats här.
-- Säkerhetskopiorna 17:21 (filer), 19:47 (databas) och 20:28 (full kopia)
-  är uppgifter från Groks rapport och har inte verifierats oberoende.
+Den fysiska numreringen 1-22, tidigare ändringar av dg97.org, kontaktsidans stavningsrättning och robots.txt har behållits. Grok rapporterade även tidigare Search Console-åtgärder. Den aktuella sidkartan och våra två nya indexeringsbegäranden har nu kontrollerats direkt.
+Groks startsidesändring återställdes efter layoutproblem. Därefter gjordes den varsamma uppfräschningen som beskrivs här. De borttagna tjänstesidorna har inte återpublicerats. Groks uppgifter om säkerhetskopiorna 17:21, 19:47 och 20:28 har inte verifierats oberoende.
 
-VERIFIERING
-- Node 24.21.0 matchar projektets versionkrav och .nvmrc.
-- Lint, 32 tester med fyra testarbetare, bildkontroll, produktionsbygge och
-  smoke-kontroller passerade. Befintliga .org-sidor ingick i kontrollen.
-- Nytt API: publiceringsfilter, tillåtna fält, dubbla/felaktiga nummer,
-  datumvalidering, konferensundantag, fel vid källbortfall och HTTP-metoder.
-- Frontend: automatisk ändring utan omladdning, borttagning av dold rad,
-  avmarkering av tidigare ledigt rum och kontaktläge vid källfel.
-  Dessa ändringar provades med en separat lokal testkälla; livearket ändrades inte.
-- Mobil 390 x 844: inga sidövergripande horisontella överflöden. Klick,
-  tangentbord, rumslista och tabellknappar fungerade i lokal kontroll.
-- Produktion: Vercel READY för d1fb9a9b84b77a556920bfe6ef7f7f17ae644fd2,
-  anonymt API-svar status=ok och refreshSeconds=300.
-- Den färdiga modulen läste även produktionsflödet från en annan domän i
-  webbläsaren; CORS, tabell, markeringar och hämtningstid fungerade.
-- WordPress live: ren WebP-bild, automatisk hämtning med aktuellt klockslag,
-  rätt canonical/index-inställningar och 23 klickbara rum verifierade.
-  Rum 1 visar bara kontaktuppmaning; rum 23 visar inget kontorshyrespris.
-- Klick, Enter, mellanslag, rumslista och tabellknapp har provats på livesidan.
-  Mobilkontrollen gav scrollWidth=clientWidth=375 i 390 x 844-vyn.
-- Anonym HTTP-kontroll gav 200 och den nya bilden/modulen, utan adminlist.
-  Den gamla upplysningen om manuell uppdatering finns inte längre på sidan.
-- Före/efter-kopia av HFCM 3 och skärmbilder för dator/mobil är sparade lokalt.
-  Den fungerande WordPress-inloggningen har lämnats kvar åt ägaren.
+FOTON OCH SÅDANT NI BESLUTAR OM
+15 originalfiler från Drive-mappen "bra bilder" har kopierats tillsammans med rapporten. Det är 14 olika bilder, varav en mötesrumsbild; två filer är identiska. Originalnamnen har behållits enligt ditt besked. De är inte säkert kopplade till dagens rumsnummer 1-22.
+Du eller Oscar bekräftar verkliga hyror och lediga datum. Uppdatera fliken Publik för uppgifterna som ska visas på planen. Ändringar i andra arbetsark behöver kontrolleras innan man antar att de slår igenom där.
+För senare arbete: kontrollera sidkartans läsfel igen, undersök hastigheten med hänsyn till gästinloggningen och bestäm rollen för dg97.org. Återpublicering av tjänstesidor, gamla artiklar och externa kataloger kan vänta tills fakta är bekräftade.
 
-UNDERHÅLL OCH KVARVARANDE BESLUT
-- Uppdatera det befintliga publiceringsunderlaget, fliken Publik, för synliga
-  rumsuppgifter. available styr ledigmarkering och ledigt_fran datum;
-  publish=false döljer rumsuppgifterna. Kontrollera koppling till andra ark
-  innan det antas att ändringar där automatiskt slår igenom.
-- Du/Oscar bekräftar faktiska hyror, lediga datum och osäkra rumsstatusar.
-  Grok pekade ut 3, 12, 21, 22 och uppsägningsuppgiften för 20.
-- Leads-numrering bör ändras först efter bekräftad nummermappning.
-- Besluta om .org ska vara en separat guide eller slås ihop med .se.
-  DNS-/Search Console-arbete för .org kan därefter tas samlat.
-- Tjänstesidor i papperskorgen, äldre artiklar, MatchOffice och Apple Maps
-  behöver ett separat faktabeslut. Inget av detta behövs för planens funktion.
-- Prestanda: undersök cache för publika sidor med bokning och inloggade
-  besökare undantagna. Globalt privatläge ska inte stängas av som snabbfix.
-  Groks uppgift om fyra sekunders serversvar har inte mätts om här.
-- Denna omgång har inte ändrat hyror, beläggning, Leads, delningsbehörigheter,
-  DNS eller automationer, och inte skickat mejl eller andra meddelanden.
+Sidor: https://www.dg97.se/ | https://www.dg97.se/kontorsrum-i-vasastan/ | https://www.dg97.se/planritning/
 
-ÅTERSTÄLLNING
-Återställ tidigare HFCM 3-innehåll för WordPress-modulen. Före/efter-exporter
-och skärmbilder finns i det lokala arbetsunderlaget; de är ingen full backup.
-Den nya API-routen är läsande och ändrar varken ark, bokningar eller konton.
+Google om indexeringsbegäranden: https://support.google.com/webmasters/answer/9012289?hl=en
 
-Denna rapport ersätter äldre rapporter som beskriver planens uppdatering
-som enbart manuell eller WordPress-publiceringen som återstående.
+Det detaljerade tekniska kontrollunderlaget finns separat i TEKNISK_VERIFIERING.txt.
+Kopior av planmodulen och skärmbilder är arbetsunderlag, inte en full säkerhetskopia.
