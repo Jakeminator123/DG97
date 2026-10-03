@@ -20,7 +20,7 @@ const guides = [
 
 export default function Home() {
   return (
-    <Layout title="Hitta ett kontor som passar din vardag" path="/"
+    <Layout title="Kontorsguiden: välj kontorshotell i Stockholm" path="/"
       description="En guide till kontorshotell i Stockholm: jämför kontorslösningar och förbered din visning. Besök dg97.se för aktuella rum, priser och kontakt.">
       <section className="bg-primary-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid lg:grid-cols-2 gap-12 items-center">
@@ -37,12 +37,21 @@ export default function Home() {
             <p className="mt-6 text-sm leading-relaxed text-blue-200">En separat guidesajt från DG97. Rum, aktuella priser och förfrågningar finns på www.dg97.se.</p>
           </div>
           <figure>
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-              <Image src="/images/reception_bred.jpg" alt="Reception och gemensamma ytor på DG97" fill priority
+            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
+              <Image src="/images/hero_reception_ekta_1600x900.jpg" alt="Ljus reception på DG97 Kontorshotell, Drottninggatan 97" fill priority
                 sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-blue-200">En miljöbild från DG97 på Drottninggatan 97.</figcaption>
           </figure>
+        </div>
+      </section>
+
+      <section className="bg-primary-50 border-b border-primary-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-primary-950 font-semibold">Just nu: tre rum blir lediga i november.</p>
+          <Link href="/lediga-rum" className="text-primary-700 font-semibold underline underline-offset-4">
+            Se storlek, datum och hur hyran räknas
+          </Link>
         </div>
       </section>
 

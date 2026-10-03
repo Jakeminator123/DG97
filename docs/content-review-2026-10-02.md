@@ -35,3 +35,20 @@ Generella råd ska vara tydliga med vad besökaren behöver kontrollera. Bredare
 Guiderna har egna canonical-adresser. Att sätta alla canonical-länkar till dg97.se vore missvisande när innehållet är separat och inte finns där. Förändrad domän för guiden måste uppdateras i `config/site.js` före publicering.
 
 Granskningen är gjord mot publika webbkällor och projektet. Den ersätter inte DG97:s bekräftelse av operativa uppgifter. Ändringarna förbereddes först lokalt. Användaren har därefter begärt commit, push och en serie med 20 artiklar. Serien publiceras tillsammans, följd av en ny artikel per vecka enligt det redaktionella schemat.
+
+## Beslut 3 oktober 2026 (Jakob)
+
+Gårdagens noll-pris-linje justeras medvetet. Guiden får visa **bekräftade, daterade** uppgifter, men fortsätter att skicka affären till dg97.se.
+
+| Beslut | Gäller |
+| --- | --- |
+| Priser och lediga rum | Endast `/lediga-rum` och räkneexemplet i *Vad kostar ett kontorshotell i Stockholm?* |
+| Rum 1 (från 2027-01-01) | Visas inte |
+| Prisformulering | Alltid `exkl. moms`. Modell 1 200 kr/kvm/mån exkl. moms, all-inclusive, flexibla villkor |
+| Datakälla | `data/lediga-rum.json` — uppdatera bara där |
+| NAP | DG97 Kontorshotell, Drottninggatan 97, 113 60 Stockholm, 070-886 22 79, hej@dg97.se, primär länk dg97.se |
+| sameAs | LinkedIn `linkedin.com/company/dg97`, Facebook `facebook.com/Drottninggatan97` |
+| Schema | Organization refererar `https://www.dg97.se/#localbusiness`. Ingen egen LocalBusiness på dg97.org |
+| Bilder | Äkta foton: OG `og_image_reception_1200x630.jpg`, hero `hero_reception_ekta_1600x900.jpg`, galleri `ekta_*`. Ingen AI-kollage |
+| Veckojobbet | Får inte lägga priser i nya artiklar och får inte återställa undantagen |
+| Canonical | Self-referencing på dg97.org, inklusive `/lediga-rum` |

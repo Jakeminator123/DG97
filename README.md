@@ -1,6 +1,6 @@
 # DG97 Kontorsguiden
 
-Separat inspirations- och guidesajt från DG97 om kontorshotell och arbetsliv i Stockholm. Sajten på `www.dg97.org` har egna guider och checklistor. Aktuella rum, priser, visningar och förfrågningar hänvisas till huvudwebbplatsen `www.dg97.se`.
+Separat inspirations- och guidesajt från DG97 om kontorshotell och arbetsliv i Stockholm. Sajten på `www.dg97.org` har egna guider och checklistor. Den ska stödja huvudwebbplatsen `www.dg97.se`, inte konkurrera om varumärkes- eller bokningssökningar.
 
 ## Project status
 
@@ -10,9 +10,11 @@ This is the repository connected to the Vercel project `dg-97` in the account re
 
 - Håll guiden användbar i sig: jämförelser, frågor inför visningar och praktiska råd. Skapa inte kopior eller ortssidor enbart för söktrafik.
 - Ange DG97 som avsändare. Presentera inte sajten som en oberoende jämförelsetjänst.
-- Publicera inga obekräftade priser, rabatter, lediga rum, svarstider, avtalsperioder, betyg, certifieringar eller kundberättelser.
-- Låt förfrågningar gå till `https://www.dg97.se/kontakt/`. Gemensamma adresser och namn finns i `config/site.js`.
-- Guider använder egna canonical-adresser på guidens domän. Strukturerad data beskriver innehållet, utan erbjudanden, recensioner eller bokningsbekräftelser.
+- Publicera inga obekräftade rabatter, svarstider, avtalsperioder, betyg, certifieringar eller kundberättelser.
+- Priser och lediga rum får bara finnas på `/lediga-rum` och i det daterade räkneexemplet i artikeln *Vad kostar ett kontorshotell i Stockholm?*. Alltid `exkl. moms`. En enda källa: `data/lediga-rum.json`. Lista inte rum 1.
+- Veckoartiklarna får inte innehålla priser eller lediga rum och får inte "rätta tillbaka" de två undantagen.
+- Låt förfrågningar och visningsbokning gå till `https://www.dg97.se/kontakt/` (eller `/lediga-kontor/` när den sidan finns). NAP och `sameAs` finns i `config/site.js`.
+- Guider använder egna canonical-adresser på guidens domän. Organization-schemat pekar på `https://www.dg97.se/#localbusiness`. Ingen egen LocalBusiness med url dg97.org. Inga recensioner eller bokningsbekräftelser.
 - Sätt `draft: true` i frontmatter för att undanta ett inlägg från publika sidor, API och sitemap. Ange `modifiedDate` när en artikel uppdateras.
 - Den äldre bloggeneratorn ska inte användas för automatisk publicering utan faktagranskning. Muterande admin-API:er är fortsatt pausade.
 

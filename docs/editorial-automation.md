@@ -10,7 +10,7 @@ Datorn måste vara på och Codex-appen igång för arbetet med lokala filer. Upp
 
 ## Körning
 
-1. Arbeta i detta repo på `main`. Kontrollera Git-status och tidigare ofärdiga veckoinlägg innan du börjar. Rör inte användarens andra ändringar, inklusive `.vscode/settings.json`.
+1. Arbeta i detta repo på `main`. Kontrollera Git-status och tidigare ofärdiga veckoinlägg innan du börjar. Rör inte användarens andra ändringar, inklusive `.vscode/settings.json`. Första körningen är fredag 9 oktober 2026 kl. 09.00. Om `dg97/oktober-uppdatering` inte är sammanslagen: läs minnet av den PR:en och skriv inte över NAP, schema, `/lediga-rum` eller prisundantaget.
 2. Hämta aktuell remote och uppdatera med en vanlig fast-forward endast om det kan ske utan att påverka användarens filer. Ingen force-push eller hård återställning. Vid konflikt eller oklart ägarskap, bevara arbetet och be om hjälp.
 3. Återuppta ett redan förberett men opushat inlägg före ett nytt. Identifiera agentens tidigare arbete genom Markdownens `automation: dg97-weekly-guide`, schemastaten och Git-diffen. Kontrollera också om föregående push redan finns på remote. Färdigställ samma inlägg och skapa inget ytterligare som återhämtning.
 4. Kör `node scripts/editorial-schedule.mjs status`. Om `due` är falskt och ingen tidigare publicering återstår, avsluta utan ändringar eller statusmeddelande.
@@ -28,7 +28,9 @@ Datorn måste vara på och Codex-appen igång för arbetet med lokala filer. Upp
 - Frontmatter: `title`, dagens `date` och `modifiedDate`, `author: DG97 Kontorsguiden`, `excerpt`, en av kategorierna i `config/editorial.js`, `automation: dg97-weekly-guide`, bild och bildbeskrivning samt `sources` med faktiska HTTPS-källor. Vid färdig publicering: `draft: false`.
 - Använd ett befintligt, relevant foto från `public/images/`. Inspektera bilden innan du beskriver den och använd korrekt alt-text. Skapa inte påhittade bilder av DG97:s lokaler.
 - Kontrollera aktuella DG97-uppgifter på `www.dg97.se`. Övriga faktapåståenden ska vid behov stödjas av relevanta primärkällor. Ange och länka källorna; kopiera inte deras texter. Skilj egna praktiska råd från verifierade verksamhetsuppgifter.
-- Inga fasta eller påhittade priser, rabatter, lediga rum, certifieringar, svarstider eller löften om avtal, service, utrustning eller säkerhet. Om en uppgift inte går att styrka, ta bort den eller formulera en fråga att ställa till DG97.
+- Inga fasta eller påhittade priser, rabatter, lediga rum, certifieringar, svarstider eller löften om avtal, service, utrustning eller säkerhet i **veckoartikeln**. Om en uppgift inte går att styrka, ta bort den eller formulera en fråga att ställa till DG97.
+- **Rör inte** `/lediga-rum`, `data/lediga-rum.json` eller räkneexemplet i `content/posts/vad-kostar-ett-kontorshotell-i-stockholm.md`. De är godkända, daterade undantag (beslut 3 oktober 2026). Publicera inte priser någon annanstans och "rätta" inte tillbaka de sidorna till noll priser.
+- Länka gärna till `/lediga-rum` när ämnet passar, utan att kopiera prislistan in i den nya artikeln.
 - Inga påhittade egna erfarenheter, kundcitat, intervjuer, personer eller författarbiografier. Ingen medicinsk, juridisk eller finansiell rådgivning. Tillskriv inte texten en människa som påstås ha skrivit den för hand. AI-stöd beskrivs på sidan Om guiden.
 - Länka naturligt till befintliga, publika relaterade guider och till `https://www.dg97.se/` eller kontaktvägen där det är användbart. Kontrollera att de interna artikellänkarna finns.
 

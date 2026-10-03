@@ -4,7 +4,7 @@ Den publika webbplatsen körs på Vercel-projektet `dg-97`, kopplat till `Jakemi
 
 ## Aktiva funktioner
 
-- Separat guidesajt med jämförelser, artiklar, frågor inför kontorsvalet och miljöbilder. Priser och lediga rum publiceras inte här.
+- Separat guidesajt med jämförelser, artiklar, frågor inför kontorsvalet och miljöbilder. Daterade priser och lediga rum finns bara på `/lediga-rum` plus ett räkneexempel i kostnadsartikeln; CTA går till dg97.se.
 - Blogg: Markdown i `content/posts/`. Startsidan, bloggindex och artiklar byggs från samma innehåll vid deployment. Ändringar publiceras via GitHub.
 - Kontakt och visningar: länkar till `https://www.dg97.se/kontakt/`. Guiden har inget eget kontaktformulär, ingen inbäddad karta och inget globalt bokningsskript.
 - Admin: valfri, endast läsning av publicerade blogginlägg.

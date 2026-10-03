@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { DG97_URL, DG97_CONTACT_URL } from '../config/site';
+import { DG97_CONTACT_URL } from '../config/site';
+import NapBlock from './NapBlock';
+
 export default function Footer() {
   return (
     <footer className="bg-primary-950 text-white">
@@ -11,14 +13,14 @@ export default function Footer() {
           </div>
           <nav aria-label="Guider och information" className="space-y-3">
             <Link href="/blogg" className="block hover:underline">Läs våra guider</Link>
+            <Link href="/lediga-rum" className="block hover:underline">Lediga rum hösten 2026</Link>
             <Link href="/fragor-och-svar" className="block hover:underline">Frågor inför kontorsvalet</Link>
             <Link href="/om-oss" className="block hover:underline">Om guiden och DG97</Link>
           </nav>
           <div>
-            <h2 className="font-semibold mb-4">Rum, priser och kontakt</h2>
-            <p className="text-blue-100 leading-relaxed mb-4">Aktuella uppgifter och förfrågningar hanteras på DG97:s huvudwebbplats.</p>
-            <a href={DG97_URL} className="block underline underline-offset-4 mb-3">www.dg97.se</a>
-            <a href={DG97_CONTACT_URL} className="block hover:underline">Kontakta DG97</a>
+            <h2 className="font-semibold mb-4">Kontorshotellet</h2>
+            <NapBlock className="text-blue-100 leading-relaxed space-y-1" />
+            <a href={DG97_CONTACT_URL} className="inline-block mt-4 hover:underline">Kontakta DG97 på dg97.se</a>
           </div>
         </div>
         <div className="mt-10 pt-6 border-t border-white/20 text-sm text-blue-200 flex flex-wrap items-center justify-between gap-3">

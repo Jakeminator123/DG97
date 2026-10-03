@@ -122,6 +122,23 @@ test('all twenty initial articles are published with images, sources and categor
   assert.equal(titles.size, 20);
 });
 
+test('published guides keep the site-wide price ban except the dated DG97 worked example', () => {
+  const { PRICE_ALLOWED_SLUGS } = require('../config/site');
+  const root = path.resolve(__dirname, '..');
+  const { getPosts } = require('../lib/posts');
+  for (const post of getPosts()) {
+    const { content } = matter.read(path.join(root, 'content/posts', `${post.slug}.md`));
+    if (PRICE_ALLOWED_SLUGS.includes(post.slug)) {
+      assert.match(content, /Exempel: så räknar DG97 \(oktober 2026\)/, post.slug);
+      assert.match(content, /1 200 kr\/kvm\/mån exkl\. moms/, post.slug);
+      assert.match(content, /exkl\. moms/, post.slug);
+      assert.match(content, /\/lediga-rum/, post.slug);
+    } else {
+      assert.doesNotMatch(content, /\b\d[\d\s.,]*\s*(?:kr|SEK)\b/, post.slug);
+    }
+  }
+});
+
 test('related guides exclude the current article, stay public and prefer the same topic', () => {
   const { getPosts, getRelatedPosts } = require('../lib/posts');
   const posts = getPosts();

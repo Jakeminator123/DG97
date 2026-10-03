@@ -138,7 +138,7 @@ export default function PageHero({
   shapes = DEFAULT_SHAPES,
   shapesOpacityClassName = "opacity-10",
   animationVariant = "default", // New prop: "default" | "orbs" | "waves" | "particles" | "pulse"
-  backgroundImage = "/images/reception_bred.jpg",
+  backgroundImage = "/images/hero_reception_ekta_1600x900.jpg",
   backgroundImageOpacity = 0.18,
   showBackgroundImage = true,
   className = "",
