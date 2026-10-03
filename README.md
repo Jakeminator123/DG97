@@ -36,7 +36,7 @@ dg97.org/lediga-rum
 - Sidan visar bara rader där `available=true` **och** `publish=true`. Rum 1 publiceras alltså inte så länge `publish=false`.
 - `ledigt nu` / `ledigt från <datum>` räknas mot dagens datum i Europe/Stockholm, inte mot texten i `status`.
 - Pris alltid `kr/mån exkl. moms`. Planritningen visar rum + kvm + ledig-status, aldrig pris eller hyresgästnamn.
-- Ritningen täcker rum 1–14. Lediga rum 15–20 listas under **Rum utanför ritningen**.
+- Ritningen är den riktiga planskissen (`public/images/planritning-dg97.png`) med polygoner för rum 1–23 i `data/plan-rooms.json`. Rum 23 är konferensrum: alltid grått, hyrs inte ut och listas aldrig som ledigt (även om feeden skulle säga det).
 - Sidan byggs om ungefär varje timme (`revalidate: 3600`). URL kan bytas med `LEDIGA_RUM_CSV_URL`.
 - Om CSV inte går att hämta eller parsa används `data/lediga-rum.json`. Bygget får inte falla på feed-fel.
 

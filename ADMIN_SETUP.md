@@ -47,7 +47,7 @@ Valfri servervariabel, med publicerad CSV som standard:
 LEDIGA_RUM_CSV_URL=https://docs.google.com/spreadsheets/d/e/2PACX-1vQsetIg9Tp7-AAan7ucev64Hqp7Mi4Di3FUFl3pldsMiaWRnqTdkOyYW1GgNgLCJHgsukQ1kKL-plx7/pub?gid=345753643&single=true&output=csv
 ```
 
-Om hämtning eller parse misslyckas används `data/lediga-rum.json`. Bygget ska inte falla. Planens geometri ligger i `data/plan-rooms.json` (rum 1–14); rum 15–20 listas under ritningen.
+Om hämtning eller parse misslyckas används `data/lediga-rum.json`. Bygget ska inte falla. Planens geometri ligger i `data/plan-rooms.json` (rum 1–23 på planskissen `public/images/planritning-dg97.png`); rum 23 är konferensrum och visas aldrig som ledigt.
 
 ## Verifiering och deployment
 
