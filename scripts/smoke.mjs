@@ -75,15 +75,21 @@ try {
     }
     if (path === '/lediga-rum') {
       assert.match(html, /canonical" href="https:\/\/www\.dg97\.org\/lediga-rum"/, 'self-referencing canonical');
-      assert.match(html, /Uppdaterad oktober 2026/);
-      assert.match(html, /Rum 18/);
-      assert.match(html, /Rum 20/);
-      assert.match(html, /Rum 9/);
-      assert.doesNotMatch(html, /Rum 1(?!\d)/, 'room 1 is not listed');
+      assert.match(html, /Senast uppdaterad/);
+      assert.match(html, /data-listed-room="18"/);
+      assert.match(html, /data-listed-room="20"/);
+      assert.match(html, /data-listed-room="9"/);
+      assert.doesNotMatch(html, /data-listed-room="1"/, 'room 1 is not in the published list');
       assert.match(html, /12 000 kr\/mån exkl\. moms/);
       assert.match(html, /8 400 kr\/mån exkl\. moms/);
       assert.match(html, /16 200 kr\/mån exkl\. moms/);
       assert.match(html, /Boka visning på dg97\.se/);
+      assert.match(html, /<svg\b[^>]*aria-labelledby="dg97-plan-title/);
+      assert.match(html, /data-room-id="9" data-available="true"/);
+      assert.match(html, /data-room-id="1" data-available="false"/);
+      assert.match(html, /Rum utanför ritningen/);
+      assert.match(html, /från 30 nov|ledigt från 30 november/);
+      assert.doesNotMatch(html, /<svg[\s\S]*?\d[\d\s.,]*\s*kr[\s\S]*?<\/svg>/, 'floor plan has no prices');
     }
     if (path === '/blogg') {
       assert.match(html, /Sök bland guiderna/);

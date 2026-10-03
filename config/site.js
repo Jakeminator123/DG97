@@ -29,6 +29,9 @@ const PRICE_ALLOWED_PATHS = [
   '/blogg/vad-kostar-ett-kontorshotell-i-stockholm',
 ];
 const PRICE_ALLOWED_SLUGS = ['vad-kostar-ett-kontorshotell-i-stockholm'];
+const LEDIGA_RUM_CSV_URL = process.env.LEDIGA_RUM_CSV_URL
+  || 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQsetIg9Tp7-AAan7ucev64Hqp7Mi4Di3FUFl3pldsMiaWRnqTdkOyYW1GgNgLCJHgsukQ1kKL-plx7/pub?gid=345753643&single=true&output=csv';
+const LEDIGA_RUM_REVALIDATE_SECONDS = 3600;
 
 function referralUrl(url, placement) {
   const tagged = new URL(url);
@@ -51,5 +54,7 @@ module.exports = {
   DG97_BUSINESS,
   PRICE_ALLOWED_PATHS,
   PRICE_ALLOWED_SLUGS,
+  LEDIGA_RUM_CSV_URL,
+  LEDIGA_RUM_REVALIDATE_SECONDS,
   referralUrl,
 };

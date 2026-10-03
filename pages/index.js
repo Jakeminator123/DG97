@@ -48,7 +48,7 @@ export default function Home() {
 
       <section className="bg-primary-50 border-b border-primary-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="text-primary-950 font-semibold">Just nu: tre rum blir lediga i november.</p>
+          <p className="text-primary-950 font-semibold">Se vilka rum DG97 just nu publicerar som lediga.</p>
           <Link href="/lediga-rum" className="text-primary-700 font-semibold underline underline-offset-4">
             Se storlek, datum och hur hyran räknas
           </Link>

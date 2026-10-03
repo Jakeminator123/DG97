@@ -45,7 +45,11 @@ Gårdagens noll-pris-linje justeras medvetet. Guiden får visa **bekräftade, da
 | Priser och lediga rum | Endast `/lediga-rum` och räkneexemplet i *Vad kostar ett kontorshotell i Stockholm?* |
 | Rum 1 (från 2027-01-01) | Visas inte |
 | Prisformulering | Alltid `exkl. moms`. Modell 1 200 kr/kvm/mån exkl. moms, all-inclusive, flexibla villkor |
-| Datakälla | `data/lediga-rum.json` — uppdatera bara där |
+| Datakälla | Live-CSV från arket *Tillgänglighet DG97* → fliken Publik. Fallback `data/lediga-rum.json` om feed fallerar |
+| Filter | Visa bara `available=true` och `publish=true`. Rum 1 har `publish=false` |
+| Datumtext | Räkna `ledigt nu` / `ledigt från <datum>` mot `ledigt_fran` och idag i Europe/Stockholm |
+| Uppdatering | ISR ~3600 s. `Senast uppdaterad` på sidan. Valfri `LEDIGA_RUM_CSV_URL` |
+| Planritning | Inline SVG på `/lediga-rum`: grönt = ledigt, grått = övrigt. Inga priser eller namn. Rum 15–20 under *Rum utanför ritningen* |
 | NAP | DG97 Kontorshotell, Drottninggatan 97, 113 60 Stockholm, 070-886 22 79, hej@dg97.se, primär länk dg97.se |
 | sameAs | LinkedIn `linkedin.com/company/dg97`, Facebook `facebook.com/Drottninggatan97` |
 | Schema | Organization refererar `https://www.dg97.se/#localbusiness`. Ingen egen LocalBusiness på dg97.org |
