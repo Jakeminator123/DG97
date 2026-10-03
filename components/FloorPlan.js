@@ -20,7 +20,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
     <figure className="w-full">
       <svg
         viewBox={plan.viewBox}
-        className="w-full h-auto max-w-3xl mx-auto"
+        className="w-full h-auto"
         role="img"
         aria-labelledby="dg97-plan-title dg97-plan-desc"
         fontFamily="DejaVu Sans, system-ui, sans-serif"

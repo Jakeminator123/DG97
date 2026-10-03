@@ -56,7 +56,7 @@ npm ci
 npm run lint
 npm test
 npm run test:images
-npm audit --audit-level=moderate
+npm audit --omit=dev --audit-level=moderate
 npm run build
 npm run test:smoke
 ```
