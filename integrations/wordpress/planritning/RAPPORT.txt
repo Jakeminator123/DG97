@@ -4,8 +4,9 @@ STATUS
 Backend, den rena planbilden och WordPress-modulen är färdiga och pushade till
 main i Jakeminator123/DG97. Produktionsversionen på Vercel är READY och
 https://www.dg97.org/api/planritning har kontrollerats utan inloggning.
-WordPress-publiceringen av den nya modulen återstår tills adminsessionen är aktiv.
-Den tidigare manuella planritningssidan är redan publicerad.
+Den nya modulen med ren bild och automatisk hämtning är nu sparad i HFCM 3
+och publicerad på https://www.dg97.se/planritning/. Sparat innehåll matchar
+exakt snippet.html. Sidan har kontrollerats live och nås utan inloggning.
 
 WORDPRESS: GENOMFÖRT UNDER DENNA ARBETSOMGÅNG
 - Ljus header i DG97:s blåvita profil. Videons proportioner är 16:9 och introt
@@ -85,7 +86,15 @@ VERIFIERING
   anonymt API-svar status=ok och refreshSeconds=300.
 - Den färdiga modulen läste även produktionsflödet från en annan domän i
   webbläsaren; CORS, tabell, markeringar och hämtningstid fungerade.
-- Den slutliga nya WordPress-modulen måste ännu sparas och kontrolleras live.
+- WordPress live: ren WebP-bild, automatisk hämtning med aktuellt klockslag,
+  rätt canonical/index-inställningar och 23 klickbara rum verifierade.
+  Rum 1 visar bara kontaktuppmaning; rum 23 visar inget kontorshyrespris.
+- Klick, Enter, mellanslag, rumslista och tabellknapp har provats på livesidan.
+  Mobilkontrollen gav scrollWidth=clientWidth=375 i 390 x 844-vyn.
+- Anonym HTTP-kontroll gav 200 och den nya bilden/modulen, utan adminlist.
+  Den gamla upplysningen om manuell uppdatering finns inte längre på sidan.
+- Före/efter-kopia av HFCM 3 och skärmbilder för dator/mobil är sparade lokalt.
+  Den fungerande WordPress-inloggningen har lämnats kvar åt ägaren.
 
 UNDERHÅLL OCH KVARVARANDE BESLUT
 - Uppdatera det befintliga publiceringsunderlaget, fliken Publik, för synliga
@@ -111,4 +120,4 @@ och skärmbilder finns i det lokala arbetsunderlaget; de är ingen full backup.
 Den nya API-routen är läsande och ändrar varken ark, bokningar eller konton.
 
 Denna rapport ersätter äldre rapporter som beskriver planens uppdatering
-som enbart manuell, när den nya WordPress-modulen har publicerats.
+som enbart manuell eller WordPress-publiceringen som återstående.

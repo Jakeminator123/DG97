@@ -4,6 +4,10 @@ Destination: https://www.dg97.se/planritning/
 WordPress page: 1879, shortcode [hfcm id="3"].
 HFCM snippet: 3, HTML, Shortcode Only, all devices. Do not change site-wide insertion.
 
+Live status, 2026-10-04: published in HFCM 3; stored content exactly matches
+snippet.html. Production data reads, desktop/mobile interaction and anonymous
+page access verified. See RAPPORT.txt for the consolidated owner report.
+
 Source files
 - template.html: isolated page markup, SVG click areas and scoped CSS.
 - client.js: keyboard/touch selection and filtered live reads.
