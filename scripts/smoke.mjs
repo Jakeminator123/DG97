@@ -76,18 +76,18 @@ try {
     if (path === '/lediga-rum') {
       assert.match(html, /canonical" href="https:\/\/www\.dg97\.org\/lediga-rum"/, 'self-referencing canonical');
       assert.match(html, /Senast uppdaterad/);
-      assert.match(html, /data-listed-room="18"/);
       assert.match(html, /data-listed-room="20"/);
-      assert.match(html, /data-listed-room="9"/);
+      assert.match(html, /data-listed-room="22"/);
+      assert.match(html, /data-listed-room="11"/);
       assert.doesNotMatch(html, /data-listed-room="1"/, 'room 1 is not in the published list');
       assert.match(html, /12 000 kr\/mån exkl\. moms/);
       assert.match(html, /8 400 kr\/mån exkl\. moms/);
       assert.match(html, /16 200 kr\/mån exkl\. moms/);
       assert.match(html, /Boka visning på dg97\.se/);
       assert.match(html, /<svg\b[^>]*aria-labelledby="dg97-plan-title/);
-      assert.match(html, /data-room-id="9" data-available="true"/);
+      assert.match(html, /data-room-id="11" data-available="true"/);
       assert.match(html, /data-room-id="1" data-available="false"/);
-      assert.match(html, /data-room-id="18" data-available="true"/, 'room 18 is placed on the plan');
+      assert.match(html, /data-room-id="20" data-available="true"/, 'room 20 is placed on the plan');
       assert.match(html, /data-room-id="23" data-available="false" data-room-type="konferensrum"/, 'room 23 is a grey conference room');
       assert.doesNotMatch(html, /data-listed-room="23"/, 'conference room is never listed');
       assert.doesNotMatch(html, /Rum utanför ritningen/, 'all rooms are on the plan');

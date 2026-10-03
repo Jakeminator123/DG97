@@ -15,15 +15,15 @@ const december = new Date('2026-12-01T12:00:00+01:00');
 
 test('sample CSV publishes only available and publishable rooms', () => {
   const rooms = parseFeedRows(parseCsv(sampleCsv), october);
-  assert.deepEqual(rooms.map(room => room.id), [18, 20, 9]);
+  assert.deepEqual(rooms.map(room => room.id), [20, 22, 11]);
   assert.ok(!rooms.some(room => room.id === 1));
-  assert.equal(rooms.find(room => room.id === 18).availability, 'from');
-  assert.equal(rooms.find(room => room.id === 18).availabilityLabel, 'ledigt från 1 november 2026');
-  assert.equal(rooms.find(room => room.id === 9).monthlyLabel, '16 200 kr/mån exkl. moms');
-  assert.equal(rooms.find(room => room.id === 20).planStatusLabel, 'från 15 nov');
-  assert.equal(rooms.find(room => room.id === 9).onPlan, true);
-  assert.equal(rooms.find(room => room.id === 18).onPlan, true);
+  assert.equal(rooms.find(room => room.id === 20).availability, 'from');
+  assert.equal(rooms.find(room => room.id === 20).availabilityLabel, 'ledigt från 1 november 2026');
+  assert.equal(rooms.find(room => room.id === 11).monthlyLabel, '16 200 kr/mån exkl. moms');
+  assert.equal(rooms.find(room => room.id === 22).planStatusLabel, 'från 15 nov');
+  assert.equal(rooms.find(room => room.id === 11).onPlan, true);
   assert.equal(rooms.find(room => room.id === 20).onPlan, true);
+  assert.equal(rooms.find(room => room.id === 22).onPlan, true);
 });
 
 test('past or empty ledigt_fran becomes ledigt nu in Stockholm time', () => {
@@ -60,7 +60,7 @@ test('broken feed falls back to local vacancy data', async () => {
   });
   assert.equal(snapshot.source, 'fallback');
   assert.match(snapshot.updatedLabel, /Senast uppdaterad/);
-  assert.deepEqual(snapshot.rooms.map(room => room.id), [18, 20, 9]);
+  assert.deepEqual(snapshot.rooms.map(room => room.id), [20, 22, 11]);
   assert.ok(snapshot.feedError);
   assert.equal('feedError' in toPublicSnapshot(snapshot), false);
 });
@@ -89,9 +89,9 @@ test('successful feed is used instead of fallback', async () => {
   });
   assert.equal(snapshot.source, 'feed');
   assert.equal(snapshot.roomsOffPlan.length, 0);
-  assert.deepEqual(snapshot.roomsOnPlan.map(room => room.id), [18, 20, 9]);
-  assert.ok(snapshot.plan.rooms.some(room => room.rum === 9));
-  assert.ok(snapshot.plan.rooms.some(room => room.rum === 18));
+  assert.deepEqual(snapshot.roomsOnPlan.map(room => room.id), [20, 22, 11]);
+  assert.ok(snapshot.plan.rooms.some(room => room.rum === 11));
+  assert.ok(snapshot.plan.rooms.some(room => room.rum === 20));
 });
 
 test('fallback file still never lists room 1 and formats prices with exkl. moms', () => {
