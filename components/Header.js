@@ -5,6 +5,7 @@ import { DG97_URL } from '../config/site';
 
 const navLinks = [
   { href: '/', label: 'Start' }, { href: '/blogg', label: 'Guider' },
+  { href: '/lediga-rum', label: 'Lediga rum' },
   { href: '/fragor-och-svar', label: 'Frågor & svar' },
   { href: '/galleri', label: 'Miljöbilder' }, { href: '/om-oss', label: 'Om guiden' },
 ];

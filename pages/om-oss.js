@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Layout from '../components/Layout';
 import GuideHero from '../components/GuideHero';
 import OfficialCTA from '../components/OfficialCTA';
@@ -15,7 +16,7 @@ export default function OmGuiden() {
           <h2 className="heading-2">Kontorshotellet på Drottninggatan 97</h2>
           <p>DG97 finns i Vasastan i Stockholm, nära Observatorielunden, Odenplan och Rådmansgatan. Läs mer om verksamheten på <a className="text-primary-700 underline" href={`${DG97_URL}/om-oss/`}>DG97:s egen presentation</a>.</p>
           <h2 className="heading-2">Aktuella uppgifter hos DG97</h2>
-          <p>Vi publicerar inga prislistor eller besked om lediga rum här. Utbud, service och avtalsvillkor kan förändras. Kontrollera därför uppgifter på huvudwebbplatsen och be DG97 bekräfta vad som gäller för just ditt företag.</p>
+          <p>Priser och lediga rum uppdateras av DG97 och anges med datum. Se den <Link className="text-primary-700 underline" href="/lediga-rum">daterade översikten</Link> och bekräfta alltid utbud, service och avtalsvillkor på huvudwebbplatsen för just ditt företag.</p>
           <h2 className="heading-2">Så tas guiderna fram</h2>
           <p>Guiderna tas fram med AI-stöd och uppgifter kontrolleras mot de källor som anges. Avsändaren är DG97 Kontorsguiden. Texterna innehåller inte påhittade kundberättelser eller erfarenheter som tillskrivs en enskild person. Bilderna är miljöbilder från DG97.</p>
         </div>

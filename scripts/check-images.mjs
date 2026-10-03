@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = process.cwd();
-const SEARCH_DIRS = ['pages', 'components', 'styles', 'lib', 'config'];
-const EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx', '.mdx', '.css']);
-const IMAGE_REGEX = /\/images\/[A-Za-z0-9._\-\/]+/g;
+const SEARCH_DIRS = ['pages', 'components', 'styles', 'lib', 'config', 'content'];
+const EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx', '.mdx', '.css', '.md']);
+const IMAGE_REGEX = /\/images\/[A-Za-z0-9._\-\/]+\.(?:avif|gif|jpe?g|png|svg|webp)/gi;
 const PUBLIC_DIR = path.join(ROOT, 'public');
 
 const missing = new Map();

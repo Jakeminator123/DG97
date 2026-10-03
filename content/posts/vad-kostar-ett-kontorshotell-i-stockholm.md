@@ -1,13 +1,13 @@
 ---
 title: Vad kostar ett kontorshotell i Stockholm?
 date: '2023-02-12'
-modifiedDate: '2026-10-02'
+modifiedDate: '2026-10-03'
 author: DG97 Kontorsguiden
 excerpt: >-
-  En praktisk guide till att jämföra offerter, förstå tillägg och be om ett
-  aktuellt prisförslag för ditt företag.
-featuredImage: /images/office_room.jpg
-featuredImageAlt: Miljöbild från DG97
+  En praktisk guide till att jämföra offerter, förstå tillägg och räkna på
+  ett konkret exempel från DG97.
+featuredImage: /images/ekta_office_room.jpg
+featuredImageAlt: Ljust kontorsrum på DG97 Kontorshotell
 category: valja-kontor
 ---
 
@@ -31,8 +31,16 @@ Räkna på den användning ni förväntar er. Ett erbjudande med lägre grundpri
 
 För en egen lokal behöver ni bedöma vilka delar ni ansvarar för själva: möbler, teknik, städning, drift och underhåll. På ett kontorshotell kan flera av dessa delar ingå. Kontrollera varje post i stället för att anta att allt är inkluderat eller att en lösning alltid blir billigare.
 
-## Be om en relevant offert
+## Exempel: så räknar DG97 (oktober 2026)
 
-Beskriv teamets storlek, önskat inflyttningsdatum, mötesbehov och budget. Be sedan om ett förslag som visar både kostnad och villkor.
+Här är en genomräkning av DG97:s modell, så att du ser hur ytan blir en månadshyra. Det är ett räkneexempel, inte en offert.
 
-Guiden publicerar ingen prislista för DG97. [Kontakta DG97 på huvudwebbplatsen](https://www.dg97.se/kontakt/) för ett aktuellt prisförslag och besked om tillgängliga rum.
+DG97 räknar 1 200 kr/kvm/mån exkl. moms för rum upp till 24 kvm. För rum över 24 kvm används 1 150 kr/kvm/mån exkl. moms. Hyran är all-inclusive. Villkoren är flexibla, men det som skrivs i avtalet är det som gäller.
+
+Tre storlekar som är lätta att jämföra:
+
+- 7 kvm × 1 200 kr = 8 400 kr/mån exkl. moms
+- 10 kvm × 1 200 kr = 12 000 kr/mån exkl. moms
+- 13,5 kvm × 1 200 kr = 16 200 kr/mån exkl. moms
+
+Samma räknegrund används i [översikten över rum som blir lediga i november](/lediga-rum). Där står datum och yta. Boka visning och be om en aktuell offert på [DG97:s huvudwebbplats](https://www.dg97.se/kontakt/).

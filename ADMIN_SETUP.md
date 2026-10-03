@@ -4,7 +4,7 @@ Den publika webbplatsen körs på Vercel-projektet `dg-97`, kopplat till `Jakemi
 
 ## Aktiva funktioner
 
-- Separat guidesajt med jämförelser, artiklar, frågor inför kontorsvalet och miljöbilder. Priser och lediga rum publiceras inte här.
+- Separat guidesajt med jämförelser, artiklar, frågor inför kontorsvalet och miljöbilder. Priser och lediga rum finns bara på `/lediga-rum` plus ett räkneexempel i kostnadsartikeln; CTA går till dg97.se. `/lediga-rum` uppdateras från arket *Tillgänglighet DG97*.
 - Blogg: Markdown i `content/posts/`. Startsidan, bloggindex och artiklar byggs från samma innehåll vid deployment. Ändringar publiceras via GitHub.
 - Kontakt och visningar: länkar till `https://www.dg97.se/kontakt/`. Guiden har inget eget kontaktformulär, ingen inbäddad karta och inget globalt bokningsskript.
 - Admin: valfri, endast läsning av publicerade blogginlägg.
@@ -31,6 +31,24 @@ Utan alla tre är admininloggningen avstängd. Sessioner är signerade, gäller 
 
 Den publika sajten behöver inte `OPENAI_API_KEY`, `GITHUB_TOKEN` eller `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`. Dessa gamla nycklar kan tas bort från Vercel om inget annat använder dem. Inga nycklar ändras automatiskt av denna upprensning.
 
+## Lediga rum (live-ark)
+
+Jakob/Oscar ändrar utbudet i Google-arket **Tillgänglighet DG97**:
+
+1. Redigera **Blad1** / källfliken som vanligt.
+2. Fliken **Publik** är den publicerade vyn: `rum,kvm,status,ledigt_fran,pris_exkl_moms,available,publish`.
+3. Sätt `available=true` och `publish=true` för rum som ska synas. Rum 1 ska ha `publish=false`.
+4. `kvm` med punkt (13.5). `ledigt_fran` som `yyyy-mm-dd` eller tomt (= ledigt nu).
+5. Arkets *Publicera på webben*-CSV läses av `getStaticProps`. Sidan uppdateras inom cirka en timme (ISR 3600).
+
+Valfri servervariabel, med publicerad CSV som standard:
+
+```env
+LEDIGA_RUM_CSV_URL=https://docs.google.com/spreadsheets/d/e/2PACX-1vQsetIg9Tp7-AAan7ucev64Hqp7Mi4Di3FUFl3pldsMiaWRnqTdkOyYW1GgNgLCJHgsukQ1kKL-plx7/pub?gid=345753643&single=true&output=csv
+```
+
+Om hämtning eller parse misslyckas används `data/lediga-rum.json`. Bygget ska inte falla. Planens geometri ligger i `data/plan-rooms.json` (rum 1–14); rum 15–20 listas under ritningen.
+
 ## Verifiering och deployment
 
 ```sh
@@ -38,7 +56,7 @@ npm ci
 npm run lint
 npm test
 npm run test:images
-npm audit --audit-level=moderate
+npm audit --omit=dev --audit-level=moderate
 npm run build
 npm run test:smoke
 ```
