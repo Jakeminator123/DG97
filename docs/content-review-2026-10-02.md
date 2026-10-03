@@ -49,7 +49,7 @@ Gårdagens noll-pris-linje justeras medvetet. Guiden får visa **bekräftade, da
 | Filter | Visa bara `available=true` och `publish=true`. Rum 1 har `publish=false` |
 | Datumtext | Räkna `ledigt nu` / `ledigt från <datum>` mot `ledigt_fran` och idag i Europe/Stockholm |
 | Uppdatering | ISR ~3600 s. `Senast uppdaterad` på sidan. Valfri `LEDIGA_RUM_CSV_URL` |
-| Planritning | Inline SVG på `/lediga-rum`: grönt = ledigt, grått = övrigt. Inga priser eller namn. Rum 15–20 under *Rum utanför ritningen* |
+| Planritning | Inline SVG på `/lediga-rum`: grönt = ledigt, grått = övrigt. Inga priser eller namn. Uppdaterat 2026-10-03: planskiss med rum 1–23 (alla placerade), rum 23 = konferensrum i grått |
 | NAP | DG97 Kontorshotell, Drottninggatan 97, 113 60 Stockholm, 070-886 22 79, hej@dg97.se, primär länk dg97.se |
 | sameAs | LinkedIn `linkedin.com/company/dg97`, Facebook `facebook.com/Drottninggatan97` |
 | Schema | Organization refererar `https://www.dg97.se/#localbusiness`. Ingen egen LocalBusiness på dg97.org |

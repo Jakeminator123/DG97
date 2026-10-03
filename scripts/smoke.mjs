@@ -87,7 +87,11 @@ try {
       assert.match(html, /<svg\b[^>]*aria-labelledby="dg97-plan-title/);
       assert.match(html, /data-room-id="9" data-available="true"/);
       assert.match(html, /data-room-id="1" data-available="false"/);
-      assert.match(html, /Rum utanför ritningen/);
+      assert.match(html, /data-room-id="18" data-available="true"/, 'room 18 is placed on the plan');
+      assert.match(html, /data-room-id="23" data-available="false" data-room-type="konferensrum"/, 'room 23 is a grey conference room');
+      assert.doesNotMatch(html, /data-listed-room="23"/, 'conference room is never listed');
+      assert.doesNotMatch(html, /Rum utanför ritningen/, 'all rooms are on the plan');
+      assert.match(html, /\/images\/planritning-dg97\.png/, 'plan uses the new sketch');
       assert.match(html, /från 30 nov|ledigt från 30 november/);
       const planSvg = html.match(/<svg\b[^>]*aria-labelledby="dg97-plan-title[^"]*"[\s\S]*?<\/svg>/);
       assert.ok(planSvg, 'floor plan svg is present');

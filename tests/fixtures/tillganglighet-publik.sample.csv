@@ -19,3 +19,5 @@ rum,kvm,status,ledigt_fran,pris_exkl_moms,available,publish
 18,10,ledigt från,2026-11-01,12000,true,true
 19,10,upptaget,,12000,false,true
 20,7,ledigt från,2026-11-15,8400,true,true
+21,,upptaget,,0,false,true
+22,,upptaget,,0,false,true

@@ -22,7 +22,8 @@ test('sample CSV publishes only available and publishable rooms', () => {
   assert.equal(rooms.find(room => room.id === 9).monthlyLabel, '16 200 kr/mån exkl. moms');
   assert.equal(rooms.find(room => room.id === 20).planStatusLabel, 'från 15 nov');
   assert.equal(rooms.find(room => room.id === 9).onPlan, true);
-  assert.equal(rooms.find(room => room.id === 18).onPlan, false);
+  assert.equal(rooms.find(room => room.id === 18).onPlan, true);
+  assert.equal(rooms.find(room => room.id === 20).onPlan, true);
 });
 
 test('past or empty ledigt_fran becomes ledigt nu in Stockholm time', () => {
@@ -87,9 +88,10 @@ test('successful feed is used instead of fallback', async () => {
     fetchCsv: async () => sampleCsv,
   });
   assert.equal(snapshot.source, 'feed');
-  assert.equal(snapshot.roomsOffPlan.map(room => room.id).join(','), '18,20');
+  assert.equal(snapshot.roomsOffPlan.length, 0);
+  assert.deepEqual(snapshot.roomsOnPlan.map(room => room.id), [18, 20, 9]);
   assert.ok(snapshot.plan.rooms.some(room => room.rum === 9));
-  assert.ok(!snapshot.plan.rooms.some(room => room.rum === 18));
+  assert.ok(snapshot.plan.rooms.some(room => room.rum === 18));
 });
 
 test('fallback file still never lists room 1 and formats prices with exkl. moms', () => {
@@ -101,4 +103,33 @@ test('fallback file still never lists room 1 and formats prices with exkl. moms'
   for (const room of fallback.rooms) {
     assert.equal(room.monthlyPrice, Math.round(room.sizeSqm * fallback.pricingModel.pricePerSqm));
   }
+});
+
+test('plan covers rooms 1–23 with the new sketch and room 23 as conference room', () => {
+  const plan = require('../data/plan-rooms.json');
+  assert.deepEqual(plan.rooms.map(room => room.rum), Array.from({ length: 23 }, (_, index) => index + 1));
+  assert.deepEqual(plan.roomsNotOnPlan, []);
+  assert.deepEqual(plan.conferenceRooms, [23]);
+  assert.equal(plan.rooms.find(room => room.rum === 23).type, 'konferensrum');
+  assert.equal(plan.viewBox, '0 0 582 609');
+  assert.ok(fs.existsSync(path.join(__dirname, '..', 'public', plan.image.src)));
+  for (const room of plan.rooms) {
+    assert.ok(room.polygon.length >= 3, `room ${room.rum} polygon`);
+    for (const [x, y] of room.polygon) {
+      assert.ok(x >= 0 && x <= 582 && y >= 0 && y <= 609, `room ${room.rum} inside image`);
+    }
+  }
+});
+
+test('conference room 23 is never listed as vacant, even if the feed says so', () => {
+  const csv = [
+    'rum,kvm,status,ledigt_fran,pris_exkl_moms,available,publish',
+    '23,20,ledigt nu,,24000,true,true',
+    '21,10,ledigt nu,,12000,true,true',
+    '22,,upptaget,,0,false,true',
+  ].join('\n');
+  const rooms = parseFeedRows(parseCsv(csv), october);
+  assert.deepEqual(rooms.map(room => room.id), [21]);
+  assert.equal(rooms[0].onPlan, true);
+  assert.equal(rooms[0].monthlyLabel, '12 000 kr/mån exkl. moms');
 });
