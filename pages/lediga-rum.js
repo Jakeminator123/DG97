@@ -47,7 +47,7 @@ export default function LedigaRum() {
               <tbody className="text-neutral-700">
                 {snapshot.rooms.map(room => (
                   <tr key={room.id} className="border-t border-primary-100">
-                    <th scope="row" className="p-5 font-semibold text-primary-950">Rum {room.id}</th>
+                    <th scope="row" className="p-5 font-semibold text-primary-950">{`Rum ${room.id}`}</th>
                     <td className="p-5">{room.sizeLabel}</td>
                     <td className="p-5">{room.availableFromLabel}</td>
                     <td className="p-5">{room.monthlyLabel}</td>

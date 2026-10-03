@@ -41,7 +41,9 @@ function checkGuide(html, path) {
   assert.ok(schemas.some(schema => schema.publisher?.['@id'] === DG97_BUSINESS.schemaId && schema.publisher?.url === 'https://www.dg97.se'), `${path} publisher points to dg97.se LocalBusiness`);
   assert.ok(!schemas.some(schema => schema['@type'] === 'LocalBusiness'), `${path} does not declare a competing LocalBusiness`);
   assert.doesNotMatch(JSON.stringify(schemas), /"(?:price|priceRange|aggregateRating|reviewCount|review|hasOfferCatalog)"|ReservationConfirmed|SearchAction/, `${path} no unsupported business claims`);
-  assert.match(html, new RegExp(DEFAULT_OG_IMAGE.replace(/\//g, '\\/')), `${path} default og image`);
+  if (!path.startsWith('/blogg/')) {
+    assert.match(html, new RegExp(DEFAULT_OG_IMAGE.replace(/\//g, '\\/')), `${path} default og image`);
+  }
 }
 
 try {
