@@ -89,7 +89,7 @@ try {
       assert.match(html, /data-room-id="1" data-available="false"/);
       assert.match(html, /Rum utanför ritningen/);
       assert.match(html, /från 30 nov|ledigt från 30 november/);
-      const planSvg = html.match(/<svg\b[^>]*aria-labelledby="dg97-plan-title"[\s\S]*?<\/svg>/);
+      const planSvg = html.match(/<svg\b[^>]*aria-labelledby="dg97-plan-title[^"]*"[\s\S]*?<\/svg>/);
       assert.ok(planSvg, 'floor plan svg is present');
       assert.doesNotMatch(planSvg[0], /\d[\d\s.,]*\s*kr/, 'floor plan has no prices');
     }
