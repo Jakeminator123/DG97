@@ -1,0 +1,87 @@
+<!-- DG97 planritning: publicerbara uppgifter från filtrerat liveflöde. -->
+<section id="dg97-floorplan" aria-labelledby="dg-plan-heading">
+<style>
+#dg97-floorplan{color:#25314a;max-width:1120px;margin:0 auto;padding:12px 0 20px;font-family:inherit}
+#dg97-floorplan *{box-sizing:border-box}
+#dg97-floorplan h1{font-size:clamp(28px,4vw,42px);line-height:1.15;color:#202e68;margin:0 0 18px}
+#dg97-floorplan h2{font-size:25px;line-height:1.25;color:#202e68;margin:0 0 16px}
+#dg97-floorplan p{line-height:1.6;margin:0 0 16px}
+#dg97-floorplan .dg-lead{max-width:800px;font-size:18px}
+#dg97-floorplan .dg-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:30px;align-items:start;margin:28px 0 38px}
+#dg97-floorplan .dg-map{background:#f4f6fa;border:1px solid #d9dfed;border-radius:12px;padding:14px;min-width:0}
+#dg97-floorplan svg{display:block;width:100%;height:auto}
+#dg97-floorplan .dg-room{cursor:pointer}
+#dg97-floorplan .dg-room polygon{fill:#253c83;fill-opacity:0;stroke:transparent;stroke-width:1.2;vector-effect:non-scaling-stroke}
+#dg97-floorplan .dg-available polygon{fill:#37a978;fill-opacity:.34;stroke:#207650;stroke-width:2}
+#dg97-floorplan .dg-conference polygon{fill:#7a8495;fill-opacity:.38;stroke:#6f7786}
+#dg97-floorplan .dg-room:hover polygon,#dg97-floorplan .dg-room:focus polygon,#dg97-floorplan .dg-room[aria-pressed="true"] polygon{stroke:#182c78;stroke-width:3;fill:#4666c0;fill-opacity:.28}
+#dg97-floorplan .dg-room:focus{outline:none}
+#dg97-floorplan .dg-neutral{background:#e8ecf5;color:#3b4969}
+#dg97-floorplan .dg-legend{display:flex;gap:10px 18px;flex-wrap:wrap;font-size:13px;margin:12px 0 0}
+#dg97-floorplan .dg-dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;background:#dce3f3;vertical-align:baseline;border:1px solid #253c83}
+#dg97-floorplan .dg-dot.green{background:#80c5a6;border-color:#207650}
+#dg97-floorplan .dg-dot.gray{background:#aab0bc;border-color:#6f7786}
+#dg97-floorplan .dg-card{background:#f5f7fc;border:1px solid #d9dfed;border-top:4px solid #283b83;border-radius:10px;padding:24px;min-width:0}
+#dg97-floorplan label{font-weight:600;display:block;margin-bottom:6px}
+#dg97-floorplan select{width:100%;max-width:100%;padding:10px 12px;border:1px solid #7c89ac;border-radius:5px;background:#fff;color:#25314a;font:inherit;margin:0 0 22px}
+#dg97-floorplan .dg-status{display:inline-block;font-size:14px;font-weight:600;color:#235d43;background:#e1f1e8;border-radius:5px;padding:6px 9px;margin:0 0 15px}
+#dg97-floorplan dl{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:0 0 18px}
+#dg97-floorplan dt{font-weight:600}
+#dg97-floorplan dd{margin:0;text-align:right}
+#dg97-floorplan .dg-note{font-size:14px;color:#4c5873}
+#dg97-floorplan .dg-link{display:inline-block;padding:12px 18px;background:#283b83;color:#fff!important;text-decoration:none;border-radius:5px;font-weight:600}
+#dg97-floorplan a:focus-visible,#dg97-floorplan select:focus-visible{outline:3px solid #e5ad34;outline-offset:3px}
+#dg97-floorplan .dg-table-wrap{overflow-x:auto;margin:20px 0;border:1px solid #d9dfed;border-radius:8px}
+#dg97-floorplan table{width:100%;border-collapse:collapse;margin:0;white-space:nowrap;font-size:15px}
+#dg97-floorplan caption{text-align:left;padding:12px 14px;background:#f5f7fc;color:#4c5873;white-space:normal;font-size:14px}
+#dg97-floorplan th,#dg97-floorplan td{text-align:left;padding:12px 14px;border-bottom:1px solid #d9dfed;background:#fff;color:#25314a;font-size:inherit;letter-spacing:normal;text-transform:none}
+#dg97-floorplan th{background:#eaf0f9;font-weight:600}
+#dg97-floorplan table button{font:inherit;background:none;border:0;text-decoration:underline;color:#283b83;padding:0;cursor:pointer}
+#dg97-floorplan .dg-updated{font-size:13px;color:#58637a}
+@media(max-width:760px){#dg97-floorplan .dg-layout{grid-template-columns:1fr;gap:18px}#dg97-floorplan .dg-card{padding:20px}#dg97-floorplan .dg-map{padding:8px}#dg97-floorplan .dg-lead{font-size:17px}#dg97-floorplan th,#dg97-floorplan td{padding:10px 12px}#dg97-floorplan dl{grid-template-columns:1fr}#dg97-floorplan dd{text-align:left;margin-bottom:8px}}
+</style>
+<h1 id="dg-plan-heading">Planritning och kontorsrum på DG97</h1>
+<p class="dg-lead">Hitta rätt på Drottninggatan 97. Planen visar våra 22 kontorsrum och konferensrummet. Välj ett rum i bilden eller i listan för att se yta och ett prisexempel.</p>
+<div class="dg-layout">
+<div class="dg-map">
+<svg viewBox="0 0 582 609" aria-labelledby="dg-map-title dg-map-desc" role="group"><title id="dg-map-title">Planritning över DG97 med 22 kontorsrum och konferensrum 23</title><desc id="dg-map-desc">Klicka, tryck eller använd Tab och Enter för att välja ett rum. Gröna rum är publicerade som tillgängliga från ett angivet datum. Grått markerar konferensrummet.</desc><image href="{{PLAN_IMAGE}}" width="582" height="609"/><g class="dg-room" data-room="1" role="button" tabindex="0" aria-label="Rum 1" aria-pressed="false"><title>Rum 1</title><polygon points="252,118 282,97 308,132 277,155"/></g>
+<g class="dg-room" data-room="2" role="button" tabindex="0" aria-label="Rum 2" aria-pressed="false"><title>Rum 2</title><polygon points="282,97 312,75 338,111 308,132"/></g>
+<g class="dg-room" data-room="3" role="button" tabindex="0" aria-label="Rum 3" aria-pressed="false"><title>Rum 3</title><polygon points="312,75 349,47 362,100 338,111"/></g>
+<g class="dg-room" data-room="4" role="button" tabindex="0" aria-label="Rum 4" aria-pressed="false"><title>Rum 4</title><polygon points="349,47 387,47 387,100 362,100"/></g>
+<g class="dg-room" data-room="5" role="button" tabindex="0" aria-label="Rum 5" aria-pressed="false"><title>Rum 5</title><polygon points="387,47 438,47 438,100 387,100"/></g>
+<g class="dg-room" data-room="6" role="button" tabindex="0" aria-label="Rum 6" aria-pressed="false"><title>Rum 6</title><polygon points="438,47 478,47 478,100 438,100"/></g>
+<g class="dg-room" data-room="7" role="button" tabindex="0" aria-label="Rum 7" aria-pressed="false"><title>Rum 7</title><polygon points="478,47 516,47 516,100 478,100"/></g>
+<g class="dg-room" data-room="8" role="button" tabindex="0" aria-label="Rum 8" aria-pressed="false"><title>Rum 8</title><polygon points="516,47 556,47 556,102 508,124 508,101 516,101"/></g>
+<g class="dg-room" data-room="9" role="button" tabindex="0" aria-label="Rum 9" aria-pressed="false"><title>Rum 9</title><polygon points="508,125 563,104 563,168 508,168"/></g>
+<g class="dg-room" data-room="10" role="button" tabindex="0" aria-label="Rum 10" aria-pressed="false"><title>Rum 10</title><polygon points="508,168 563,168 563,219 508,219"/></g>
+<g class="dg-room" data-room="11" role="button" tabindex="0" aria-label="Rum 11" aria-pressed="false"><title>Rum 11</title><polygon points="433,223 478,223 478,261 433,261"/></g>
+<g class="dg-room" data-room="12" role="button" tabindex="0" aria-label="Rum 12" aria-pressed="false"><title>Rum 12</title><polygon points="433,261 478,261 478,300 433,300"/></g>
+<g class="dg-room" data-room="13" role="button" tabindex="0" aria-label="Rum 13" aria-pressed="false"><title>Rum 13</title><polygon points="433,300 478,300 478,339 433,339"/></g>
+<g class="dg-room" data-room="14" role="button" tabindex="0" aria-label="Rum 14" aria-pressed="false"><title>Rum 14</title><polygon points="433,339 478,339 478,342 488,352 488,383 433,383"/></g>
+<g class="dg-room" data-room="15" role="button" tabindex="0" aria-label="Rum 15" aria-pressed="false"><title>Rum 15</title><polygon points="509,220 561,220 561,287 509,287"/></g>
+<g class="dg-room" data-room="16" role="button" tabindex="0" aria-label="Rum 16" aria-pressed="false"><title>Rum 16</title><polygon points="509,287 561,287 561,313 522,313 522,308 509,308"/></g>
+<g class="dg-room" data-room="17" role="button" tabindex="0" aria-label="Rum 17" aria-pressed="false"><title>Rum 17</title><polygon points="522,313 561,313 561,338 522,338"/></g>
+<g class="dg-room" data-room="18" role="button" tabindex="0" aria-label="Rum 18" aria-pressed="false"><title>Rum 18</title><polygon points="522,338 561,338 561,364 522,364"/></g>
+<g class="dg-room" data-room="19" role="button" tabindex="0" aria-label="Rum 19" aria-pressed="false"><title>Rum 19</title><polygon points="522,364 561,364 561,404 522,404"/></g>
+<g class="dg-room" data-room="20" role="button" tabindex="0" aria-label="Rum 20" aria-pressed="false"><title>Rum 20</title><polygon points="522,404 561,404 561,443 522,443"/></g>
+<g class="dg-room" data-room="21" role="button" tabindex="0" aria-label="Rum 21" aria-pressed="false"><title>Rum 21</title><polygon points="522,443 561,443 561,482 522,482"/></g>
+<g class="dg-room" data-room="22" role="button" tabindex="0" aria-label="Rum 22" aria-pressed="false"><title>Rum 22</title><polygon points="522,482 561,482 561,508 522,508"/></g>
+<g class="dg-room dg-conference" data-room="23" role="button" tabindex="0" aria-label="Rum 23, konferensrum" aria-pressed="false"><title>Rum 23 – konferensrum</title><polygon points="506,508 563,508 563,554 506,554"/></g></svg>
+<div class="dg-legend"><span><i class="dg-dot green" aria-hidden="true"></i>Publicerad tillgänglighet</span><span><i class="dg-dot" aria-hidden="true"></i>Övriga kontorsrum</span><span><i class="dg-dot gray" aria-hidden="true"></i>Konferensrum</span></div>
+</div>
+<div class="dg-card">
+<label for="dg-room-select">Välj rum</label><select id="dg-room-select"><option value="1">Rum 1</option><option value="2">Rum 2</option><option value="3">Rum 3</option><option value="4">Rum 4</option><option value="5">Rum 5</option><option value="6">Rum 6</option><option value="7">Rum 7</option><option value="8">Rum 8</option><option value="9">Rum 9</option><option value="10">Rum 10</option><option value="11">Rum 11</option><option value="12">Rum 12</option><option value="13">Rum 13</option><option value="14">Rum 14</option><option value="15">Rum 15</option><option value="16">Rum 16</option><option value="17">Rum 17</option><option value="18">Rum 18</option><option value="19">Rum 19</option><option value="20" selected>Rum 20</option><option value="21">Rum 21</option><option value="22">Rum 22</option><option value="23">Rum 23 – konferensrum</option></select>
+<div id="dg-room-detail" aria-live="polite" aria-atomic="true"><h2>Välj ett rum</h2><p>Hämtar aktuella rumsuppgifter …</p></div>
+<p class="dg-note">Prisbeloppen är räkneexempel med 1 200 kr/kvm/månad exkl. moms. Kontakta oss för aktuellt pris och bekräftad tillgänglighet. Planen är en översikt, ingen måttsatt ritning.</p>
+<a class="dg-link" href="/kontakt/">Fråga om ett kontorsrum</a>
+</div></div>
+<h2 id="dg-available-heading">Publicerade tillgängliga rum</h2>
+<p>Följande rum är publicerade som tillgängliga från angivna datum. Uppgifterna behöver bekräftas vid förfrågan.</p>
+<div class="dg-table-wrap" tabindex="0" role="region" aria-labelledby="dg-available-heading"><table><caption>Pris per månad är ett räkneexempel, exklusive moms.</caption><thead><tr><th scope="col">Rum</th><th scope="col">Yta</th><th scope="col">Tillgängligt från</th><th scope="col">Pris­exempel/mån</th></tr></thead><tbody><tr><td colspan="4">Hämtar aktuella uppgifter …</td></tr></tbody></table></div>
+<p class="dg-updated" id="dg-update-status" aria-live="polite">Hämtar aktuella rumsuppgifter automatiskt …</p>
+<p><a href="/kontorsrum-i-vasastan/">Läs mer om våra möblerade kontorsrum i Vasastan</a>.</p>
+<noscript><p>Kontakta oss för aktuella rumsuppgifter om JavaScript är avstängt.</p></noscript>
+<script>
+{{CLIENT_SCRIPT}}
+</script>
+</section>

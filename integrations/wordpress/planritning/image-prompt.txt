@@ -1,0 +1,9 @@
+Built-in image_gen edit, precise-object-edit.
+Edit target: the existing DG97 scanned plan, 582:609 aspect ratio.
+Request: clean scanned noise, scratchy double lines and tiny illegible annotations into
+crisp architectural line art on white, navy walls and pale blue room fills.
+Preserve composition, orientation, outer outline, wall and room positions, and numbers
+1–23. No rotation, rearrangement, extra rooms, prices, status highlights or decorations.
+Keep the open central area white. Readable sans-serif numbers in the original rooms.
+The generated image was checked against the original sketch and click geometry, then
+converted to WebP for the web. It remains an illustrated overview, not a measured plan.

@@ -104,6 +104,19 @@ try {
     }
     console.log(`OK ${path}`);
   }
+  const planFeed = await fetch(`${base}/api/planritning`, { headers: { Origin: 'https://www.dg97.se' } });
+  assert.ok([200, 503].includes(planFeed.status), 'public plan feed succeeds or fails closed');
+  assert.equal(planFeed.headers.get('access-control-allow-origin'), '*', 'WordPress can read public facts');
+  const planPayload = await planFeed.json();
+  if (planFeed.status === 200) {
+    assert.equal(planPayload.status, 'ok');
+    assert.ok(planPayload.rooms.every(room => room.id >= 1 && room.id <= 22));
+    assert.ok(planPayload.rooms.every(room => Object.keys(room).join(',') === 'id,area,available,date'));
+  } else {
+    assert.deepEqual(planPayload, { status: 'unavailable', rooms: [] });
+  }
+  assert.equal((await fetch(`${base}/api/planritning`, post({}))).status, 405);
+  console.log('OK /api/planritning');
   const list = await fetch(`${base}/api/posts`).then(r => r.json());
   assert.ok(Array.isArray(list) && list.length > 0);
   assert.ok(!list.some(post => post.slug === draftSlug), 'Drafts are excluded from the public post list');
