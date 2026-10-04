@@ -46,3 +46,55 @@ Google om indexeringsbegäranden: https://support.google.com/webmasters/answer/9
 
 Det detaljerade tekniska kontrollunderlaget finns separat i TEKNISK_VERIFIERING.txt.
 Kopior av planmodulen och skärmbilder är arbetsunderlag, inte en full säkerhetskopia.
+
+GROK: KOMPLETTERAD ÖVERLÄMNING, 4 OKTOBER 2026
+Källa: Groks rapport återgiven av ägaren. Förslag är inte samma sak som genomförda åtgärder.
+
+ARKET OCH DEN FYSISKA NUMRERINGEN
+Grok uppdaterade Tillgänglighet DG97 utifrån Invent, fliken 2026. De gamla numren 9, 18 och 20 blev 11, 20 och 22. Planen visar 22 kontorsrum och konferensrum 23, som inte hyrs ut som kontorsrum.
+Groks rapport från 3 oktober angav nedanstående rum. Tillgängligheten har inte stämts av med hyresgästerna. Beloppen används nu som räkneexempel, enligt ditt beslut.
+
+DG97.ORG OCH DEN NYA KOPPLINGEN
+Groks uppdateringar av bilder, adressuppgifter, plan och den timvisa läsningen till /lediga-rum har behållits. Codex har kompletterat med en renare planbild och ett separat filtrerat flöde till WordPress, som hämtas var femte minut.
+
+WORDPRESS: BEHÅLLET, ÅTERSTÄLLT OCH ERSATT
+Groks rättning av Företag på kontaktsidan, robots.txt, canonical-adress och verifieringsuppgifter för Google har behållits. Grok uppgav även tidigare inskickad sidkarta, indexeringsbegäranden för start och kontakt samt borttagningsbegäranden för registrering och lösenordssida.
+Startsidan återställdes efter Groks layoutproblem och fick sedan Codex varsamma uppfräschning. Groks sidor för lediga rum, konferensrum och företagsadress återpublicerades inte. Codex skapade rumssidan och planritningen, rättade omdirigeringarna och förtydligade prisartikeln.
+
+Rum 11: 13,5 kvm, angivet ledigt 30 november 2026, räkneexempel 16 200 kr/månad exkl. moms.
+Rum 20: 10 kvm, angivet ledigt 1 november 2026, räkneexempel 12 000 kr/månad exkl. moms.
+Rum 22: 7 kvm, angivet ledigt 15 november 2026, räkneexempel 8 400 kr/månad exkl. moms.
+Tillgänglighet måste bekräftas. Rum 1 uppgavs bli ledigt 1 januari 2027 men är inte publicerat.
+
+1. Gamla omdirigeringar
+Klart. Fyra dubblerade regler till borttagna sidor är avstängda. /lediga-kontor/ och kampanjen från 2023 leder till den nya rumssidan.
+
+2. Håll inloggningssidor borta från Google
+Klart. Noindex har kontrollerats på /log-in/, /registrera/ och /nytt-password/. Groks tidigare borttagningsbegäranden är uppgifter från hans rapport.
+
+3. Konferensrum och företagsadress
+Avvakta. Sidorna ligger kvar i papperskorgen. Bekräfta erbjudande och villkor innan eventuell återpublicering.
+
+4. Google-verifiering och indexering
+Delvis klart. dg97.se är kontrollerad och de två nya sidorna är anmälda till Google. Sidkartans läsfel behöver följas upp. Groks förslag om en TXT-post och indexering för dg97.org återstår.
+
+5. Gör sajten snabbare
+Återstår. Grok föreslog avstängt privatläge, cache, mindre video och översyn av Loopia-paketet. Hans uppgift om cirka fyra sekunders serversvar har inte mätts om. Vår bedömning: utred cache med inloggning och bokning undantagna; stäng inte av privatläget som snabbfix.
+
+6. Äldre bloggartiklar
+Återstår. Enligt Groks numrering: ändra adress med omdirigering för 16, 18, 19 och 23; skriv om 15 och 20-22. Identifiera artiklarna och bekräfta innehållet före ändringar.
+
+7. Bekräfta företagsfakta med Oscar
+Ägaruppgift. Kontrollera Om oss, kundcase, faktisk prisbild och lediga datum. 1 200 kr/kvm/månad är tills vidare ett tydligt räkneexempel.
+
+8. Rumsstatus och Leads
+Ägaruppgift. Grok pekade ut rum 3, 12, 21 och 22 samt uppsägningsuppgiften för 20 som osäkra. Leads har enligt honom gamla nummer. Bekräfta mappningen innan ändringar.
+
+9. Mejlet till Oscar
+Återstår. Grok föreslog att uppdatera eller radera ett delvis inaktuellt utkast. Det har inte ändrats eller skickats i denna arbetsomgång.
+
+10. MatchOffice och Apple Maps
+Ägarbeslut. Grok föreslog att besluta om dessa kataloger. Inga uppgifter har publicerats eller ändrats där av Codex.
+
+Övrigt: besluta om domänernas roller. Grok uppgav en morgonkoll vardagar 08:13 som bara sparar utkast; den har inte granskats eller ändrats här.
+Leads, hyror, interna kunduppgifter, DNS och delningsbehörigheter har inte ändrats.
