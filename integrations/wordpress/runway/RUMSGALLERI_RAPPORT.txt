@@ -1,0 +1,77 @@
+DG97: 14 Runway-filmer och rumsgalleri, 4 oktober 2026
+
+PUBLICERAT
+https://www.dg97.se/rumsgalleri/
+WordPress-sida 1889, titel Rumsgalleri, offentlig, utan sidopanel.
+SEO-titel: Kontorsrum i bilder och film | DG97 Vasastan
+Metabeskrivning: Se kontorsmiljöer hos DG97 i Vasastan med originalfoton och
+korta rumsfilmer. Utforska planritningen och kontakta oss för en visning på
+Drottninggatan 97.
+
+Från huvudmenyn: Rum & plan, sedan Se kontorsrummen i bild och film.
+En länk finns också på /kontorsrum-i-vasastan/. Galleriet länkar tillbaka
+till planen och till kontakt för visning. Sidan finns i page-sitemap.xml.
+
+GENERERING OCH UNDERLAG
+15 bildfiler innehöll 14 unika foton: 13 kontorsvyer och en mötesrumsvy.
+Rum_12m2 - kopia.JPG var identisk med Kopia av Rum_12,5m2 - kopia.JPG och
+hoppades över. En film skapades för varje unikt foto.
+
+Alla 14 skapades med Runway Gen-4 Turbo, fem sekunder, 1104 x 832, med
+instruktion om tydligare optisk zoom och bibehållen synlig inredning.
+Uppgifterna lämnades till Runways inbyggda kö. Kontot tillät en samtidig
+videogenerering. Inga alternativa grenar eller extra prov förbrukade krediter.
+Alla 14 uppgifter slutfördes. Originalen jämfördes med fem bildrutor över
+varje film. De godkändes som tydligt märkta AI-illustrationer.
+
+API-saldo före: 1 655. API-saldo efter: 1 305. Använt: 350 krediter.
+Tidigare tre prov använde 75 krediter, totalt 425 för de två omgångarna.
+Inga krediter köptes. API-nyckeln och Runways tillfälliga nedladdningsadresser
+finns inte i publicerad HTML, rapporten eller versionshistoriken.
+
+BESÖKAREN
+Originalfotot är förhandsbild. Uppspelning kräver besökarens val.
+Varje film har kontroller, playsinline och preload="none". Ingen autoplay.
+En separat länk öppnar originalfotot. Deskriptiva rubriker används.
+
+Filmerna visar AI-animation från foton, inte uppmätt 3D eller en verklig
+360-graders visning. Små detaljer kan avvika från originalfotot. Bilderna
+har inte säkert kopplats till fysiska rum 1-22. Filnamnens ytor har inte
+publicerats som verifierade fakta och bilderna ges inga gissade rumsnummer.
+Vynumren 01-14 i filnamnen är endast filförteckningens ordning.
+
+KONTROLLER
+Galleriet gav HTTP 200 utan inloggning och innehöll 14 videor, en h1,
+canonical till /rumsgalleri/, metabeskrivning och ingen noindex.
+Alla 14 MP4-filer och 14 WebP-foton gav HTTP 200. De testade filmfilerna
+01 och 14 gav HTTP 206 för byte-range, vilket möjliggör sökning i filmen.
+Första och sista filmen spelades till slutet i webview, cirka 5,04 sekunder,
+readyState 4 och utan uppspelningsfel. Mobilbredden hade ingen horisontell
+överströmning. Originalbilder och AI-beskrivningar visas i varje kort.
+
+Planen innehåller exakt ett planblock. Liveflödet fungerade och visade
+rum 20 från 1 november, 22 från 15 november och 11 från 30 november 2026.
+Prisbeloppen är fortsatt räkneexempel. Planens dataflöde ändrades inte.
+WordPress-redigeraren dubblerade tillfälligt kodblocket vid länkinfogningen;
+det rättades omedelbart och den sparade versionen samt publika sidan
+kontrollerades. Den enda slutliga ändringen i planblocket är gallerilänken.
+Gästbokningen /boka/ kräver fortfarande inloggning. För galleriet lades
+endast den exakta offentliga sökvägen /rumsgalleri/ till i Allowed Paths.
+
+SPARAT OCH RAPPORT
+Rapportmappen på skrivbordet har fått Runway-rumsgalleri med 14 webbanpassade
+filmer, 14 foto-kopior, originalfilmer, filförteckning, genereringsuppgifter,
+publicerade adresser och en lokal Visa-filmerna.html. Befintliga fotografiska
+original och äldre Runway-prov finns kvar i Rumsfoton och Runway-prover.
+De webbanpassade filmerna är sammanlagt cirka 12,46 MB.
+
+Den samlade PDF-rapporten är nu sju sidor. De tidigare sex sidornas innehåll
+har bevarats, inklusive Groks förslag, utförda åtgärder och återstående
+ägarbeslut. Ny sida 7 beskriver detta galleri. Sidnumreringen har rättats.
+
+Underlag: rumsgalleri.html och rumsgalleri-generering.json. Rapportens
+filförteckning visar kopplingen till ursprungsbilderna. WordPress räcker
+för denna lösning; ingen React-migrering behövs.
+
+Runway API-priser: https://docs.dev.runwayml.com/guides/pricing/
+Runway kö och kontogränser: https://docs.dev.runwayml.com/usage/tiers/
