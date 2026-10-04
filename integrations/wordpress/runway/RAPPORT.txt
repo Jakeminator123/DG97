@@ -1,0 +1,61 @@
+DG97 - Runway och tydligare navigation, 4 oktober 2026
+
+PUBLICERAT I WORDPRESS
+Huvudmenyn har länken "Rum & plan" direkt efter "Om oss". Den leder till
+https://www.dg97.se/planritning/ och syns på dator och i mobilmenyn.
+Den syns också för besökare utan inloggning.
+
+Ett kort videoprov är publicerat på
+https://www.dg97.se/kontorsrum-i-vasastan/#dg97-room-video
+Det utgår från ett verkligt foto av ett kontorsrum på DG97. Filmen är
+märkt som AI-animerad illustration; små detaljer kan avvika. Den beskriver
+inte en uppmätt 3D-modell och är inte kopplad till dagens rumsnummer eller
+tillgänglighet. Originalfotot kan öppnas direkt från sidan.
+
+Filmen är 3,5 sekunder, utan ljud eller automatisk uppspelning.
+Den har vanliga uppspelningskontroller och preload="none".
+En komprimerad version av originalfotot används som förhandsbild.
+Videon är cirka 540 kB och förhandsbilden cirka 86 kB.
+
+TRE PROV MED RUNWAY
+Gen-4 Turbo användes med en försiktig framåtrörelse och instruktion att
+behålla synlig inredning och geometri. Tre femsekundersfilmer skapades;
+leveransversionerna kortades till 3,5 sekunder och komprimerades för webben.
+
+1. Rum_14,5m2.JPG: det publicerade exemplet. Reflexerna förändras mer mot
+   slutet av originalfilmen, därför används en kortare version.
+2. Kopia av Rum_12,5m2 - kopia.JPG: sparat alternativ, inte publicerat.
+3. Rum_20_m2 - kopia.JPG: sparat experiment, inte publicerat. Runway visar
+   en extra fönsterliknande del vid vänsterkanten. Använd inte detta som
+   dokumentation av rummets verkliga utformning.
+
+Ytorna i filnamnen kommer från originalfilernas namn och är inte en ny
+kontroll av ytorna. Bilderna har inte mappats till fysiska rum 1-22.
+Originalfoton har bevarats och finns tillsammans med proven i mappen
+Runway-prover i skrivbordets DG97_slutrapport_2026-10-04.
+
+KREDITER OCH KONTROLLER
+API-saldot var 730 före proven och 655 efter: 75 API-krediter förbrukades.
+Inga nya krediter köptes. Den separata Runway-webbplatsens krediter användes
+inte. API-nyckeln finns inte i rapporten, filmerna eller webbplatsens kod.
+
+WordPress visade att sidan och menyn sparats. Den publicerade videon
+spelades till slutet på dator, utan uppspelningsfel. Mobilvyn kontrollerades.
+Den publika rumssidan kontrollerades utan inloggning: HTTP 200, AI-märkning,
+originalfoto, preload="none" och ingen autoplay.
+
+REKOMMENDATION
+Behåll WordPress. En enkel videospelare behöver ingen flytt till React.
+För en exakt 360-graders eller 3D-visning behövs verkligt underlag från
+rummet; ett enstaka foto räcker inte för att veta hur dolda delar ser ut.
+Filmen kan hjälpa besökaren förstå miljön. Det finns ingen belagd automatisk
+Google-bonus för AI-animation. Tydlig information, riktiga bilder, aktuella
+rumsuppgifter och enkel kontakt är fortsatt viktigast.
+
+Källor:
+https://docs.dev.runwayml.com/guides/pricing/
+https://developers.google.com/search/docs/appearance/video
+https://wordpress.org/documentation/article/video-block/
+
+Den samlade PDF-rapporten innehåller även den tidigare överlämningen från
+Grok: vad som behållits, återställts, utförts och återstår för ägarbeslut.

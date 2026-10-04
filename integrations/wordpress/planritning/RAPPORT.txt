@@ -98,3 +98,11 @@ Delvis klart. dg97.se är kontrollerad och de två nya sidorna är anmälda till
 
 Övrigt: besluta om domänernas roller. Grok uppgav en morgonkoll vardagar 08:13 som bara sparar utkast; den har inte granskats eller ändrats här.
 Leads, hyror, interna kunduppgifter, DNS och delningsbehörigheter har inte ändrats.
+
+TILLÄGG: RUNWAY OCH NAVIGATION, 4 OKTOBER 2026
+Länken "Rum & plan" är nu publicerad direkt efter "Om oss" i huvudmenyn. Den har kontrollerats på dator, i mobilmenyn och för besökare utan inloggning.
+Ett kort, AI-animerat videoprov är publicerat på rumssidan: https://www.dg97.se/kontorsrum-i-vasastan/#dg97-room-video. Originalfotot är förhandsbild och kan öppnas från sidan. Filmen är 3,5 sekunder, har uppspelningskontroller och startar inte automatiskt. Den laddas först vid uppspelning. AI-märkningen förklarar att små detaljer kan avvika. Exemplet är inte kopplat till rumsnummer eller tillgänglighet.
+Tre Runway-prov och deras originalfoton har sparats i undermappen Runway-prover tillsammans med rapporten. Provet från fotot märkt 14,5 m2 är publicerat. Provet från 12,5 m2-fotot är ett sparat alternativ. Provet från 20 m2-fotot är ett experiment som inte publicerats, eftersom Runway visar en osäker fönsterliknande del. Filnamnens ytor är inte en ny kontroll av rummen.
+API-saldot sjönk från 730 till 655 krediter: 75 API-krediter användes för tre femsekundersgenereringar. Leveransversionerna kortades till 3,5 sekunder och komprimerades. Inga krediter köptes och API-nyckeln har inte lagts i rapporten eller webbplatsens kod.
+WordPress räcker för denna enkla video. En verklig 360-graders eller 3D-visning behöver fler fotografiska vinklar eller en faktisk uppmätning. Ingen automatisk Google-rankingbonus för AI-animation är belagd; nyttan är att hjälpa besökaren se miljön.
+Publiceringen och uppspelningen har kontrollerats på dator och mobil. Rumssidan returnerade HTTP 200 utan inloggning, med AI-märkning, originalfoto, preload="none" och utan autoplay. Detaljer och publicerad HTML finns i integrations/wordpress/runway/.
