@@ -8,7 +8,8 @@ Metabeskrivning: Se kontorsmiljöer hos DG97 i Vasastan med originalfoton och
 korta rumsfilmer. Utforska planritningen och kontakta oss för en visning på
 Drottninggatan 97.
 
-Från huvudmenyn: Rum & plan, sedan Se kontorsrummen i bild och film.
+Från huvudmenyn: Galleri, sedan Se alla 14 rumsfilmer.
+Även från Rum & plan: Se kontorsrummen i bild och film.
 En länk finns också på /kontorsrum-i-vasastan/. Galleriet länkar tillbaka
 till planen och till kontakt för visning. Sidan finns i page-sitemap.xml.
 
@@ -30,8 +31,10 @@ Inga krediter köptes. API-nyckeln och Runways tillfälliga nedladdningsadresser
 finns inte i publicerad HTML, rapporten eller versionshistoriken.
 
 BESÖKAREN
-Originalfotot är förhandsbild. Uppspelning kräver besökarens val.
-Varje film har kontroller, playsinline och preload="none". Ingen autoplay.
+Originalfotot är förhandsbild. Filmen startar tyst en gång när den syns
+och stannar. Avslutad film kan spelas igen genom hover på dator. Inga
+oavbrutna loopar. Reglage, playsinline och preload="none" finns kvar.
+Minskad rörelse respekteras; då väljer besökaren själv att spela.
 En separat länk öppnar originalfotot. Deskriptiva rubriker används.
 
 Filmerna visar AI-animation från foton, inte uppmätt 3D eller en verklig
@@ -65,9 +68,9 @@ publicerade adresser och en lokal Visa-filmerna.html. Befintliga fotografiska
 original och äldre Runway-prov finns kvar i Rumsfoton och Runway-prover.
 De webbanpassade filmerna är sammanlagt cirka 12,46 MB.
 
-Den samlade PDF-rapporten är nu sju sidor. De tidigare sex sidornas innehåll
+Den samlade PDF-rapporten är nu åtta sidor. De tidigare sex sidornas innehåll
 har bevarats, inklusive Groks förslag, utförda åtgärder och återstående
-ägarbeslut. Ny sida 7 beskriver detta galleri. Sidnumreringen har rättats.
+ägarbeslut. Sidorna 7-8 beskriver galleriet och SEO-slutkontrollen. Sidnumreringen har rättats.
 
 Underlag: rumsgalleri.html och rumsgalleri-generering.json. Rapportens
 filförteckning visar kopplingen till ursprungsbilderna. WordPress räcker

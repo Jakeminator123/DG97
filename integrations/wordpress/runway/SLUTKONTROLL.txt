@@ -1,0 +1,67 @@
+DG97 - sista publicering och kontroll, 4 oktober 2026
+
+PUBLICERAT I WORDPRESS
+https://www.dg97.se/galleri/
+Den vanliga Galleri-sidan har en tydlig introduktion, två rumsfilmer,
+en knapp till alla 14 filmvyer och en knapp till planritningen. De
+befintliga 15 miljöfotona ligger kvar. Ny H1, SEO-titel och metabeskrivning.
+
+https://www.dg97.se/rumsgalleri/
+14 filmer finns live. De spelar tyst en gång när de syns och stannar.
+På dator kan en avslutad film startas igen genom att föra musen över den.
+Ingen oavbruten loop. Reglage finns kvar. Filmer utanför bild eller i en
+dold flik pausas. Besökarens inställning för minskad rörelse respekteras.
+Webbläsaren kan neka automatisk uppspelning; då används vanliga reglage.
+
+HFCM-snippet 4 är aktiv i sidfoten endast på sidorna 847 och 1889.
+Källkod: play-once.js. De tidigare sidbyggarblocken har bevarats.
+Planens automatiska dataflöde och tillgänglighet ändrades inte i denna
+sista omgång. Lediga rum och planen nås via huvudmenyn Rum & plan.
+Headerns utseende är fortsatt ljust och har inte byggts om igen.
+
+BILDMATERIAL OCH RUNWAY
+15 originalfiler innehåller 14 unika foton: 13 kontorsvyer och en
+mötesrumsvy. Därför finns 14 filmer, inte en film för vart och ett av
+de fysiska rummen 1-22. Kopplingen foto -> fysiskt rumsnummer är ännu
+inte verifierad. Filmerna är märkta AI-illustrationer, inte uppmätt 3D.
+350 krediter för 14 filmer + 75 för tidigare prov = 425 totalt.
+Den sista justeringen av uppspelning och navigation använde inga krediter.
+
+VERIFIERAT
+Huvudsidorna är offentliga och svarar HTTP 200. Bland 65 kontrollerade
+interna länkar hittades ingen HTTP-felsida. /boka/ går avsiktligt till
+inloggning. /lediga-kontor/ går vidare till kontorsrumssidan.
+Headerns meny och logotyp fungerar. Mobilmenyn och Rum & plan testades
+på 390 px bredd, utan horisontell överströmning.
+De två synliga filmerna nådde slutet och stannade: ended=true,
+paused=true, loop=false, muted=true, playbackRate=0.9. Hover-replay
+testades genom faktisk musrörelse. De andra filmerna fortsätter inte loopa.
+robots.txt hänvisar till huvudsidkartan. Huvud-, sid- och inläggskartor
+är offentliga, svarar HTTP 200 och är giltig XML. 24 sid-/inläggsadresser.
+Planen, kontorsrumssidan och rumsgalleriet finns i sidkartan.
+Inloggnings-, registrerings- och lösenordssidor har noindex.
+Sidtitlar, metabeskrivningar, canonical-adresser och giltiga företags-
+och adressuppgifter i strukturerad data har kontrollerats i publik HTML.
+
+GOOGLE SEARCH CONSOLE
+Kontot jakob@dg97.se och rätt egendom https://www.dg97.se/ användes.
+sitemap_index.xml har status Success och skickades in igen 4 oktober.
+Google accepterade en indexeringsbegäran för /rumsgalleri/ efter live-test.
+Det innebär att begäran är mottagen, inte att sidan redan är indexerad.
+Den separata page-sitemap.xml visar fortfarande Couldn't fetch i
+Search Console trots korrekt HTTP 200 och XML vid offentlig kontroll.
+Det felet är dokumenterat och ska följas upp senare; ingen påstådd lösning.
+Server/cache och senare Googlerapporter återstår att följa upp.
+Fysisk rums-/fotomappning samt uppgifter och ägarbeslut från Groks rapport
+behöver också bekräftas av verksamheten. Inga nycklar finns i paketet.
+
+SPARAT
+Google Drive / DG97 Uthyrning / DG97 slutmaterial – 2026-10-04:
+https://drive.google.com/drive/folders/1K4WwYrhCESbRCHdHYA1ZMqyZJ0NBsgsg
+14 webbfilmer och 15 originalfoton sparas separat för enkel åtkomst.
+Hela skrivbordspaketet finns även som ZIP, inklusive originalfilmer,
+tidigare prov, planritning, filförteckning, rapporter och kontrollbilder.
+PDF-rapporten är åtta sidor. De tidigare sex sidornas innehåll finns kvar,
+inklusive Groks förslag, utförda åtgärder och återstående beslut.
+Sidorna 7-8 beskriver filmerna, sista ändringarna och SEO-slutkontrollen.
+WordPress räcker för lösningen. Inga React-/Next-byggkrav gäller publiceringen.
