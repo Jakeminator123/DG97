@@ -2,10 +2,15 @@
   "version": 3,
   "mode": "weekly-generation",
   "timezone": "Europe/Stockholm",
-  "nextArticleDate": "2026-10-09",
-  "lastArticleDate": null,
-  "lastArticleSlug": null,
-  "weeklyPublished": [],
+  "nextArticleDate": "2026-10-18",
+  "lastArticleDate": "2026-10-11",
+  "lastArticleSlug": "testa-uppkopplingen-pa-kontoret",
+  "weeklyPublished": [
+    {
+      "slug": "testa-uppkopplingen-pa-kontoret",
+      "date": "2026-10-11"
+    }
+  ],
   "initialBatch": {
     "publishedOn": "2026-10-02",
     "slugs": [
