@@ -36,7 +36,7 @@
  "conferenceRooms": [
   23
  ],
- "note": "Rum 1–22 är kontorsrum. Rum 23 är konferensrum: alltid grått, hyrs inte ut, visas aldrig som ledigt.",
+ "note": "Rum 1–22 är kontorsrum. Aktuell ledighet visas enbart från den publicerade rumsfeeden. Rum 23 är konferensrum: har separat färg, hyrs inte ut och visas aldrig som ledigt.",
  "rooms": [
   {
    "rum": 1,

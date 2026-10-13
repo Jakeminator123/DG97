@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import GuideHero from '../components/GuideHero';
 import OfficialCTA from '../components/OfficialCTA';
 import NapBlock from '../components/NapBlock';
+import LocationMap from '../components/LocationMap';
 import { DG97_CONTACT_URL } from '../config/site';
 
 export default function Kontakt() {
@@ -26,6 +27,7 @@ export default function Kontakt() {
             <p className="mt-6 text-neutral-700 leading-relaxed">Be om ett aktuellt förslag med tydliga uppgifter om rum, total kostnad, tillägg och avtalsvillkor innan ni fattar beslut.</p>
           </div>
         </div>
+        <LocationMap className="mt-12" />
       </section>
     </Layout>
   );

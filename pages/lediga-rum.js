@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import GuideHero from '../components/GuideHero';
 import OfficialCTA from '../components/OfficialCTA';
 import FloorPlan from '../components/FloorPlan';
+import LocationMap from '../components/LocationMap';
 import { DG97_VACANCY_URL, LEDIGA_RUM_REVALIDATE_SECONDS } from '../config/site';
 import { formatSek, loadLedigaRumSnapshot, toPublicSnapshot, withExclVat } from '../lib/lediga-rum';
 
@@ -27,7 +28,7 @@ export default function LedigaRum({ snapshot }) {
       </GuideHero>
 
       <section className="section-container">
-        <div className="max-w-4xl">
+        <div className="max-w-6xl">
           <p className="text-lg text-neutral-700 leading-relaxed mb-8">
             Guiden listar inte ett bokningslager. Här syns de rum DG97 just nu publicerar som lediga,
             med samma räknegrund: yta gånger {withExclVat(`${formatSek(pricePerSqm)}/kvm/mån`)}.
@@ -35,13 +36,14 @@ export default function LedigaRum({ snapshot }) {
             bekräftas av DG97.
           </p>
 
-          <h2 className="heading-2 mb-4">Planritning</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-600">Ett kontor med karaktär</p>
+          <h2 className="heading-2 mb-4">Hitta din plats på DG97</h2>
           <p className="text-neutral-700 leading-relaxed mb-6">
-            Ritningen visar alla rum, 1–23. Lediga rum är gröna. Rum 23 är konferensrum och
-            hyrs inte ut. Övriga rum är inte publicerade som lediga. Håll muspekaren över ett grönt
-            rum för yta och datum.
+            Upptäck kontorets rum och gemensamma miljö. Tryck på ett rum för att läsa mer,
+            eller välj en yta i listan. Gröna rum är publicerade som lediga. Zooma in för att
+            komma närmare.
           </p>
-          <div className="rounded-2xl border border-primary-100 bg-white p-4 md:p-6 mb-6">
+          <div className="mb-8">
             <FloorPlan plan={snapshot.plan} vacantRooms={snapshot.rooms} />
           </div>
           {snapshot.roomsOffPlan.length > 0 && (
@@ -125,6 +127,7 @@ export default function LedigaRum({ snapshot }) {
           primaryLabel="Boka visning på dg97.se"
           placement="lediga-rum"
         />
+        <LocationMap className="mt-12 max-w-6xl" />
       </section>
     </Layout>
   );

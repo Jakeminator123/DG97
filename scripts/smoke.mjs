@@ -54,13 +54,13 @@ try {
     await delay(500);
   }
   assert.ok(ready, 'Production server must start');
-  for (const path of ['/', '/om-oss', '/vara-foretag', '/galleri', '/fragor-och-svar', '/blogg', '/kontakt', '/lediga-rum', '/colocate', '/foretagsportal', '/admin']) {
+  for (const path of ['/', '/om-oss', '/vara-foretag', '/galleri', '/fragor-och-svar', '/blogg', '/kontakt', '/lediga-rum', '/colocate', '/foretagsportal', '/medlemmar', '/admin']) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.match(html, /https:\/\/www\.dg97\.org/, `${path} canonical domain`);
-    if (['/admin', '/foretagsportal'].includes(path)) assert.match(html, /noindex, nofollow/);
-    if (!['/admin', '/foretagsportal'].includes(path)) checkGuide(html, path);
+    if (['/admin', '/foretagsportal', '/medlemmar'].includes(path)) assert.match(html, /noindex, nofollow/);
+    if (!['/admin', '/foretagsportal', '/medlemmar'].includes(path)) checkGuide(html, path);
     if (path === '/') {
       assert.match(html, /hero_reception_ekta_1600x900\.jpg/, 'homepage hero photo');
       assert.match(html, /href="\/lediga-rum"/, 'homepage links to vacancy overview');
@@ -88,14 +88,18 @@ try {
       assert.match(html, /data-room-id="11" data-available="true"/);
       assert.match(html, /data-room-id="1" data-available="false"/);
       assert.match(html, /data-room-id="20" data-available="true"/, 'room 20 is placed on the plan');
-      assert.match(html, /data-room-id="23" data-available="false" data-room-type="konferensrum"/, 'room 23 is a grey conference room');
+      assert.match(html, /data-room-id="23" data-available="false"[^>]*data-room-category="conference"[^>]*data-room-type="konferensrum"/, 'room 23 is always a non-rentable conference room');
+      assert.match(html, /Kontorsrum · kan hyras/, 'rentable offices are distinguished from current vacancies');
       assert.doesNotMatch(html, /data-listed-room="23"/, 'conference room is never listed');
       assert.doesNotMatch(html, /Rum utanför ritningen/, 'all rooms are on the plan');
-      assert.match(html, /\/images\/planritning-dg97\.png/, 'plan uses the new sketch');
+      assert.match(html, /\/images\/planritning-dg97-clean\.webp/, 'plan uses the cleaned sketch');
+      assert.match(html, /aria-label="Zooma in"/, 'floor plan supports zoom');
+      assert.match(html, /Information om valt rum/, 'floor plan has a persistent selection panel');
       assert.match(html, /från 30 nov|ledigt från 30 november/);
       const planSvg = html.match(/<svg\b[^>]*aria-labelledby="dg97-plan-title[^"]*"[\s\S]*?<\/svg>/);
       assert.ok(planSvg, 'floor plan svg is present');
       assert.doesNotMatch(planSvg[0], /\d[\d\s.,]*\s*kr/, 'floor plan has no prices');
+      assert.doesNotMatch(planSvg[0], /<text(?:\s|>)/, 'floor plan has no visible room numbers');
     }
     if (path === '/blogg') {
       assert.match(html, /Sök bland guiderna/);
@@ -104,6 +108,12 @@ try {
     }
     console.log(`OK ${path}`);
   }
+  const protectedPortal = await fetch(`${base}/foretagsportal`, { redirect: 'manual' });
+  assert.equal(protectedPortal.status, 307, 'member portal requires an actual session');
+  assert.equal(protectedPortal.headers.get('location'), '/medlemmar');
+  assert.equal((await fetch(`${base}/api/auth/admin/list-users`)).status, 404, 'auth proxy does not expose admin routes');
+  assert.equal((await fetch(`${base}/api/office-assistant`)).status, 200, 'public assistant status is available');
+  assert.equal((await fetch(`${base}/api/office-assistant`, post({ messages: [{ role: 'user', content: 'Hej' }] }))).status, 403, 'assistant rejects cross-origin requests');
   const planFeed = await fetch(`${base}/api/planritning`, { headers: { Origin: 'https://www.dg97.se' } });
   assert.ok([200, 503].includes(planFeed.status), 'public plan feed succeeds or fails closed');
   assert.equal(planFeed.headers.get('access-control-allow-origin'), '*', 'WordPress can read public facts');

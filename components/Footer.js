@@ -16,6 +16,7 @@ export default function Footer() {
             <Link href="/lediga-rum" className="block hover:underline">Lediga rum hösten 2026</Link>
             <Link href="/fragor-och-svar" className="block hover:underline">Frågor inför kontorsvalet</Link>
             <Link href="/om-oss" className="block hover:underline">Om guiden och DG97</Link>
+            <Link href="/medlemmar" className="block hover:underline">Medlemsinloggning</Link>
           </nav>
           <div>
             <h2 className="font-semibold mb-4">Kontorshotellet</h2>
@@ -25,7 +26,7 @@ export default function Footer() {
         </div>
         <div className="mt-10 pt-6 border-t border-white/20 text-sm text-blue-200 flex flex-wrap items-center justify-between gap-3">
           <p>© {new Date().getFullYear()} DG97 Kontorsguiden</p>
-          <p>Skapad av <a href="https://sajtmaskin.se/" className="underline underline-offset-4 hover:text-white">sajtmaskin.se</a></p>
+          <p>Skapad av <a href="https://sajtmaskin.se/" className="underline underline-offset-4 hover:text-white">SajtMaskin.se</a></p>
         </div>
       </div>
     </footer>

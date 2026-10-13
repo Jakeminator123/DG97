@@ -11,7 +11,7 @@ module.exports = {
     '/404',
     '/500',
     '/loading',
-    '/medlemmar', // redirectar till /foretagsportal
+    '/medlemmar', // separat kontoinloggning, noindex
     '/sitemap.xml',
     '/sitemap-*.xml',
     '/server-sitemap.xml',

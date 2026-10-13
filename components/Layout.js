@@ -9,6 +9,7 @@ const ScrollToTop = dynamic(() => import('./ScrollToTop'), {
   ssr: false,
   loading: () => null
 });
+const Chatbot = dynamic(() => import('./Chatbot'), { ssr: false, loading: () => null });
 
 export default function Layout({
   children,
@@ -59,6 +60,7 @@ export default function Layout({
         </div>
         <Footer />
         <ScrollToTop />
+        {!isAdminPage && !['/medlemmar', '/foretagsportal'].includes(router.pathname) && <Chatbot />}
       </div>
     </>
   );
