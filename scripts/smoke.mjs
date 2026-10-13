@@ -92,7 +92,7 @@ try {
       assert.match(html, /Kontorsrum · kan hyras/, 'rentable offices are distinguished from current vacancies');
       assert.doesNotMatch(html, /data-listed-room="23"/, 'conference room is never listed');
       assert.doesNotMatch(html, /Rum utanför ritningen/, 'all rooms are on the plan');
-      assert.match(html, /\/images\/planritning-dg97-clean\.webp/, 'plan uses the cleaned sketch');
+      assert.match(html, /data-plan-overview="true"/, 'plan uses the simplified vector overview');
       assert.match(html, /aria-label="Zooma in"/, 'floor plan supports zoom');
       assert.match(html, /Information om valt rum/, 'floor plan has a persistent selection panel');
       assert.match(html, /från 30 nov|ledigt från 30 november/);
@@ -100,6 +100,9 @@ try {
       assert.ok(planSvg, 'floor plan svg is present');
       assert.doesNotMatch(planSvg[0], /\d[\d\s.,]*\s*kr/, 'floor plan has no prices');
       assert.doesNotMatch(planSvg[0], /<text(?:\s|>)/, 'floor plan has no visible room numbers');
+      assert.doesNotMatch(planSvg[0], /<image(?:\s|>)/, 'floor plan excludes the detailed raster drawing');
+      assert.equal((planSvg[0].match(/data-room-id=/g) || []).length, 23, 'cropped overview preserves all 23 mapped rooms');
+      assert.match(planSvg[0], /aria-haspopup="dialog"/, 'rooms open a photo preview');
     }
     if (path === '/blogg') {
       assert.match(html, /Sök bland guiderna/);

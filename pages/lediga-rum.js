@@ -39,9 +39,9 @@ export default function LedigaRum({ snapshot }) {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-600">Ett kontor med karaktär</p>
           <h2 className="heading-2 mb-4">Hitta din plats på DG97</h2>
           <p className="text-neutral-700 leading-relaxed mb-6">
-            Upptäck kontorets rum och gemensamma miljö. Tryck på ett rum för att läsa mer,
-            eller välj en yta i listan. Gröna rum är publicerade som lediga. Zooma in för att
-            komma närmare.
+            Utforska kontorsrummen i en förenklad översikt. Tryck på ett rum för detaljer
+            och exempelbilder från DG97, eller välj en yta i listan. Gröna rum är publicerade
+            som lediga. Zooma in för att komma närmare.
           </p>
           <div className="mb-8">
             <FloorPlan plan={snapshot.plan} vacantRooms={snapshot.rooms} />

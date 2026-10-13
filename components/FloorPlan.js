@@ -1,6 +1,8 @@
 import { useId, useState } from 'react';
 import { DG97_CONTACT_URL, referralUrl } from '../config/site';
 import { getRoomCategory } from '../lib/plan-presentation';
+import RoomPreview from './RoomPreview';
+import { OVERVIEW_VIEWBOX, OVERVIEW_ENVELOPE } from '../lib/plan-overview';
 
 const palette = {
   vacant: { fill: '#63b58c', stroke: '#24634b', label: 'Publicerat som ledigt' },
@@ -18,6 +20,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
     return room && getRoomCategory(room, vacancy, conferenceRooms) === 'vacant';
   });
   const [selectedId, setSelectedId] = useState(publishedOnPlan[0]?.id || null);
+  const [previewId, setPreviewId] = useState(null);
   const [zoom, setZoom] = useState(1);
   const [onlyVacant, setOnlyVacant] = useState(false);
   const selected = plan.rooms.find(room => room.rum === selectedId);
@@ -26,13 +29,13 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
   const isConference = selectedCategory === 'conference';
   const titleId = `dg97-plan-title-${instanceId}`;
   const descriptionId = `dg97-plan-desc-${instanceId}`;
-  const filterId = `dg97-plan-contrast-${instanceId}`;
   const hatchId = `dg97-plan-unavailable-${instanceId}`;
   const contact = new URL(referralUrl(DG97_CONTACT_URL, 'planritning'));
   if (selected && ['office', 'vacant'].includes(selectedCategory)) contact.searchParams.set('rum', String(selectedId));
 
   function chooseRoom(roomId) {
     setSelectedId(roomId);
+    setPreviewId(roomId);
   }
 
   return (
@@ -52,14 +55,13 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
       <div className="grid lg:grid-cols-[minmax(0,1fr)_300px]">
         <figure className="min-w-0 p-4 sm:p-7">
           <div className={`${zoom > 1 ? 'max-h-[680px]' : ''} overflow-auto rounded-xl border border-[#e1e6eb] bg-white`} tabIndex={0} aria-label="Planritning. Vid zoom kan du rulla för att se resten av kontoret.">
-            <svg viewBox={plan.viewBox} style={{ width: `${zoom * 100}%`, maxWidth: 'none' }} className="block h-auto" aria-labelledby={`${titleId} ${descriptionId}`}>
+            <svg viewBox={OVERVIEW_VIEWBOX} data-plan-overview="true" style={{ width: `${zoom * 100}%`, maxWidth: `${zoom * 420}px` }} className="mx-auto block h-auto" aria-labelledby={`${titleId} ${descriptionId}`}>
               <title id={titleId}>Interaktiv planritning över DG97</title>
-              <desc id={descriptionId}>Gröna rum är publicerade som lediga. Blå rum är kontorsrum som kan hyras, men är inte publicerade som lediga. Rum 23 är konferensrum, visas grått med ränder och hyrs inte ut. Välj ett rum för information. Ritningen saknar synliga rumsnummer och priser.</desc>
+              <desc id={descriptionId}>Förenklad översikt över de markerade rummen, med den omarkerade vänstra delen borttagen. Gröna rum är publicerade som lediga. Blå rum är kontorsrum som kan hyras, men är inte publicerade som lediga. Rum 23 är konferensrum, visas grått med ränder och hyrs inte ut. Välj ett rum för detaljer och exempelbilder. Ritningen saknar synliga rumsnummer och priser.</desc>
               <defs>
-                <filter id={filterId} colorInterpolationFilters="sRGB"><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncR type="linear" slope="1.65" intercept="-0.55" /><feFuncG type="linear" slope="1.65" intercept="-0.55" /><feFuncB type="linear" slope="1.65" intercept="-0.55" /></feComponentTransfer></filter>
                 <pattern id={hatchId} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#d9dcdf" /><path d="M0 0V6" stroke="#aeb4ba" strokeWidth="1.5" /></pattern>
               </defs>
-              <image href="/images/planritning-dg97-clean.webp" x="0" y="0" width={plan.image.width} height={plan.image.height} preserveAspectRatio="none" filter={`url(#${filterId})`} />
+              <path d={OVERVIEW_ENVELOPE} fill="#eef1f4" stroke="#8795a3" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinejoin="miter" />
               {plan.rooms.map(room => {
                 const category = getRoomCategory(room, vacantById[room.rum], conferenceRooms);
                 const available = category === 'vacant' ? vacantById[room.rum] : null;
@@ -67,7 +69,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
                 const colours = palette[category];
                 const label = category === 'conference' ? `Konferensrum ${room.rum}, hyrs inte ut` : available ? `Kontorsrum ${room.rum}, ${available.sizeLabel}, ${available.availabilityLabel}` : category === 'office' ? `Kontorsrum ${room.rum}, kan hyras men är inte publicerat som ledigt` : `Rum ${room.rum}, ej klassificerat för uthyrning`;
                 return (
-                  <g key={room.rum} data-room-id={room.rum} data-available={available ? 'true' : 'false'} data-room-category={category} data-room-type={category === 'conference' ? 'konferensrum' : 'kontor'} role="button" aria-label={label} aria-pressed={active} tabIndex={0} onClick={() => chooseRoom(room.rum)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseRoom(room.rum); } }} className="group cursor-pointer outline-none">
+                  <g key={room.rum} data-room-id={room.rum} data-available={available ? 'true' : 'false'} data-room-category={category} data-room-type={category === 'conference' ? 'konferensrum' : 'kontor'} role="button" aria-label={label} aria-pressed={active} aria-haspopup="dialog" tabIndex={0} onClick={event => { event.currentTarget.focus(); chooseRoom(room.rum); }} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseRoom(room.rum); } }} className="group cursor-pointer outline-none">
                     <title>{label}</title>
                     <polygon points={room.points} fill={category === 'conference' ? `url(#${hatchId})` : colours.fill} fillOpacity={onlyVacant && !available ? 0.2 : available ? 0.9 : 0.8} stroke={active ? '#182e44' : colours.stroke} strokeWidth={active ? 2.6 : 1.15} vectorEffect="non-scaling-stroke" strokeLinejoin="miter" className="transition-[fill-opacity,stroke-width] duration-150 group-hover:[fill-opacity:1] group-focus-visible:stroke-primary-700 group-focus-visible:stroke-[3]" />
                     {active && <polygon points={room.points} fill="none" stroke="#ffffff" strokeWidth="0.65" vectorEffect="non-scaling-stroke" strokeLinejoin="miter" pointerEvents="none" />}
@@ -84,7 +86,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
               <div className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 h-3 w-3 shrink-0 rounded-sm border border-[#496986] bg-[#b6cbe2]" /><span><strong className="block font-semibold text-[#355672]">Kontorsrum · kan hyras</strong>Ej publicerat som ledigt.</span></div>
               <div className="flex items-start gap-2"><span aria-hidden="true" className="mt-0.5 h-3 w-3 shrink-0 rounded-sm border border-[#747b82] bg-[#d9dcdf]" /><span><strong className="block font-semibold text-neutral-700">Konferensrum · hyrs inte ut</strong>Grått med ränder och lås.</span></div>
             </div>
-            <p className="mt-4 text-xs leading-relaxed text-neutral-500">Färgen visar rummets kategori. Endast den publicerade tillgängligheten avgör om ett kontorsrum är ledigt.</p>
+            <p className="mt-4 text-xs leading-relaxed text-neutral-500">Förenklad översikt av de markerade rummen. Färgen visar rummets kategori. Klicka för detaljer och exempelbilder från DG97.</p>
           </figcaption>
         </figure>
         <aside className="border-t border-[#d6dce2] bg-white p-6 lg:border-l lg:border-t-0" aria-label="Information om valt rum">
@@ -96,6 +98,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
               <p className="mb-4 text-sm leading-relaxed text-neutral-600">{isConference ? `Rum ${selected.rum} är konferensrum. Det visas för orientering i kontoret och hyrs inte ut.` : vacancy ? vacancy.availabilityLabel : selectedCategory === 'office' ? 'Det här är ett kontorsrum som kan hyras, men det är inte publicerat som ledigt. Fråga DG97 om aktuell tillgänglighet.' : 'Uthyrningsstatus är inte bekräftad för den här ytan. Kontakta DG97 för mer information.'}</p>
               {vacancy && <dl className="mb-5 space-y-3 rounded-xl border border-[#dce8df] bg-[#f7fbf8] p-4 text-sm"><div className="flex justify-between gap-4"><dt className="text-neutral-600">Yta</dt><dd className="font-semibold text-primary-950">{vacancy.sizeLabel}</dd></div><div><dt className="text-neutral-600">Månadshyra</dt><dd className="mt-1 font-semibold text-primary-950">{vacancy.monthlyLabel}</dd></div></dl>}
               <p className="mb-5 text-xs text-neutral-500">Referens: rum {selected.rum}</p>
+              <button type="button" onClick={() => setPreviewId(selectedId)} aria-haspopup="dialog" className="mb-5 flex w-full items-center justify-between rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm font-semibold text-primary-800 hover:bg-primary-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600">Se exempelbilder från DG97 <span aria-hidden="true">↗</span></button>
             </> : <p className="mb-5 text-sm leading-relaxed text-neutral-600">Tryck på ett rum i ritningen. Du kan också använda tabbtangenten och Enter för att välja.</p>}
           </div>
           <a href={contact.toString()} className="flex items-center justify-center rounded-xl bg-primary-700 px-4 py-3 text-sm font-semibold text-white hover:bg-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-600">{isConference || !selected ? 'Kontakta DG97' : 'Fråga DG97 om rummet'} <span aria-hidden="true" className="ml-2">↗</span></a>
@@ -103,6 +106,7 @@ export default function FloorPlan({ plan, vacantRooms = [] }) {
           {publishedOnPlan.length > 0 && <div className="mt-7 border-t border-[#e1e6eb] pt-5"><h4 className="mb-3 text-sm font-semibold text-primary-950">Publicerade lediga rum</h4><div className="flex flex-wrap gap-2">{publishedOnPlan.map(room => <button type="button" key={room.id} aria-pressed={selectedId === room.id} onClick={() => chooseRoom(room.id)} className={`rounded-lg border px-3 py-2 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${selectedId === room.id ? 'border-[#24634b] bg-[#e1f2e8] text-[#24634b]' : 'border-[#d6dce2] bg-white text-primary-800 hover:border-[#24634b]'}`}>{room.sizeLabel}<span className="sr-only">, rum {room.id}</span></button>)}</div></div>}
         </aside>
       </div>
+      {previewId !== null && selected && <RoomPreview key={previewId} room={selected} category={selectedCategory} vacancy={vacancy} contactUrl={contact.toString()} onClose={() => setPreviewId(null)} />}
     </div>
   );
 }
