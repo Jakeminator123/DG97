@@ -4,10 +4,24 @@ Den publika webbplatsen körs på Vercel-projektet `dg-97`, kopplat till `Jakemi
 
 ## Aktiva funktioner
 
-- Separat guidesajt med jämförelser, artiklar, frågor inför kontorsvalet och miljöbilder. Priser och lediga rum finns bara på `/lediga-rum` plus ett räkneexempel i kostnadsartikeln; CTA går till dg97.se. `/lediga-rum` uppdateras från arket *Tillgänglighet DG97*.
-- Blogg: Markdown i `content/posts/`. Startsidan, bloggindex och artiklar byggs från samma innehåll vid deployment. Ändringar publiceras via GitHub.
-- Kontakt och visningar: länkar till `https://www.dg97.se/kontakt/`. Guiden har inget eget kontaktformulär, ingen inbäddad karta och inget globalt bokningsskript.
-- Admin: valfri, endast läsning av publicerade blogginlägg.
+- Stödsajt för DG97 Kontorshotell: hero, blogg, förfrågan och CTA till dg97.se. Priser och lediga rum finns på `/lediga-rum` plus daterade räkneexempel; `/lediga-rum` uppdateras från arket *Tillgänglighet DG97*.
+- Blogg: Markdown i `content/posts/`. Startsidan, bloggindex och artiklar byggs från samma innehåll vid deployment.
+- Kontaktformulär sparar leads i Neon (`DATABASE_URL`) med honeypot och IP-hashad rate limit. Admin `/admin` listar inkomna rader.
+- Visning bokas även på `https://www.dg97.se/kontakt/`.
+
+## Neon via Vercel Marketplace
+
+Projektet använder redan Neon-databasen **dg97-members** (Vercel-teamet *jakeminator123's projects*). Förfrågningar ligger i tabellen `public.leads` (se `db/leads.sql`).
+
+Om preview saknar `DATABASE_URL`:
+
+1. Öppna [Vercel Dashboard](https://vercel.com) → team **jakeminator123's projects** → projekt **dg-97**.
+2. Gå till **Storage** (eller **Marketplace** → Neon).
+3. Koppla den befintliga Neon-resursen till **Preview** (och Production om den inte redan är kopplad).
+4. Kontrollera att `DATABASE_URL` syns under **Settings → Environment Variables** för Preview.
+5. **Redeploy** preview-branchen. Dela inte connection string i chatt eller git.
+
+Valfri extra variabel: `LEAD_IP_SALT` (hashar avsändar-IP). Utan den används `ADMIN_SESSION_SECRET` eller en intern fallback.
 
 ## Pausade funktioner
 

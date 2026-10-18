@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.dg97.org</loc><lastmod>2026-10-13T14:10:46.583Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/blogg</loc><lastmod>2026-10-13T14:10:46.584Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/colocate</loc><lastmod>2026-10-13T14:10:46.584Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/fragor-och-svar</loc><lastmod>2026-10-13T14:10:46.584Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/galleri</loc><lastmod>2026-10-13T14:10:46.584Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/kontakt</loc><lastmod>2026-10-13T14:10:46.585Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/lediga-rum</loc><lastmod>2026-10-13T14:10:46.585Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/om-oss</loc><lastmod>2026-10-13T14:10:46.585Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.dg97.org/vara-foretag</loc><lastmod>2026-10-13T14:10:46.585Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org</loc><lastmod>2026-10-18T02:41:11.336Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/colocate</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/fragor-och-svar</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/galleri</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/kontakt</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/lediga-rum</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/om-oss</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/vara-foretag</loc><lastmod>2026-10-18T02:41:11.337Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/hitta-kontor-nara-odenplan</loc><lastmod>2026-10-18</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/kontorshotell-vs-coworking</loc><lastmod>2026-10-18</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.dg97.org/blogg/vad-kostar-ett-kontorshotell-i-stockholm-2026</loc><lastmod>2026-10-18</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.dg97.org/blogg/testa-uppkopplingen-pa-kontoret</loc><lastmod>2026-10-11</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.dg97.org/blogg/coworking-eller-eget-kontorsrum</loc><lastmod>2026-10-02</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.dg97.org/blogg/gemensamt-kok-pa-kontoret</loc><lastmod>2026-10-02</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>

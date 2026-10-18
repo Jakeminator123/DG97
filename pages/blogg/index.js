@@ -14,8 +14,8 @@ export default function BlogIndex({ posts }) {
   const filteredPosts = posts.filter(post => (category === 'alla' || post.category === category)
     && searchable(`${post.title} ${post.excerpt} ${post.categoryLabel}`).includes(query));
   return (
-    <Layout title="Guider till kontorsvalet och arbetslivet" description="Läs praktiska guider om kontorshotell, kostnader, arbetsmiljö och vardagen på ett delat kontor." path="/blogg">
-      <GuideHero title="Läs på inför ditt nästa kontor"><p>Guider om att välja arbetsplats och få vardagen på kontoret att fungera. Aktuella erbjudanden finns på DG97:s huvudwebbplats.</p></GuideHero>
+    <Layout title="Blogg om kontorshotell i Stockholm" description="Artiklar om kontorshotell, kostnader, coworking och kontor nära Odenplan. Aktuella rum och bokning finns på dg97.se." path="/blogg">
+      <GuideHero title="Blogg om kontor i Stockholm"><p>Praktiska texter om att välja rum, jämföra upplägg och förstå läget i Vasastan. Bokning sker på DG97:s huvudwebbplats.</p></GuideHero>
       <section className="section-container">
         <div className="mb-10 space-y-5">
           <div className="max-w-xl">

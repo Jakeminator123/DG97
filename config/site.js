@@ -1,9 +1,8 @@
-// The guide has its own URLs; enquiries belong on DG97's main website.
+// Stödsajt på dg97.org. Bokning och officiell info ligger på dg97.se.
 const GUIDE_URL = 'https://www.dg97.org';
-const GUIDE_NAME = 'DG97 Kontorsguiden';
+const GUIDE_NAME = 'DG97 Kontorshotell';
 const DG97_URL = 'https://www.dg97.se';
 const DG97_CONTACT_URL = `${DG97_URL}/kontakt/`;
-// /lediga-kontor/ is not published yet (404 on 2026-10-03). Use /kontakt/ until it exists.
 const DG97_VACANCY_URL = DG97_CONTACT_URL;
 const DG97_PLANNED_VACANCY_URL = `${DG97_URL}/lediga-kontor/`;
 const DEFAULT_OG_IMAGE = '/images/og_image_reception_1200x630.jpg';
@@ -27,8 +26,12 @@ const DG97_BUSINESS = {
 const PRICE_ALLOWED_PATHS = [
   '/lediga-rum',
   '/blogg/vad-kostar-ett-kontorshotell-i-stockholm',
+  '/blogg/vad-kostar-ett-kontorshotell-i-stockholm-2026',
 ];
-const PRICE_ALLOWED_SLUGS = ['vad-kostar-ett-kontorshotell-i-stockholm'];
+const PRICE_ALLOWED_SLUGS = [
+  'vad-kostar-ett-kontorshotell-i-stockholm',
+  'vad-kostar-ett-kontorshotell-i-stockholm-2026',
+];
 const LEDIGA_RUM_CSV_URL = process.env.LEDIGA_RUM_CSV_URL
   || 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQsetIg9Tp7-AAan7ucev64Hqp7Mi4Di3FUFl3pldsMiaWRnqTdkOyYW1GgNgLCJHgsukQ1kKL-plx7/pub?gid=345753643&single=true&output=csv';
 const LEDIGA_RUM_REVALIDATE_SECONDS = 3600;
@@ -37,7 +40,7 @@ function referralUrl(url, placement) {
   const tagged = new URL(url);
   tagged.searchParams.set('utm_source', 'dg97.org');
   tagged.searchParams.set('utm_medium', 'referral');
-  tagged.searchParams.set('utm_campaign', 'kontorsguiden');
+  tagged.searchParams.set('utm_campaign', 'kontorshotell');
   tagged.searchParams.set('utm_content', placement);
   return tagged.toString();
 }

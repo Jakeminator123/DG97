@@ -1,20 +1,20 @@
 import Head from "next/head";
-import { Inter, Poppins } from "next/font/google";
+import { Lato, Open_Sans } from "next/font/google";
 import "../styles/globals.css";
 import "../styles/shimmer.css";
 
-// Use next/font to reduce CLS from font swapping (adds metric overrides)
-const inter = Inter({
+const lato = Lato({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-lato",
+  weight: ["300", "400", "700"],
 });
 
-const poppins = Poppins({
+const openSans = Open_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-poppins",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-open-sans",
+  weight: ["400", "600"],
 });
 
 export default function App({ Component, pageProps }) {
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={`${inter.variable} ${poppins.variable} relative z-10`}>
+      <div className={`${lato.variable} ${openSans.variable} relative z-10 font-sans`}>
         <Component {...pageProps} />
       </div>
     </>

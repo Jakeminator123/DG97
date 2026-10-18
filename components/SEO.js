@@ -3,20 +3,22 @@ import { GUIDE_URL, GUIDE_NAME, DG97_URL, DG97_BUSINESS, DEFAULT_OG_IMAGE, DEFAU
 
 export default function SEO({
   title,
-  description = 'Guider och checklistor om kontorshotell och arbetsliv i Stockholm. Aktuella kontorsrum, priser och kontakt finns på DG97:s huvudwebbplats.',
+  description = 'Privata kontorsrum på Drottninggatan 97 i Vasastan. Se lediga rum, läs om kontorshotell nära Odenplan och ta kontakt via dg97.se.',
   path = '', image = DEFAULT_OG_IMAGE, type = 'website', article = null,
   breadcrumbs = [], noindex = false, faq = null, pageType = 'WebPage', imageGallery = [],
 }) {
   const fullUrl = new URL(path || '/', GUIDE_URL).href;
   const imageUrl = new URL(image || DEFAULT_OG_IMAGE, GUIDE_URL).href;
   const fullTitle = title ? `${title} | ${GUIDE_NAME}` : GUIDE_NAME;
-  const publisher = {
-    '@type': 'Organization',
+  const localBusiness = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
     '@id': DG97_BUSINESS.schemaId,
     name: DG97_BUSINESS.name,
     url: DG97_URL,
     telephone: DG97_BUSINESS.telephoneIntl,
     email: DG97_BUSINESS.email,
+    image: new URL(DEFAULT_OG_IMAGE, GUIDE_URL).href,
     address: {
       '@type': 'PostalAddress',
       streetAddress: DG97_BUSINESS.streetAddress,
@@ -24,6 +26,23 @@ export default function SEO({
       addressLocality: DG97_BUSINESS.addressLocality,
       addressCountry: DG97_BUSINESS.addressCountry,
     },
+    sameAs: DG97_BUSINESS.sameAs,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: DG97_BUSINESS.telephoneIntl,
+      email: DG97_BUSINESS.email,
+      contactType: 'customer service',
+      availableLanguage: ['Swedish'],
+    },
+  };
+  const publisher = {
+    '@type': 'Organization',
+    '@id': DG97_BUSINESS.schemaId,
+    name: DG97_BUSINESS.name,
+    url: DG97_URL,
+    telephone: DG97_BUSINESS.telephoneIntl,
+    email: DG97_BUSINESS.email,
+    address: localBusiness.address,
     sameAs: DG97_BUSINESS.sameAs,
   };
   const website = {
@@ -80,7 +99,7 @@ export default function SEO({
       <link rel="icon" href="/favicon.ico" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      {[website, page, articleData, breadcrumbData, faqData].filter(Boolean).map((data, index) => (
+      {[localBusiness, website, page, articleData, breadcrumbData, faqData].filter(Boolean).map((data, index) => (
         <script key={index} type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }} />
       ))}
