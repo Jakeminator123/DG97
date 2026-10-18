@@ -77,7 +77,7 @@ export default function Chatbot() {
       <button
         ref={triggerRef} type="button" onClick={() => setOpen(previous => !previous)}
         className="fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-white/20 bg-primary-950 px-5 py-3.5 text-sm font-semibold text-white shadow-xl transition hover:bg-primary-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
-        aria-expanded={open} aria-controls="dg97-office-chat" aria-label={open ? 'Stäng DG97-chatten' : 'Öppna DG97-chatten'}
+        aria-expanded={open} aria-controls="dg97-office-chat" aria-label={open ? 'Stäng' : 'Fråga om DG97'}
       >
         <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.6"><path strokeLinecap="round" strokeLinejoin="round" d="M8 10h8M8 14h5M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z" /></svg>
         <span>{open ? 'Stäng' : 'Fråga om DG97'}</span>
