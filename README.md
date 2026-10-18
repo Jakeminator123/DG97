@@ -9,6 +9,7 @@ Stödsajt till [www.dg97.se](https://www.dg97.se) för DG97 Kontorshotell på Dr
 - CTA: [dg97.se](https://www.dg97.se), [hej@dg97.se](mailto:hej@dg97.se), 070-886 22 79.
 - Priser och lediga rum finns på `/lediga-rum` och i de daterade räkneexempelartiklarna. Alltid `exkl. moms`.
 - Blogg: Markdown i `content/posts/`. Sätt `draft: true` för att dölja ett inlägg.
+- Lead-formuläret sparar i Neon och mejlar `hej@dg97.se` via Resend när `RESEND_API_KEY` finns (avsändare `noreply@dg97.org`, reply-to = besökaren). Utan nyckel sparas bara raden. Se `ADMIN_SETUP.md`.
 
 ## Lediga rum
 
