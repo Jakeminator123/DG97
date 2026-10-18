@@ -38,7 +38,7 @@ export default function Home({ featured }) {
       <section className="relative min-h-[100svh] text-white -mt-20">
         <HeroMedia />
         <div className="absolute inset-0 bg-gradient-to-b from-primary-950/25 via-primary-950/45 to-primary-950/85" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-end pb-16 pt-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[100svh] flex flex-col justify-end pb-28 sm:pb-16 pt-32">
           <p className="text-sm font-semibold tracking-[0.28em] uppercase text-blue-100 mb-5">Kontorshotell i Vasastan</p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.05] max-w-4xl mb-6">
             Eget rum vid Observatorielunden
