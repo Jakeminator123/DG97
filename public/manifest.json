@@ -1,11 +1,11 @@
 {
-  "name": "DG97 Kontorsguiden",
-  "short_name": "Kontorsguiden",
-  "description": "Guider om kontorshotell och arbetsliv i Stockholm. Aktuella rum, priser och kontakt finns på www.dg97.se.",
+  "name": "DG97 Kontorshotell",
+  "short_name": "DG97",
+  "description": "Privata kontorsrum på Drottninggatan 97 i Vasastan. Lediga rum, blogg och kontakt – bokning på www.dg97.se.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4B5B9C",
+  "background_color": "#F7F4EC",
+  "theme_color": "#222E78",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -23,4 +23,3 @@
   "lang": "sv-SE",
   "dir": "ltr"
 }
-

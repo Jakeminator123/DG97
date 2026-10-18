@@ -70,16 +70,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
   }
 
   body {
-    @apply bg-white text-neutral-900 antialiased;
-    font-family: var(--font-inter), system-ui, sans-serif;
-    /* Subtle base background to ensure animated background shows through */
-    background: linear-gradient(135deg, #fafbff 0%, #f0f4ff 50%, #fafbff 100%);
+    @apply text-neutral-900 antialiased;
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+    background: #F7F4EC;
   }
 
-  /* Hero headings use Poppins for more visual impact */
   h1,
-  .heading-hero {
-    font-family: "Poppins", "Inter", system-ui, sans-serif;
+  .heading-hero,
+  .heading-1,
+  .heading-2 {
+    font-family: var(--font-lato), system-ui, sans-serif;
   }
 }
 
@@ -314,7 +314,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
     @apply font-bold tracking-tight;
     @apply text-neutral-900;
     @apply leading-tight;
-    font-family: "Poppins", "Inter", system-ui, sans-serif;
+    font-family: var(--font-lato), system-ui, sans-serif;
   }
 
   .heading-2 {
@@ -553,10 +553,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
     .app-ambient,
     .app-ambient::before,
     .app-ambient::after,
-    .hero-bg-animate {
+    .hero-bg-animate,
+    .hero-visual,
+    .reveal-on-scroll {
       animation: none !important;
+      transform: none !important;
     }
   }
+}
+
+.hero-visual {
+  transform: scale(1.06);
+  animation: heroBackgroundFloat 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+.reveal-on-scroll {
+  animation: fadeInUp 0.7s ease both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 35%;
 }
 
 /* ============================================

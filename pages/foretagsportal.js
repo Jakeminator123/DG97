@@ -18,7 +18,7 @@ export default function Foretagsportal({ user }) {
     } catch { setError('Det gick inte att logga ut just nu. Försök igen om en stund.'); setBusy(false); }
   }
   return (
-    <Layout title="Din kontosida" description="Din kontosida på DG97 Kontorsguiden." path="/foretagsportal" noindex>
+    <Layout title="Din kontosida" description="Din kontosida hos DG97 Kontorshotell." path="/foretagsportal" noindex>
       <section className="section-container py-14 md:py-20 max-w-5xl">
         <div className="flex flex-wrap items-start justify-between gap-6 mb-10"><div><p className="text-sm uppercase tracking-widest text-primary-700 font-semibold mb-3">Din kontosida</p><h1 className="text-3xl md:text-4xl font-semibold text-gray-900">Hej {user.name || 'och välkommen'}!</h1><p className="text-gray-600 mt-3">Du är inloggad på dg97.org.</p></div><button type="button" disabled={busy} onClick={signOut} className="rounded-xl border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-60">{busy ? 'Loggar ut…' : 'Logga ut'}</button></div>
         {error && <p role="alert" className="mb-6 rounded-xl bg-red-50 p-4 text-red-800">{error}</p>}

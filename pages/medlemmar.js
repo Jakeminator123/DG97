@@ -98,7 +98,7 @@ export default function MedlemmarPage({ configured, initialEmail = '', needsVeri
   const needsPassword = ['signin', 'register', 'reset'].includes(mode);
   const needsCode = ['verify', 'reset'].includes(mode);
   return (
-    <Layout title="Ditt DG97-konto" description="Logga in eller skapa ett eget konto på DG97 Kontorsguiden." path="/medlemmar" noindex>
+    <Layout title="Ditt DG97-konto" description="Logga in eller skapa ett eget konto hos DG97 Kontorshotell." path="/medlemmar" noindex>
       <section className="section-container py-14 md:py-24">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-20 items-start max-w-5xl mx-auto">
           <div className="lg:pt-8">

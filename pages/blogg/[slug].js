@@ -18,10 +18,10 @@ export default function BlogPost({ post, relatedPosts }) {
       image={post.image} type="article" article={post} breadcrumbs={breadcrumbs}>
       <article className="section-container">
         <div className="max-w-4xl mx-auto">
-          <Link href="/blogg" className="text-primary-700 underline underline-offset-4 mb-6 inline-block">Alla guider</Link>
+          <Link href="/blogg" className="text-primary-700 underline underline-offset-4 mb-6 inline-block">Alla artiklar</Link>
           <h1 className="heading-1 mb-5">{post.title}</h1>
           <p className="text-sm text-neutral-600 mb-8">
-            DG97 Kontorsguiden · Uppdaterad <time dateTime={post.modifiedDate || post.date}>
+            DG97 Kontorshotell · Uppdaterad <time dateTime={post.modifiedDate || post.date}>
               {new Date(post.modifiedDate || post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
             </time>
           </p>

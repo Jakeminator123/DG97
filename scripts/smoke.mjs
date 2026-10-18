@@ -21,7 +21,7 @@ const { getRelatedPosts } = require('../lib/posts');
 const { PRICE_ALLOWED_PATHS, DG97_BUSINESS, DEFAULT_OG_IMAGE } = require('../config/site');
 const priceAllowed = path => PRICE_ALLOWED_PATHS.includes(path);
 function checkGuide(html, path) {
-  assert.match(html, /DG97 Kontorsguiden/, `${path} guide identity`);
+  assert.match(html, /DG97 Kontorshotell/, `${path} hotel identity`);
   assert.match(html, /href="https:\/\/www\.dg97\.se(?:\/|"|\?)/, `${path} main-site link`);
   assert.match(html, /href="https:\/\/sajtmaskin\.se\/"/, `${path} site credit`);
   assert.match(html, /Drottninggatan 97/, `${path} NAP street`);
@@ -37,9 +37,9 @@ function checkGuide(html, path) {
   assert.doesNotMatch(html, /agendo_loader|data-profile-id/, `${path} no separate booking integration`);
   assert.doesNotMatch(html, /01_kollage|kollage_oversikt/i, `${path} no AI collage`);
   const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/g)].map(match => JSON.parse(match[1]));
-  assert.ok(schemas.some(schema => schema['@type'] === 'WebSite' && schema.url === 'https://www.dg97.org'), `${path} guide website schema`);
+  assert.ok(schemas.some(schema => schema['@type'] === 'WebSite' && schema.url === 'https://www.dg97.org'), `${path} website schema`);
   assert.ok(schemas.some(schema => schema.publisher?.['@id'] === DG97_BUSINESS.schemaId && schema.publisher?.url === 'https://www.dg97.se'), `${path} publisher points to dg97.se LocalBusiness`);
-  assert.ok(!schemas.some(schema => schema['@type'] === 'LocalBusiness'), `${path} does not declare a competing LocalBusiness`);
+  assert.ok(schemas.some(schema => schema['@type'] === 'LocalBusiness' && schema.url === 'https://www.dg97.se' && schema['@id'] === DG97_BUSINESS.schemaId), `${path} LocalBusiness points to dg97.se`);
   assert.doesNotMatch(JSON.stringify(schemas), /"(?:price|priceRange|aggregateRating|reviewCount|review|hasOfferCatalog)"|ReservationConfirmed|SearchAction/, `${path} no unsupported business claims`);
   if (!path.startsWith('/blogg/')) {
     assert.match(html, new RegExp(DEFAULT_OG_IMAGE.replace(/\//g, '\\/')), `${path} default og image`);
@@ -64,6 +64,8 @@ try {
     if (path === '/') {
       assert.match(html, /hero_reception_ekta_1600x900\.jpg/, 'homepage hero photo');
       assert.match(html, /href="\/lediga-rum"/, 'homepage links to vacancy overview');
+      assert.match(html, /0739 55 80 87/, 'homepage shows Jakob phone');
+      assert.match(html, /dg97-hero\.mp4|hero_reception_ekta_1600x900\.jpg/, 'homepage hero media');
     }
     if (path === '/galleri') {
       assert.match(html, /ekta_office_room\.jpg/, 'gallery uses brighter photos');
@@ -71,7 +73,10 @@ try {
     }
     if (path === '/kontakt') {
       assert.match(html, /href="https:\/\/www\.dg97\.se\/kontakt\/"/);
-      assert.doesNotMatch(html, /<form\b/, 'Enquiries go to the main site');
+      assert.match(html, /<form\b/, 'Lead form is available');
+      assert.match(html, /0739 55 80 87/, 'Jakob phone is listed');
+      assert.match(html, /name="company"/, 'form collects company');
+      assert.match(html, /name="sizeNeed"/, 'form collects size need');
     }
     if (path === '/lediga-rum') {
       assert.match(html, /canonical" href="https:\/\/www\.dg97\.org\/lediga-rum"/, 'self-referencing canonical');

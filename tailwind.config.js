@@ -8,17 +8,17 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f0f4ff',
-          100: '#e0ebff',
-          200: '#c7d8ff',
-          300: '#a5b9ff',
-          400: '#7c8eff',
-          500: '#4B5B9C',  // DG97 main blue
-          600: '#3d4a7d',
-          700: '#343d6a',
-          800: '#2f3659',
-          900: '#293356',
-          950: '#1a1f3a',
+          50: '#f4f5fb',
+          100: '#e6e8f4',
+          200: '#c9cde4',
+          300: '#9aa3cc',
+          400: '#6b76b3',
+          500: '#4B5B9C',
+          600: '#2C3C94',
+          700: '#222E78',
+          800: '#1B2468',
+          900: '#161C54',
+          950: '#0E1440',
         },
         secondary: {
           50: '#fef2f2',
@@ -26,7 +26,7 @@ module.exports = {
           200: '#fecaca',
           300: '#fca5a5',
           400: '#f87171',
-          500: '#ff6b6b',  // DG97 accent red
+          500: '#ff6b6b',
           600: '#dc2626',
           700: '#b91c1c',
           800: '#991b1b',
@@ -38,11 +38,15 @@ module.exports = {
           200: '#fed7aa',
           300: '#fdba74',
           400: '#fb923c',
-          500: '#f97316',  // Orange accent
+          500: '#f97316',
           600: '#ea580c',
           700: '#c2410c',
           800: '#9a3412',
           900: '#7c2d12',
+        },
+        cream: {
+          50: '#F7F4EC',
+          100: '#EFE9DA',
         },
         neutral: {
           50: '#fafafa',
@@ -67,13 +71,13 @@ module.exports = {
           700: '#15803d',
           800: '#166534',
           900: '#14532d',
-        }
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-open-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-lato)', 'system-ui', 'sans-serif'],
       },
     },
   },
   plugins: [],
-}
-
+};

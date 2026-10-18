@@ -20,12 +20,12 @@ export default function NapBlock({ className = '', showSocial = true }) {
       <p className="mt-3">
         <a href={DG97_URL} className="underline underline-offset-4">www.dg97.se</a>
       </p>
-      {showSocial && (
+      {showSocial ? (
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
           <a href={DG97_BUSINESS.sameAs[0]} className="underline underline-offset-4">LinkedIn</a>
           <a href={DG97_BUSINESS.sameAs[1]} className="underline underline-offset-4">Facebook</a>
         </p>
-      )}
+      ) : null}
     </address>
   );
 }
