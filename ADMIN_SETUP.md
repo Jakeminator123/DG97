@@ -23,6 +23,29 @@ Om preview saknar `DATABASE_URL`:
 
 Valfri extra variabel: `LEAD_IP_SALT` (hashar avsändar-IP). Utan den används `ADMIN_SESSION_SECRET` eller en intern fallback.
 
+## Mejlnotis för förfrågningar (Resend)
+
+När en förfrågan sparats i Neon skickas ett mejl till `hej@dg97.se` från `noreply@dg97.org`, med **Reply-To** = besökarens e-post. Utan `RESEND_API_KEY` sparas raden som vanligt och besökaren får inget fel.
+
+Det finns ingen mejlleverantör i repot sedan tidigare. Nyhetsbrevet är pausat. `dg97.org` är registrerad hos Vercel och använder redan `ns1.vercel-dns.com` / `ns2.vercel-dns.com` — DNS-poster för Resend kan därför läggas i Vercel.
+
+**Marketplace-installationen kan inte göras från agenten** (ingen Resend-integration finns, Vercel CLI är utloggad). Jakob klickar:
+
+1. Öppna [Vercel](https://vercel.com) → team **jakeminator123's projects**.
+2. **Marketplace** (eller **Integrations**) → sök **Resend** → **Add** / **Install**.
+3. Koppla resursen till projektet **dg-97**, miljöerna **Production** och **Preview**.
+4. I Resend: **Domains** → **Add domain** → `dg97.org`.
+5. Lägg DNS-posterna Resend visar (SPF/DKIM, ev. MX/DMARC):
+   - Vercel → **Domains** → **dg97.org** → **DNS** → **Add** (samma värden som Resend ger).
+   - Om Marketplace erbjuder att skriva posterna automatiskt: acceptera det.
+6. Vänta tills domänen är **Verified** i Resend.
+7. Kontrollera att `RESEND_API_KEY` syns under **dg-97 → Settings → Environment Variables** (Production + Preview). Dela inte nyckeln.
+8. **Redeploy** production (och ev. preview).
+
+Manuell reservplan: skapa API-nyckel på [resend.com](https://resend.com) → Vercel → **dg-97** → **Settings → Environment Variables** → `RESEND_API_KEY` (Sensitive) för Production och Preview. Verifiera sedan `dg97.org` i Resend och lägg samma DNS-poster som ovan.
+
+Valfritt: `LEAD_NOTIFY_FROM` (standard `DG97 Kontorshotell <noreply@dg97.org>`) och `LEAD_NOTIFY_TO` (standard `hej@dg97.se`).
+
 ## Pausade funktioner
 
 Företagsportalen, nyhetsbrevet, AI-generering, schemaläggning, serverbaserad publicering, bildhantering och innehållsredigering är pausade. API:erna svarar med tydliga fel och gör inga filskrivningar, externa publiceringar eller mejlutskick. Gamla demo-inloggningar fungerar inte.
