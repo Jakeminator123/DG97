@@ -4,13 +4,13 @@ import OfficialCTA from '../components/OfficialCTA';
 import NapBlock from '../components/NapBlock';
 import LocationMap from '../components/LocationMap';
 import LeadForm from '../components/LeadForm';
-import { DG97_CONTACT_URL, JAKOB } from '../config/site';
+import { DG97_CONTACT_URL } from '../config/site';
 
 export default function Kontakt() {
   return (
     <Layout
       title="Kontakta DG97"
-      description="Skicka en förfrågan om kontorsrum på Drottninggatan 97, mejla hej@dg97.se eller ring Jakob på 0739 55 80 87. Visning bokas även på dg97.se."
+      description="Skicka en förfrågan om kontorsrum på Drottninggatan 97, mejla hej@dg97.se eller ring 070-886 22 79. Visning bokas även på dg97.se."
       path="/kontakt"
       pageType="ContactPage"
     >
@@ -26,10 +26,6 @@ export default function Kontakt() {
           <div>
             <h2 className="heading-2 mb-5">DG97 Kontorshotell</h2>
             <NapBlock className="text-lg text-neutral-700 leading-relaxed space-y-1" />
-            <p className="mt-6 text-lg text-neutral-700">
-              Jakob Eberg:{' '}
-              <a className="underline underline-offset-4" href={JAKOB.telephoneHref}>{JAKOB.telephoneDisplay}</a>
-            </p>
             <ul className="list-disc pl-6 space-y-3 text-lg text-neutral-700 mt-8">
               <li>Hur många som behöver arbeta på kontoret samtidigt.</li>
               <li>Ungefär när ni vill flytta in.</li>

@@ -23,12 +23,6 @@ const DG97_BUSINESS = {
     'https://www.facebook.com/Drottninggatan97',
   ],
 };
-const JAKOB = {
-  name: 'Jakob Eberg',
-  telephoneDisplay: '0739 55 80 87',
-  telephoneIntl: '+46 73 955 80 87',
-  telephoneHref: 'tel:+46739558087',
-};
 const PRICE_ALLOWED_PATHS = [
   '/lediga-rum',
   '/blogg/vad-kostar-ett-kontorshotell-i-stockholm',
@@ -61,7 +55,6 @@ module.exports = {
   DEFAULT_OG_IMAGE,
   DEFAULT_OG_ALT,
   DG97_BUSINESS,
-  JAKOB,
   PRICE_ALLOWED_PATHS,
   PRICE_ALLOWED_SLUGS,
   LEDIGA_RUM_CSV_URL,

@@ -26,6 +26,8 @@ function checkGuide(html, path) {
   assert.match(html, /href="https:\/\/sajtmaskin\.se\/"/, `${path} site credit`);
   assert.match(html, /Drottninggatan 97/, `${path} NAP street`);
   assert.match(html, /070-886 22 79/, `${path} NAP phone`);
+  assert.match(html, /tel:\+46708862279/, `${path} official tel link`);
+  assert.doesNotMatch(html, /0739 55 80 87|tel:\+46739558087/, `${path} no Jakob mobile`);
   assert.match(html, /hej@dg97\.se/, `${path} NAP email`);
   assert.match(html, /linkedin\.com\/company\/dg97/, `${path} LinkedIn sameAs`);
   assert.match(html, /facebook\.com\/Drottninggatan97/, `${path} Facebook sameAs`);
@@ -64,7 +66,7 @@ try {
     if (path === '/') {
       assert.match(html, /hero_reception_ekta_1600x900\.jpg/, 'homepage hero photo');
       assert.match(html, /href="\/lediga-rum"/, 'homepage links to vacancy overview');
-      assert.match(html, /0739 55 80 87/, 'homepage shows Jakob phone');
+      assert.match(html, /tel:\+46708862279/, 'homepage shows official phone');
       assert.match(html, /dg97-hero\.mp4|hero_reception_ekta_1600x900\.jpg/, 'homepage hero media');
     }
     if (path === '/galleri') {
@@ -74,7 +76,7 @@ try {
     if (path === '/kontakt') {
       assert.match(html, /href="https:\/\/www\.dg97\.se\/kontakt\/"/);
       assert.match(html, /<form\b/, 'Lead form is available');
-      assert.match(html, /0739 55 80 87/, 'Jakob phone is listed');
+      assert.match(html, /070-886 22 79/, 'official phone is listed');
       assert.match(html, /name="company"/, 'form collects company');
       assert.match(html, /name="sizeNeed"/, 'form collects size need');
     }

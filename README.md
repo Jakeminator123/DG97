@@ -6,7 +6,7 @@ Stödsajt till [www.dg97.se](https://www.dg97.se) för DG97 Kontorshotell på Dr
 
 - Unik copy, egen canonical på dg97.org, Open Graph och LocalBusiness som pekar på `https://www.dg97.se/#localbusiness`.
 - Inga påhittade recensioner, betyg eller öppettider i schema.
-- CTA: [dg97.se](https://www.dg97.se), [hej@dg97.se](mailto:hej@dg97.se), Jakob 0739 55 80 87. Officiellt NAP-nummer 070-886 22 79.
+- CTA: [dg97.se](https://www.dg97.se), [hej@dg97.se](mailto:hej@dg97.se), 070-886 22 79.
 - Priser och lediga rum finns på `/lediga-rum` och i de daterade räkneexempelartiklarna. Alltid `exkl. moms`.
 - Blogg: Markdown i `content/posts/`. Sätt `draft: true` för att dölja ett inlägg.
 

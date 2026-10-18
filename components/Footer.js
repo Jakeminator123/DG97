@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { DG97_CONTACT_URL, JAKOB, referralUrl } from '../config/site';
+import { DG97_CONTACT_URL, referralUrl } from '../config/site';
 import NapBlock from './NapBlock';
 
 export default function Footer() {
@@ -26,10 +26,6 @@ export default function Footer() {
           <div>
             <h2 className="font-semibold mb-4">Kontorshotellet</h2>
             <NapBlock className="text-blue-100 leading-relaxed space-y-1" />
-            <p className="mt-4 text-blue-100">
-              Jakob:{' '}
-              <a href={JAKOB.telephoneHref} className="underline underline-offset-4">{JAKOB.telephoneDisplay}</a>
-            </p>
             <a href={referralUrl(DG97_CONTACT_URL, 'footer')} className="inline-block mt-4 hover:underline">Kontakta DG97 på dg97.se</a>
           </div>
         </div>

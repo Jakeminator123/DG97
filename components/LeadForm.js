@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { JAKOB } from '../config/site';
+import { DG97_BUSINESS } from '../config/site';
 
 const sizeOptions = [
   { value: '', label: 'Välj ungefärlig storlek' },
@@ -58,7 +58,7 @@ export default function LeadForm() {
           Jakob eller någon i teamet återkommer. Ni kan också mejla{' '}
           <a className="underline underline-offset-4" href="mailto:hej@dg97.se">hej@dg97.se</a>
           {' '}eller ringa{' '}
-          <a className="underline underline-offset-4" href={JAKOB.telephoneHref}>{JAKOB.telephoneDisplay}</a>.
+          <a className="underline underline-offset-4" href={DG97_BUSINESS.telephoneHref}>{DG97_BUSINESS.telephoneDisplay}</a>.
         </p>
       </div>
     );

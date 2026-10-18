@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { GUIDE_URL, GUIDE_NAME, DG97_URL, DG97_BUSINESS, JAKOB, DEFAULT_OG_IMAGE, DEFAULT_OG_ALT } from '../config/site';
+import { GUIDE_URL, GUIDE_NAME, DG97_URL, DG97_BUSINESS, DEFAULT_OG_IMAGE, DEFAULT_OG_ALT } from '../config/site';
 
 export default function SEO({
   title,
@@ -27,22 +27,13 @@ export default function SEO({
       addressCountry: DG97_BUSINESS.addressCountry,
     },
     sameAs: DG97_BUSINESS.sameAs,
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        telephone: DG97_BUSINESS.telephoneIntl,
-        email: DG97_BUSINESS.email,
-        contactType: 'customer service',
-        availableLanguage: ['Swedish'],
-      },
-      {
-        '@type': 'ContactPoint',
-        telephone: JAKOB.telephoneIntl,
-        name: JAKOB.name,
-        contactType: 'customer service',
-        availableLanguage: ['Swedish'],
-      },
-    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: DG97_BUSINESS.telephoneIntl,
+      email: DG97_BUSINESS.email,
+      contactType: 'customer service',
+      availableLanguage: ['Swedish'],
+    },
   };
   const publisher = {
     '@type': 'Organization',

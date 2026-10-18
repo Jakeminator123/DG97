@@ -5,7 +5,7 @@ import OfficialCTA from '../components/OfficialCTA';
 import HeroMedia from '../components/HeroMedia';
 import LeadForm from '../components/LeadForm';
 import BlogCard from '../components/BlogCard';
-import { DG97_CONTACT_URL, JAKOB, referralUrl } from '../config/site';
+import { DG97_CONTACT_URL, DG97_BUSINESS, referralUrl } from '../config/site';
 
 const included = [
   ['Kaffe, frukt och läsk', 'Alltid tillgängligt i de gemensamma ytorna.'],
@@ -54,8 +54,8 @@ export default function Home({ featured }) {
             <Link href="/lediga-rum" className="inline-flex items-center justify-center px-6 py-3 border border-white/50 text-white font-semibold rounded-xl hover:bg-white/10">
               Se lediga rum
             </Link>
-            <a href={JAKOB.telephoneHref} className="inline-flex items-center justify-center px-6 py-3 text-white font-semibold underline underline-offset-4">
-              {JAKOB.telephoneDisplay}
+            <a href={DG97_BUSINESS.telephoneHref} className="inline-flex items-center justify-center px-6 py-3 text-white font-semibold underline underline-offset-4">
+              {DG97_BUSINESS.telephoneDisplay}
             </a>
           </div>
         </div>
@@ -159,8 +159,8 @@ export default function Home({ featured }) {
             <h2 className="heading-2 mb-4">Berätta vad ni behöver</h2>
             <p className="text-lg text-neutral-700 leading-relaxed mb-4">
               Skicka en intresseanmälan här, eller gå direkt till kontaktformuläret på dg97.se.
-              Mejla <a className="underline underline-offset-4" href="mailto:hej@dg97.se">hej@dg97.se</a> eller ring Jakob på{' '}
-              <a className="underline underline-offset-4" href={JAKOB.telephoneHref}>{JAKOB.telephoneDisplay}</a>.
+              Mejla <a className="underline underline-offset-4" href="mailto:hej@dg97.se">hej@dg97.se</a> eller ring{' '}
+              <a className="underline underline-offset-4" href={DG97_BUSINESS.telephoneHref}>{DG97_BUSINESS.telephoneDisplay}</a>.
             </p>
           </div>
           <LeadForm />

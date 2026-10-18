@@ -1,4 +1,4 @@
-import { DG97_URL, DG97_CONTACT_URL, JAKOB, referralUrl } from '../config/site';
+import { DG97_URL, DG97_CONTACT_URL, DG97_BUSINESS, referralUrl } from '../config/site';
 
 export default function OfficialCTA({
   title = 'Ta nästa steg med DG97',
@@ -15,7 +15,7 @@ export default function OfficialCTA({
       <div className="flex flex-wrap gap-4">
         <a href={referralUrl(primaryHref, placement)} className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-800 font-semibold rounded-xl hover:bg-primary-50">{primaryLabel}</a>
         <a href={referralUrl(DG97_URL, 'huvudwebbplats')} className="inline-flex items-center justify-center px-6 py-3 border border-white/40 text-white font-semibold rounded-xl hover:bg-white/10">Besök www.dg97.se</a>
-        <a href={JAKOB.telephoneHref} className="inline-flex items-center justify-center px-6 py-3 text-white font-semibold underline underline-offset-4">{JAKOB.telephoneDisplay}</a>
+        <a href={DG97_BUSINESS.telephoneHref} className="inline-flex items-center justify-center px-6 py-3 text-white font-semibold underline underline-offset-4">{DG97_BUSINESS.telephoneDisplay}</a>
       </div>
     </aside>
   );
